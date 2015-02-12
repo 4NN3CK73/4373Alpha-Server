@@ -1,20 +1,21 @@
 <?php
-/**
- * This file is part of the 4373Alpha-Server
+/* ***********************************************************************
+ * This file is part of 4373Alpha-Server Project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ * ***********************************************************************
  */
+
+ 
 
 namespace Anneck\Game;
 
-use Doctrine\Common\Collections\Collection;
-
 /**
- * Interface Configuration
- * @package Anneck\Game
+ * The class Configuration ...
+ * @ToDo: Define the purpose of the class with "separation of concerns" in mind.
+ *
  */
-interface Configuration {
-
-    /**
-     * @return Collection a collection of configuration settings.
-     */
-    public function getConfiguration();
+interface Configuration
+{
 }
