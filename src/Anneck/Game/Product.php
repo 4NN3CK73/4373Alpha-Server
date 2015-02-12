@@ -15,6 +15,12 @@ namespace Anneck\Game;
  */
 interface Product {
 
+    public function addResource(Resource $resource);
 
+    public function addLicence(License $license);
+
+    public function build();
+
+    public function validate();
 
 }

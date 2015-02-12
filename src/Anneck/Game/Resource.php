@@ -15,9 +15,6 @@ namespace Anneck\Game;
  */
 interface Resource {
 
-    public function getUUID();
-
-
     public function isCompatible(Resource $anotherResource);
 
 }
