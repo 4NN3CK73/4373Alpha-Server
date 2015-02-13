@@ -11,6 +11,7 @@
 
 namespace Anneck\Game\Resource;
 
+use Anneck\Game\Exception\InvalidClassTypeException;
 use Anneck\Game\Resource;
 
 /**
@@ -20,6 +21,15 @@ use Anneck\Game\Resource;
  */
 class DefaultResource implements Resource
 {
+    private $resourceName = '__DEFAULT__';
+
+    /**
+     * @param string $resourceName
+     */
+    public function __construct($resourceName = '__DEFAULT__')
+    {
+        $this->resourceName = $resourceName;
+    }
     /**
      * The default resource is compatible with anything.
      *

@@ -1,17 +1,22 @@
 <?php
-
-use Anneck\Game\License,
-    Anneck\Game\Product,
-    Anneck\Game\Resource;
-USE Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * Created by PhpStorm.
  * User: andre
  * Date: 12.02.15
  * Time: 18:06
  */
+namespace Anneck\Game\Product;
 
+use Anneck\Game\License,
+    Anneck\Game\Product,
+    Anneck\Game\Resource;
+
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Class DefaultProduct
+ * @package Anneck\Game\Product
+ */
 class DefaultProduct implements Product {
 
 
@@ -19,6 +24,22 @@ class DefaultProduct implements Product {
      * @var ArrayCollection
      */
     private $resources;
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getResources()
+    {
+        return $this->resources;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLicence()
+    {
+        return $this->licence;
+    }
 
     private $licence;
 
@@ -31,8 +52,13 @@ class DefaultProduct implements Product {
      */
     public function addResource(Resource $resource)
     {
+        // Lets check first ...
+        $isCompatible =
+            $this->checkIfCompatibleWithContained($resource);
 
-        $this->checkIfCompatibleWithContained($resource);
+        if($isCompatible) {
+            $this->resources->add($resource);
+        } // no else required, we do nothing if its not compatible
     }
 
     /**
