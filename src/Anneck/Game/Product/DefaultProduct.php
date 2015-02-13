@@ -68,13 +68,18 @@ class DefaultProduct implements Product {
      */
     private function checkIfCompatibleWithContained(Resource $resource)
     {
+        // start with a default which makes the loop short
         $isCompatible = true;
+        // get the iterator from my contained resources
         $iter = $this->resources->getIterator();
-        foreach ($iter as $existingResource) {
-            if (!$resource->isCompatible($existingResource)) {
+        // do the shuffle ...
+        foreach ($iter as $withExistingResource) {
+            if (!$resource->isCompatible($withExistingResource)) {
+                // if any one resource IS NOT compatible - switch to FALSE
                 $isCompatible = false;
-            }
+            } // if every contained resource IS compatible - leave default TRUE untouched
         }
+        // ... end of calculation
         return $isCompatible;
     }
 }
