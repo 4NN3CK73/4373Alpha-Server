@@ -11,7 +11,7 @@ use Anneck\Game\License,
     Anneck\Game\Product,
     Anneck\Game\Resource;
 
-use Anneck\Manufacture\ProductFactory;
+use Anneck\Game\ProductFactory;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**

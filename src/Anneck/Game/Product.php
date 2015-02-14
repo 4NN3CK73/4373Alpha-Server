@@ -9,7 +9,7 @@
 
 namespace Anneck\Game;
 
-use Anneck\Manufacture\ProductFactory;
+use Anneck\Game\ProductFactory;
 
 /**
  * The interface Product is a Game object which enables

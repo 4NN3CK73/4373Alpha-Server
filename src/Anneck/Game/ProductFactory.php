@@ -7,7 +7,7 @@
  * Time: 12:36 PM
  */
 
-namespace Anneck\Manufacture;
+namespace Anneck\Game;
 
 use Anneck\Game\License;
 use Anneck\Game\Product;
