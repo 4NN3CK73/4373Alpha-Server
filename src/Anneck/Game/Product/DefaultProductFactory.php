@@ -24,7 +24,8 @@ class DefaultProductFactory implements ProductFactory {
      */
     public function createProduct(Collection $collectionOfResources)
     {
-        // TODO: Implement createProduct() method.
+        $newProduct = new DefaultProduct();
+        return $newProduct;
     }
 
     /**
