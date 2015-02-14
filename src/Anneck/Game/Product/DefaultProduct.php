@@ -11,6 +11,7 @@ use Anneck\Game\License,
     Anneck\Game\Product,
     Anneck\Game\Resource;
 
+use Anneck\Manufacture\ProductFactory;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -47,8 +48,11 @@ class DefaultProduct implements Product {
     {
         $this->resources = new ArrayCollection();
     }
+
     /**
+     * @todo: what should we return, I vote for true|false ...
      * @param Resource $resource
+     * @return mixed|void
      */
     public function addResource(Resource $resource)
     {
@@ -70,11 +74,12 @@ class DefaultProduct implements Product {
     }
 
     /**
-     *
+     * @param ProductFactory $productFactory
+     * @return Product
      */
-    public function build()
+    public function build(ProductFactory $productFactory)
     {
-        // TODO: Implement build() method.
+        return $this;
     }
 
     /**
@@ -97,9 +102,9 @@ class DefaultProduct implements Product {
         // start with a default which makes the loop short
         $isCompatible = true;
         // get the iterator from my contained resources
-        $iter = $this->resources->getIterator();
+        $containedResource = $this->resources->getIterator();
         // do the shuffle ...
-        foreach ($iter as $withExistingResource) {
+        foreach ($containedResource as $withExistingResource) {
             if (!$resource->isCompatible($withExistingResource)) {
                 // if any one resource IS NOT compatible - switch to FALSE
                 $isCompatible = false;

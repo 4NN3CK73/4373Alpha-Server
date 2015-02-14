@@ -28,7 +28,7 @@ class DefaultContinentConfiguration implements Configuration
     /**
      * Creates a DefaultContinentConfiguration
      */
-    function __construct()
+    public function __construct()
     {
         $this->configData = new ArrayCollection(
             array(
@@ -45,7 +45,7 @@ class DefaultContinentConfiguration implements Configuration
      * A string representation of the DefaultContinentConfiguration
      * @return string
      */
-    function __toString()
+    public function __toString()
     {
         return __CLASS__;
     }
