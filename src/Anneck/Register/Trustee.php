@@ -19,12 +19,10 @@ interface Trustee {
 
     public function addProduct(Product $product);
 
-    public function addLicence(Licence $licence);
-
     /**
      * @param Product $product
      * @return bool true if the product is registered
      */
-    public function exists(Product $product);
+    public function isRegistered(Product $product);
 
 }

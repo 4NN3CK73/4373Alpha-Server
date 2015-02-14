@@ -29,7 +29,7 @@ class DefaultWorldSpec extends ObjectBehavior
 
     }
 
-    function it_creates_a_default_collection_of_continents()
+    function it_returns_a_collection_of_continents()
     {
         $defaultWorlds = array('default-1', 'default-2', 'default-3');
         $this->getContinents()->shouldReturn($defaultWorlds);

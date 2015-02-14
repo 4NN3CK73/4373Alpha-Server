@@ -7,15 +7,13 @@
  * ***********************************************************************
  */
 
- 
-
-namespace Anneck\Game;
+ %namespace_block%
 
 /**
- * The class Configuration ...
+ * The class %name% ...
  * @ToDo: Define the purpose of the class with "separation of concerns" in mind.
  *
  */
-interface Configuration
+class %name%
 {
 }
