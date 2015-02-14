@@ -6,37 +6,35 @@
  * file that was distributed with this source code.
  * ***********************************************************************
  */
-
- 
-
 namespace Anneck\Game\Resource;
 
 use Anneck\Game\Resource;
 
 /**
- * The class DefaultResource ...
- * @ToDo: Define the purpose of the class with "separation of concerns" in mind.
+ * The class IncompatibleResource is used for testing purposes only.
+ * It defaults to be incompatible! Nothing more to it :)
+ * If you find another use for this class, please document it here, thank you. :)
  *
  */
-class DefaultResource implements Resource
+class IncompatibleResource implements Resource
 {
-    private $resourceName = '__DEFAULT__';
+    private $resourceName = '__INCOMPATIBLE__';
 
     /**
      * @param string $resourceName
      */
-    public function __construct($resourceName = '__DEFAULT__')
+    public function __construct($resourceName = '__INCOMPATIBLE__')
     {
         $this->resourceName = $resourceName;
     }
+
     /**
-     * The default resource is compatible with anything.
      *
      * @param Resource $anotherResource
-     * @return bool true - this is just a default
+     * @return bool false - its always incompatible
      */
     public function isCompatible(Resource $anotherResource)
     {
-        return true;
+        return false;
     }
 }
