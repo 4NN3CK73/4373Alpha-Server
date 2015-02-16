@@ -5,6 +5,7 @@ namespace spec\Anneck\Game\Product;
 use Anneck\Game\Product\DefaultProductFactory;
 use Anneck\Game\Resource\DefaultResource;
 use Anneck\Game\Resource\IncompatibleResource;
+use Anneck\Game\Worlds\DefaultWorld;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -58,7 +59,7 @@ class DefaultProductSpec extends ObjectBehavior
 
     public function it_builds_a_product_using_a_product_factory()
     {
-        $productFactory = new DefaultProductFactory();
+        $productFactory = DefaultProductFactory::getInstance(new DefaultWorld());
         /** @noinspection PhpUndefinedMethodInspection */
         $this->build($productFactory);
     }

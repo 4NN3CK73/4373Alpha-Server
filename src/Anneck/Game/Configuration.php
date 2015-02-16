@@ -7,15 +7,31 @@
  * ***********************************************************************
  */
 
- 
-
 namespace Anneck\Game;
 
 /**
- * The class Configuration ...
- * @ToDo: Define the purpose of the class with "separation of concerns" in mind.
+ * A (Game)Configuration is used as a READ ONLY container carrying a key/value collection.
+ *
+ * The implementations of this class MUST NOT allow access to its internal data.
+ *
  *
  */
 interface Configuration
 {
+    /**
+     * Returns all configuration key's.
+     *
+     * @return array of configuration key's;
+     */
+    public function getConfigurationKeys();
+
+    /**
+     * Returns the configuration as a collection.
+     *
+     * @return mixed
+     */
+    public function getConfiguration();
+
+    public function hasConfigurationKey($key);
+
 }

@@ -2,7 +2,10 @@
 
 namespace spec\Anneck\Game\Worlds;
 
+use Anneck\Game\Configuration\DefaultContinentConfiguration;
 use Anneck\Game\Configuration\DefaultWorldConfiguration;
+use Anneck\Game\Continent\DefaultContinent;
+use Anneck\Game\Continent;
 use Anneck\Game\Worlds\DefaultWorld;
 use Anneck\Game\World;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -31,8 +34,16 @@ class DefaultWorldSpec extends ObjectBehavior
 
     function it_returns_a_collection_of_continents()
     {
-        $defaultWorlds = array('default-1', 'default-2', 'default-3');
-        $this->getContinents()->shouldReturn($defaultWorlds);
+        $defaultWorlds = [
+            'ContinentDefault-1' => new DefaultContinent(new DefaultContinentConfiguration()),
+            'ContinentDefault-2' => new DefaultContinent(new DefaultContinentConfiguration()),
+            'ContinentDefault-3' => new DefaultContinent(new DefaultContinentConfiguration())
+        ];
+        $this->getContinents()->shouldHaveCount(3);
+        $this->getContinents()->shouldHaveKey('ContinentDefault-1');
+        $this->getContinents()->shouldHaveKey('ContinentDefault-2');
+        $this->getContinents()->shouldHaveKey('ContinentDefault-3');
+
     }
 
 }
