@@ -1,16 +1,17 @@
 <?php
-/**
- * This file is part of the 4373Alpha-Server
+/*************************************************************************
+ * This file is part of 4373Alpha-Server Project.
  *
- * User: andre
- * Date: 2/3/15
- * Time: 12:45 PM
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ * ***********************************************************************
+ * Created 03.02.15 at 12:45 by 4nn3ck
+ * ***********************************************************************
  */
-
 namespace Anneck\Game\Configuration;
 
-
 use Anneck\Game\Configuration;
+use Anneck\Game\Continent\DefaultContinent;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -19,22 +20,17 @@ use Doctrine\Common\Collections\Collection;
  *
  * @package Anneck\Game\Configuration
  */
-class DefaultWorldConfiguration implements Configuration {
+class DefaultWorldConfiguration extends ConfigurationRoot
+{
 
-    /**
-     * @return Collection a collection of configuration settings.
-     */
-    public function getConfiguration()
+    public function __construct()
     {
-        $configuration = new ArrayCollection();
-
-        $configuration->set('name',
-            'default');
-        $configuration->set('UUID',
-            'default');
-        $configuration->set('continents',
-            array('default-1', 'default-2', 'default-3'));
-
-        return $configuration;
+        parent::__construct();
+        $this->getConfiguration()->set('CONTINENTS', [
+            'ContinentDefault-1' => new DefaultContinent(new DefaultContinentConfiguration()),
+            'ContinentDefault-2' => new DefaultContinent(new DefaultContinentConfiguration()),
+            'ContinentDefault-3' => new DefaultContinent(new DefaultContinentConfiguration())
+        ]);
     }
+
 }

@@ -1,15 +1,15 @@
 <?php
-/* ***********************************************************************
+/*************************************************************************
  * This file is part of 4373Alpha-Server Project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ***********************************************************************
+ * Created by 4nn3ck
+ * ***********************************************************************
  */
-
- 
-
 namespace Anneck\Game\Configuration;
+
 use Anneck\Game\Configuration;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -18,27 +18,27 @@ use Doctrine\Common\Collections\ArrayCollection;
  * and error handling maybe ...
  *
  */
-class DefaultContinentConfiguration implements Configuration
+class DefaultContinentConfiguration extends ConfigurationRoot
 {
-    /**
-     * @var ArrayCollection holds the config values
-     */
-    private $configData;
 
     /**
      * Creates a DefaultContinentConfiguration
      */
     public function __construct()
     {
-        $this->configData = new ArrayCollection(
-            array(
+        parent::__construct();
+
+        $continentData = new ArrayCollection(
+            [
                 'NAME' => '_DefaultContinentName_',
                 'DESC' => '_DefaultContinentDescription_',
-                'RSRC' => array(
+                'RSRC' => [
                     'Code', 'Licence', 'Documentation', 'Text-Tutorial', 'Video-Tutorial'
-                )
-            )
+                ]
+            ]
         );
+
+        $this->getConfiguration()->add($continentData);
     }
 
     /**
@@ -49,4 +49,5 @@ class DefaultContinentConfiguration implements Configuration
     {
         return __CLASS__;
     }
+
 }
