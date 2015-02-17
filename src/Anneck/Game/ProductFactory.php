@@ -9,11 +9,15 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\License;
 use Anneck\Game\Product;
 use Doctrine\Common\Collections\Collection;
 
-interface ProductFactory {
+/**
+ * Interface ProductFactory
+ * @package Anneck\Game
+ */
+interface ProductFactory
+{
 
     /**
      * @param World $world

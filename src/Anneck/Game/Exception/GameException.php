@@ -13,7 +13,8 @@ namespace Anneck\Game\Exception;
  *
  * @package Anneck\Game\Exception
  */
-class GameException extends \Exception {
+class GameException extends \Exception
+{
 
     /**
      * @param string $message

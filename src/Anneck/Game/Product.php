@@ -8,8 +8,6 @@
  */
 namespace Anneck\Game;
 
-use Anneck\Game\ProductFactory;
-
 /**
  * The interface Product is a Game object which enables
  * the combination of Resources using a compatibility check.
@@ -20,7 +18,8 @@ use Anneck\Game\ProductFactory;
  *
  * @package Anneck\Game
  */
-interface Product {
+interface Product
+{
 
     /**
      * Add's resources who are compatible with each other.

@@ -7,11 +7,12 @@
  * ***********************************************************************
  */
 
- 
 
 namespace Anneck\Game\Continent;
+
 use Anneck\Game\Configuration;
 use Anneck\Game\Continent;
+use Anneck\Game\World;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -21,16 +22,41 @@ use Doctrine\Common\Collections\Collection;
  */
 class DefaultContinent implements Continent
 {
+    private $configuration;
+    private $gameWorld;
+
     public function __construct(Configuration $continentConfiguration)
     {
+        $this->configuration = $continentConfiguration->getConfiguration();
 
     }
 
     /**
-     * @return Collection a collection of resources available.
+     * @return Collection of resources available.
      */
-    public function getResources()
+    public function getListOfResources()
     {
-        // TODO: Implement getResources() method.
+        return $this->configuration->get('RESOURCES');
     }
+
+    public function __toString()
+    {
+        return __CLASS__ . $this->getName() . $this->getGameWorld();
+    }
+
+    public function getName()
+    {
+        $this->configuration->get('NAME');
+    }
+
+    public function getGameWorld()
+    {
+        return $this->gameWorld;
+    }
+
+    public function setGameWorld(World $world)
+    {
+        $this->gameWorld = $world;
+    }
+
 }

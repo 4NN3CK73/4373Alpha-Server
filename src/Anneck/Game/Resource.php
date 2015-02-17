@@ -12,7 +12,8 @@ namespace Anneck\Game;
  * The interface Resource
  * @package Anneck\Game
  */
-interface Resource {
+interface Resource
+{
 
     /**
      * Determines if another resource is compatible with this resource.
@@ -22,5 +23,7 @@ interface Resource {
      * @return bool true if resources are compatible, else false
      */
     public function isCompatible(Resource $anotherResource);
+
+    public function getResourceName();
 
 }

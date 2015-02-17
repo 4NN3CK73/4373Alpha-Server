@@ -4,11 +4,9 @@ namespace spec\Anneck\Game\Worlds;
 
 use Anneck\Game\Configuration\DefaultContinentConfiguration;
 use Anneck\Game\Configuration\DefaultWorldConfiguration;
-use Anneck\Game\Continent\DefaultContinent;
 use Anneck\Game\Continent;
+use Anneck\Game\Continent\DefaultContinent;
 use Anneck\Game\Worlds\DefaultWorld;
-use Anneck\Game\World;
-use Doctrine\Common\Collections\ArrayCollection;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -34,11 +32,18 @@ class DefaultWorldSpec extends ObjectBehavior
 
     function it_returns_a_collection_of_continents()
     {
-        $defaultWorlds = [
-            'ContinentDefault-1' => new DefaultContinent(new DefaultContinentConfiguration()),
-            'ContinentDefault-2' => new DefaultContinent(new DefaultContinentConfiguration()),
-            'ContinentDefault-3' => new DefaultContinent(new DefaultContinentConfiguration())
+        $worldConfiguration = new DefaultWorldConfiguration();
+        $world = new DefaultWorld();
+        $continentOne = new DefaultContinent(new DefaultContinentConfiguration());
+        $continentOne->setGameWorld($world);
+
+        $defaultContinents = [
+            'ContinentDefault-1' => $continentOne,
+            'ContinentDefault-2' => $continentOne,
+            'ContinentDefault-3' => $continentOne
         ];
+
+
         $this->getContinents()->shouldHaveCount(3);
         $this->getContinents()->shouldHaveKey('ContinentDefault-1');
         $this->getContinents()->shouldHaveKey('ContinentDefault-2');

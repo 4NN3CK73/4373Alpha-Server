@@ -9,13 +9,12 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\License;
-
 /**
  * The interface LicenseFactory
  * @package Anneck\Manufacture
  */
-interface LicenseFactory {
+interface LicenseFactory
+{
 
     /**
      * @return License a new license

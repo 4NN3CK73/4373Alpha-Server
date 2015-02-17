@@ -15,7 +15,8 @@ use Doctrine\Common\Collections\Collection;
  * The interface World defines all common game world functions.
  * @package Anneck\Game
  */
-interface World {
+interface World
+{
 
     /**
      * Returns the continents who are a part of this world
