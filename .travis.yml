@@ -14,7 +14,8 @@ env:
 
 # execute any number of scripts before the test run, custom env's are available as variables
 before_script:
-  - composer install -o
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
 #  - if [[ "$DB" == "pgsql" ]]; then psql -c "DROP DATABASE IF EXISTS hello_world_test;" -U postgres; fi
 #  - if [[ "$DB" == "pgsql" ]]; then psql -c "create database hello_world_test;" -U postgres; fi
 #  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS hello_world_test;" -uroot; fi
