@@ -1,9 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: andre
- * Date: 12.02.15
- * Time: 18:06
+/*************************************************************************
+ * This file is part of 4373Alpha-Server Project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ * ***********************************************************************
  */
 namespace Anneck\Game\Product;
 
@@ -11,7 +12,7 @@ use Anneck\Game\License,
     Anneck\Game\Product,
     Anneck\Game\Resource;
 
-use Anneck\Manufacture\ProductFactory;
+use Anneck\Game\ProductFactory;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -25,6 +26,12 @@ class DefaultProduct implements Product {
      * @var ArrayCollection
      */
     private $resources;
+    private $licence;
+
+    public function __construct()
+    {
+        $this->resources = new ArrayCollection();
+    }
 
     /**
      * @return ArrayCollection
@@ -42,13 +49,6 @@ class DefaultProduct implements Product {
         return $this->licence;
     }
 
-    private $licence;
-
-    public function __construct()
-    {
-        $this->resources = new ArrayCollection();
-    }
-
     /**
      * @todo: what should we return, I vote for true|false ...
      * @param Resource $resource
@@ -63,6 +63,31 @@ class DefaultProduct implements Product {
         if($isCompatible) {
             $this->resources->add($resource);
         } // no else required, we do nothing if its not compatible
+    }
+
+    /**
+     * Calls isCompatible with each resource already contained in this product.
+     * If any already contained resource is not compatible FALSE is returned.
+     *
+     * @param Resource $resource the resource to check for compatibility with all contained resources.
+     * @return bool TRUE if the Resource specified in the param is compatible with all contained resources.
+     */
+    private function checkIfCompatibleWithContained(Resource $resource)
+    {
+        // start with a default which makes the loop short
+        $isCompatible = true;
+        // get the iterator from my contained resources
+        $containedResource = $this->resources->getIterator();
+        // do the shuffle ...
+        foreach ($containedResource as $withExistingResource) {
+            if (!$resource->isCompatible($withExistingResource)) {
+                // if any one resource IS NOT compatible - switch to FALSE
+                $isCompatible = false;
+            } // if every contained resource IS compatible - leave default TRUE untouched
+        }
+
+        // ... end of calculation
+        return $isCompatible;
     }
 
     /**
@@ -88,29 +113,5 @@ class DefaultProduct implements Product {
     public function validate()
     {
         return true;
-    }
-
-    /**
-     * Calls isCompatible with each resource already contained in this product.
-     * If any already contained resource is not compatible FALSE is returned.
-     *
-     * @param Resource $resource the resource to check for compatibility with all contained resources.
-     * @return bool TRUE if the Resource specified in the param is compatible with all contained resources.
-     */
-    private function checkIfCompatibleWithContained(Resource $resource)
-    {
-        // start with a default which makes the loop short
-        $isCompatible = true;
-        // get the iterator from my contained resources
-        $containedResource = $this->resources->getIterator();
-        // do the shuffle ...
-        foreach ($containedResource as $withExistingResource) {
-            if (!$resource->isCompatible($withExistingResource)) {
-                // if any one resource IS NOT compatible - switch to FALSE
-                $isCompatible = false;
-            } // if every contained resource IS compatible - leave default TRUE untouched
-        }
-        // ... end of calculation
-        return $isCompatible;
     }
 }

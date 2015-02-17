@@ -14,7 +14,7 @@ namespace Anneck\Game\Product;
 use Anneck\Game\License;
 use Anneck\Game\Product;
 use Anneck\Game\Resource;
-use Anneck\Manufacture\ProductFactory;
+use Anneck\Game\ProductFactory;
 
 /**
  * The class LicencedDefaultProduct ...

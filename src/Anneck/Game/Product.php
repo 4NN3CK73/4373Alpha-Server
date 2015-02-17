@@ -1,15 +1,14 @@
 <?php
-/**
- * This file is part of the 4373Alpha-Server
+/*************************************************************************
+ * This file is part of 4373Alpha-Server Project.
  *
- * User: andre
- * Date: 2/3/15
- * Time: 12:32 PM
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ * ***********************************************************************
  */
-
 namespace Anneck\Game;
 
-use Anneck\Manufacture\ProductFactory;
+use Anneck\Game\ProductFactory;
 
 /**
  * The interface Product is a Game object which enables

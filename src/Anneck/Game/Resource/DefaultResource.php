@@ -7,8 +7,6 @@
  * ***********************************************************************
  */
 
- 
-
 namespace Anneck\Game\Resource;
 
 use Anneck\Game\Resource;
