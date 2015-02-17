@@ -11,7 +11,8 @@ namespace Anneck\Game\Continent;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-class ContinentConfigKeys {
+class ContinentConfigKeys
+{
 
     public static $continentKeys = [
         'NAME',

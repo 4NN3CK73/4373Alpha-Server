@@ -12,7 +12,8 @@ namespace Anneck\Game\Product;
 use Anneck\Game\License;
 use Anneck\Game\Product;
 
-interface LicencedProduct extends Product {
+interface LicencedProduct extends Product
+{
 
     /**
      * Add's the required licence to the product.

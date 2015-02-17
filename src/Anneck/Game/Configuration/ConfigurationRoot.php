@@ -13,7 +13,6 @@ namespace Anneck\Game\Configuration;
 
 use Anneck\Game\Configuration;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * The abstract class ConfigurationRoot defines the default behaviour of all
@@ -65,6 +64,17 @@ abstract class ConfigurationRoot implements Configuration
     }
 
     /**
+     * Set configuration values using the specified key.
+     *
+     * @param $key
+     * @param $value
+     */
+    protected function setConfiguration($key, $value)
+    {
+        $this->configuration->set($key, $value);
+    }
+
+    /**
      * @inheritdoc
      */
     public function hasConfigurationKey($key)
@@ -82,5 +92,4 @@ abstract class ConfigurationRoot implements Configuration
         // collection to array into json_encode PHP function.
         return json_encode($this->configuration->toArray());
     }
-
 }

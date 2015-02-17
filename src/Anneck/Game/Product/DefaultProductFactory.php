@@ -9,11 +9,12 @@
 
 namespace Anneck\Game\Product;
 
-use Anneck\Game\Exception\GameException,
-    Anneck\Game\License,
-    Anneck\Game\Product,
-    Anneck\Game\ProductFactory;
-
+use Anneck\Game\Continent;
+use Anneck\Game\Exception\GameException;
+use Anneck\Game\License;
+use Anneck\Game\Product;
+use Anneck\Game\ProductFactory;
+use Anneck\Game\Resource;
 use Anneck\Game\World;
 use Doctrine\Common\Collections\Collection;
 
@@ -31,7 +32,8 @@ use Doctrine\Common\Collections\Collection;
  *
  * @package Anneck\Game\Product
  */
-class DefaultProductFactory implements ProductFactory {
+class DefaultProductFactory implements ProductFactory
+{
 
     protected static $singleton;
     private $world;
@@ -50,7 +52,7 @@ class DefaultProductFactory implements ProductFactory {
      */
     public static function getInstance(World $world)
     {
-        if ($world->getContinents() < 1) {
+        if (count($world->getContinents()) < 1) {
             throw new GameException(sprintf('Can not create the factory instance without Continents in the World!'
                     . 'Required > 1 found %d', count($world->getContinents()))
                 , '0001');
@@ -81,17 +83,9 @@ class DefaultProductFactory implements ProductFactory {
      * Cause it shall only be used internally during construction of self.
      * @param mixed $world
      */
-    private function setWorld($world)
+    private function setWorld(World $world)
     {
         $this->world = $world;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getWorld()
-    {
-        return $this->world;
     }
 
     /**
@@ -99,12 +93,67 @@ class DefaultProductFactory implements ProductFactory {
      *
      * @param Collection $collectionOfResources
      * @return Product $createdProduct
+     * @throws GameException If the resource is not available in this world configuration.
      */
     public function createProduct(Collection $collectionOfResources)
     {
-
         $newProduct = new DefaultProduct();
+        $usingWorld = $this->getWorld();
+        $incomingResource = $collectionOfResources->getIterator();
+
+        foreach ($incomingResource as $resource) {
+
+            if ($this->checkIfResourceIsAvailable($resource)) {
+                $newProduct->addResource($resource);
+            } else {
+                throw new GameException(
+                    sprintf(
+                        'The resource %s is not available in this %s configuration.',
+                        $resource,
+                        $usingWorld
+                    ), '0002'
+                );
+            }
+
+        }
+
         return $newProduct;
+    }
+
+    /**
+     * @return World
+     */
+    public function getWorld()
+    {
+        return $this->world;
+    }
+
+    /**
+     * @param Resource $resource
+     * @return bool
+     * @throws GameException
+     */
+    private function checkIfResourceIsAvailable(Resource $resource)
+    {
+        $resourceName = $resource->getResourceName();
+        $allContinents = $this->getWorld()->getContinents()->getIterator();
+        $resourceFound = false;
+        /** @var Continent $allContinents */
+        foreach ($allContinents as $continent) {
+
+            $availableResources = $continent->getListOfResources();
+
+            if (null === $availableResources) {
+                throw new GameException(sprintf('Failed to get list of resources from %s', $continent), '0000');
+            } else {
+                if ($availableResources->contains($resourceName)) {
+                    $resourceFound = true;
+                }
+            }
+
+        }
+
+        return $resourceFound;
     }
 
     /**

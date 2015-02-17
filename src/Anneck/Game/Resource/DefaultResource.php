@@ -9,7 +9,9 @@
 
 namespace Anneck\Game\Resource;
 
+use Anneck\Game\Configuration\ConfigurationFactory;
 use Anneck\Game\Resource;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * The class DefaultResource ...
@@ -18,15 +20,26 @@ use Anneck\Game\Resource;
  */
 class DefaultResource implements Resource
 {
-    private $resourceName = '__DEFAULT__';
+    /**
+     * @var Collection to hold configuration values
+     */
+    private $resourceConfiguration;
 
     /**
      * @param string $resourceName
      */
-    public function __construct($resourceName = '__DEFAULT__')
+    public function __construct($resourceName)
     {
-        $this->resourceName = $resourceName;
+        $this->resourceConfiguration = ConfigurationFactory::getInstance('DefaultResource')->getConfiguration();
+        // $this->resourceConfiguration->set(ConfigurationRoot::NAME, $resourceName);
+
     }
+
+    public function setGameWorld()
+    {
+
+    }
+
     /**
      * The default resource is compatible with anything.
      *
@@ -37,4 +50,18 @@ class DefaultResource implements Resource
     {
         return true;
     }
+
+    public function __toString()
+    {
+        return $this->getResourceName();
+    }
+
+    /**
+     * @return string
+     */
+    public function getResourceName()
+    {
+        return $this->resourceConfiguration->get('NAME');
+    }
+
 }

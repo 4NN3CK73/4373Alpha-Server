@@ -37,4 +37,9 @@ class IncompatibleResource implements Resource
     {
         return false;
     }
+
+    public function getResourceName()
+    {
+        return $this->resourceName;
+    }
 }

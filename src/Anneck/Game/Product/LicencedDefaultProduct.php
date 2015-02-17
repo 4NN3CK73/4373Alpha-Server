@@ -7,14 +7,13 @@
  * ***********************************************************************
  */
 
- 
 
 namespace Anneck\Game\Product;
 
 use Anneck\Game\License;
 use Anneck\Game\Product;
-use Anneck\Game\Resource;
 use Anneck\Game\ProductFactory;
+use Anneck\Game\Resource;
 
 /**
  * The class LicencedDefaultProduct ...
