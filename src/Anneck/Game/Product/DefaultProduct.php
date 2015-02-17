@@ -8,18 +8,18 @@
  */
 namespace Anneck\Game\Product;
 
-use Anneck\Game\License,
-    Anneck\Game\Product,
-    Anneck\Game\Resource;
-
+use Anneck\Game\License;
+use Anneck\Game\Product;
 use Anneck\Game\ProductFactory;
+use Anneck\Game\Resource;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class DefaultProduct
  * @package Anneck\Game\Product
  */
-class DefaultProduct implements Product {
+class DefaultProduct implements Product
+{
 
 
     /**
@@ -27,10 +27,27 @@ class DefaultProduct implements Product {
      */
     private $resources;
     private $licence;
+    private $world;
 
     public function __construct()
     {
         $this->resources = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWorld()
+    {
+        return $this->world;
+    }
+
+    /**
+     * @param mixed $world
+     */
+    public function setWorld($world)
+    {
+        $this->world = $world;
     }
 
     /**
@@ -60,7 +77,7 @@ class DefaultProduct implements Product {
         $isCompatible =
             $this->checkIfCompatibleWithContained($resource);
 
-        if($isCompatible) {
+        if ($isCompatible) {
             $this->resources->add($resource);
         } // no else required, we do nothing if its not compatible
     }

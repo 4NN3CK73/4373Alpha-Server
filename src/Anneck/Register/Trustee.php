@@ -15,7 +15,8 @@ use Anneck\Game\Product;
  * The interface Trustee
  * @package Anneck\Register
  */
-interface Trustee {
+interface Trustee
+{
 
     public function addProduct(Product $product);
 

@@ -17,6 +17,7 @@ namespace Anneck\Game;
  *
  * @package Anneck\Game
  */
-interface License {
+interface License
+{
 
 }

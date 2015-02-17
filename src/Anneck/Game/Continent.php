@@ -21,8 +21,12 @@ interface Continent
 {
 
     /**
-     * @return Collection a collection of resources available.
+     * @return Collection of resources available.
      */
-    public function getResources();
+    public function getListOfResources();
+
+    public function getName();
+
+    public function getGameWorld();
 
 }

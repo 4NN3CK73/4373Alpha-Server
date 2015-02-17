@@ -27,18 +27,11 @@ class DefaultContinentConfiguration extends ConfigurationRoot
     public function __construct()
     {
         parent::__construct();
+        $this->setConfiguration(self::NAME, 'defaultContinent');
 
-        $continentData = new ArrayCollection(
-            [
-                'NAME' => '_DefaultContinentName_',
-                'DESC' => '_DefaultContinentDescription_',
-                'RSRC' => [
-                    'Code', 'Licence', 'Documentation', 'Text-Tutorial', 'Video-Tutorial'
-                ]
-            ]
-        );
-
-        $this->getConfiguration()->add($continentData);
+        $resourceList = new ArrayCollection();
+        $resourceList->add('defaultResource');
+        $this->setConfiguration('RESOURCES', $resourceList);
     }
 
     /**
@@ -47,7 +40,7 @@ class DefaultContinentConfiguration extends ConfigurationRoot
      */
     public function __toString()
     {
-        return __CLASS__;
+        return $this->getConfiguration()->get(self::NAME);
     }
 
 }

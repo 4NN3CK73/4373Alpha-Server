@@ -13,7 +13,6 @@ namespace Anneck\Game\Configuration;
 use Anneck\Game\Configuration;
 use Anneck\Game\Continent\DefaultContinent;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * The class DefaultWorldConfiguration is just a placeholder during dev.
@@ -26,11 +25,11 @@ class DefaultWorldConfiguration extends ConfigurationRoot
     public function __construct()
     {
         parent::__construct();
-        $this->getConfiguration()->set('CONTINENTS', [
+        $this->getConfiguration()->set('CONTINENTS', new ArrayCollection([
             'ContinentDefault-1' => new DefaultContinent(new DefaultContinentConfiguration()),
             'ContinentDefault-2' => new DefaultContinent(new DefaultContinentConfiguration()),
             'ContinentDefault-3' => new DefaultContinent(new DefaultContinentConfiguration())
-        ]);
+        ]));
     }
 
 }

@@ -15,7 +15,8 @@ use Anneck\Game\Configuration\DefaultWorldConfiguration;
 use Anneck\Game\World;
 use Doctrine\Common\Collections\Collection;
 
-class DefaultWorld implements World {
+class DefaultWorld implements World
+{
 
     private $configuration;
 
@@ -38,11 +39,6 @@ class DefaultWorld implements World {
         return $this->configuration->get('CONTINENTS');
     }
 
-    public function getName()
-    {
-        return $this->configuration->get('NAME');
-    }
-
     public function getUUID()
     {
         return $this->configuration->get('UUID');
@@ -60,4 +56,23 @@ class DefaultWorld implements World {
 
         return $newWorld;
     }
+
+    public function __toString()
+    {
+        if (is_string($this->getName())) {
+            return $this->getName();
+        } else {
+            return __CLASS__;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->configuration->get('NAME');
+    }
+
+
 }
