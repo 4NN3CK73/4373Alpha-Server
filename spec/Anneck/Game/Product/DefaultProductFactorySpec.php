@@ -30,9 +30,8 @@ class DefaultProductFactorySpec extends ObjectBehavior
         $resourceCollection->add($resourceB);
 
         $product = $this->createProduct($resourceCollection);
-        /*
-                $product->shouldImplement('Anneck\Game\Product');
-                $product->shouldHaveType('Anneck\Game\Product\DefaultProduct');
-        */
+        $product->shouldImplement('Anneck\Game\Product');
+        $product->shouldHaveType('Anneck\Game\Product\DefaultProduct');
+
     }
 }

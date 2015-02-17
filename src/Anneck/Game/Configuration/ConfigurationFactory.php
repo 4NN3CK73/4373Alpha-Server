@@ -16,20 +16,38 @@ use Anneck\Game\Configuration;
 use Anneck\Game\Exception\GameException;
 use Exception;
 
+/**
+ * The Class ConfigurationFactory uses the factory pattern to create
+ * xyzConfiguration classes.
+ *
+ * @package Anneck\Game\Configuration
+ */
 class ConfigurationFactory
 {
 
+    /**
+     * Use getInstance()!
+     */
     protected function __construct()
     {
 
     }
 
+    /**
+     * Creates new instances of Configuration.
+     *
+     * @param $configurationClass string of the configuration class name
+     * @return Configuration the configuration class matching
+     * @throws GameException
+     */
     public static function getInstance($configurationClass)
     {
         $fqcn = 'Anneck\Game\Configuration\\' . $configurationClass . 'Configuration';
 
         try {
+
             $instance = new $fqcn();
+
         } catch (Exception $createException) {
             throw new GameException(
                 sprintf('Failed to create %s. %s', $configurationClass, $createException->getMessage()),
@@ -38,15 +56,7 @@ class ConfigurationFactory
 
         }
 
-        if ($instance instanceof Configuration) {
-            return $instance;
-        } else {
-            throw new GameException(
-                sprintf('%s is not an instance of Configuration', $instance),
-                'GC0001'
-            );
-        }
-
+        return $instance;
 
     }
 

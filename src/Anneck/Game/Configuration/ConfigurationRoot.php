@@ -18,7 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * The abstract class ConfigurationRoot defines the default behaviour of all
  * @Configuration implementations.
  *
- * The "default" is to treat
+ * The "default" is set to a NAME and a UUID.
  *
  * @package Anneck\Game\Configuration
  */

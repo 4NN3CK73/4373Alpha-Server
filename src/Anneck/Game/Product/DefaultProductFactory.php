@@ -117,6 +117,8 @@ class DefaultProductFactory implements ProductFactory
 
         }
 
+        $newProduct->setWorld($usingWorld);
+
         return $newProduct;
     }
 

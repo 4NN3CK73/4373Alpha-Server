@@ -27,10 +27,27 @@ class DefaultProduct implements Product
      */
     private $resources;
     private $licence;
+    private $world;
 
     public function __construct()
     {
         $this->resources = new ArrayCollection();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWorld()
+    {
+        return $this->world;
+    }
+
+    /**
+     * @param mixed $world
+     */
+    public function setWorld($world)
+    {
+        $this->world = $world;
     }
 
     /**

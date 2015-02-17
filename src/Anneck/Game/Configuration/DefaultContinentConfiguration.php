@@ -40,7 +40,7 @@ class DefaultContinentConfiguration extends ConfigurationRoot
      */
     public function __toString()
     {
-        return __CLASS__;
+        return $this->getConfiguration()->get(self::NAME);
     }
 
 }

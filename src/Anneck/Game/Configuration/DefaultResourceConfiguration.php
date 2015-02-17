@@ -11,7 +11,10 @@
 
 namespace Anneck\Game\Configuration;
 
-
+/**
+ * The class DefaultResourceConfiguration
+ * @package Anneck\Game\Configuration
+ */
 class DefaultResourceConfiguration extends ConfigurationRoot
 {
 
