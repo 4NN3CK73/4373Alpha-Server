@@ -9,12 +9,13 @@
 namespace Anneck\Game;
 
 /**
- * The interface Resource describes the resources available in a continent.
+ * The interface Resource is a Game object which describes the (Game) Resources available in a (Game)Continent.
  * Resources are added together inside a Product but only if they are "compatible" with each other.
  *
  * NOTE: Compatible does not mean "equal", each resource defines it compatibility with other resources.
  *
  * @package Anneck\Game
+ * @see Anneck\Game\Product
  */
 interface Resource
 {
