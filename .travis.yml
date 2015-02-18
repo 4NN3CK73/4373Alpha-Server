@@ -26,6 +26,6 @@ before_script:
 script: bin/phpspec run
 
 # configure notifications (email, IRC, campfire etc)
-#notifications:
+notifications:
 #  irc: "irc.freenode.org#yourfavouriteroomfortravis"
   hipchat: 0276e94b323be559107f93eaa3021e@4374alpha.hipchat.com/4374alpha
