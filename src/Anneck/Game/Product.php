@@ -12,11 +12,14 @@ namespace Anneck\Game;
  * The interface Product is a Game object which enables
  * the combination of Resources using a compatibility check.
  *
- * To combine resource:
- * 1) 'add' them to the product.
- * 2) 'build' the product.
+ * To combine @Resource's ...
+ * * 'add' them to the @Product.
+ * * 'build' the product using a @ProductFactory
+ *
+ * The "build" process includes setting attributes of the created @Product specific to the chosen @ProductFactory
  *
  * @package Anneck\Game
+ * @see Anneck\Game\ProductFactory
  */
 interface Product
 {
@@ -30,9 +33,11 @@ interface Product
     public function addResource(Resource $resource);
 
     /**
-     * Combines the current resources
-     * @param ProductFactory $productFactory
-     * @return Product
+     * Combines the current resources using the specified product factory.
+     *
+     * @param ProductFactory $productFactory the product factory used to create the product
+     *
+     * @return Product the created product
      */
     public function build(ProductFactory $productFactory);
 
