@@ -12,8 +12,10 @@ namespace Anneck\Game;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * The interface World defines all common game world functions.
- * A @World contains @Continent's and is created using a @Configuration.
+ * The interface World defines all common game world functions and exposes them through
+ * custom methods.
+ *
+ * A (Game) @World contains @Continent's and is created using a @Configuration.
  *
  * @package Anneck\Game
  */
