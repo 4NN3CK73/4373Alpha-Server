@@ -9,7 +9,11 @@
 namespace Anneck\Game;
 
 /**
- * The interface Resource
+ * The interface Resource describes the resources available in a continent.
+ * Resources are added together inside a Product but only if they are "compatible" with each other.
+ *
+ * NOTE: Compatible does not mean "equal", each resource defines it compatibility with other resources.
+ *
  * @package Anneck\Game
  */
 interface Resource
@@ -24,6 +28,12 @@ interface Resource
      */
     public function isCompatible(Resource $anotherResource);
 
+    /**
+     * Returns the name of this resource.
+     *
+     * @return mixed the resourceName of this resource.
+     * @todo: this needs to be refactored to Type instead of name!
+     */
     public function getResourceName();
 
 }
