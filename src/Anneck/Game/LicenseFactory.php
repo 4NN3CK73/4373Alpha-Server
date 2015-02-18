@@ -10,7 +10,8 @@
 namespace Anneck\Game;
 
 /**
- * The interface LicenseFactory
+ * The (Game) LicenseFactory is a factory interface and still WiP
+ *
  * @package Anneck\Manufacture
  */
 interface LicenseFactory

@@ -10,10 +10,13 @@
 namespace Anneck\Game;
 
 /**
- * A (Game)Configuration is used as a READ ONLY container carrying a key/value collection.
+ * The (Game) Configuration interface is used as a delegate container carrying a key/value collection.
+ *
+ * A Configuration is supposed to be immutable and should only change in the constructor.
  *
  * The implementations of this class MUST NOT allow access to its internal data.
  *
+ * Please use @ConfigurationRoot and extend it.
  *
  */
 interface Configuration

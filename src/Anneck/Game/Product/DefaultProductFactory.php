@@ -69,12 +69,6 @@ class DefaultProductFactory implements ProductFactory
                 , '0001');
         }
 
-        /* @todo: put them into an array so we have a singleton for each world
-        if (null === self::$singleton) {
-            self::$singleton = self::create($world);
-        }
-         */
-
         return self::create($world);
     }
 

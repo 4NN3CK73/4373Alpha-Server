@@ -9,8 +9,8 @@
 namespace Anneck\Game;
 
 /**
- * The interface Product is a Game object which enables
- * the combination of Resources using a compatibility check.
+ * The (Game) Product is a builder interface which enables
+ * the building of Product's using Resource's and a ProductFactory.
  *
  * To combine @Resource's ...
  *

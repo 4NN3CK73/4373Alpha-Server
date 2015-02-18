@@ -9,7 +9,7 @@
 namespace Anneck\Game;
 
 /**
- * The interface License is a marker to identify
+ * The (Game) License is a marker interface to identify
  * Classes who represent a legal licence.
  *
  * In Game terms a licence allows the creation of licenced products.

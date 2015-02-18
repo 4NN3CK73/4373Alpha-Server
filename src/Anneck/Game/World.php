@@ -13,10 +13,7 @@ use Anneck\Game\Configuration;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * The interface World defines all common game world functions and exposes them through
- * custom methods.
- *
- * A (Game) @World contains @Continent's and is created using a @Configuration.
+ * The (Game) World is a context interface which contains continent's.
  *
  * NOTE: Please ensure that implementing classes are forced to use the create method!
  *
