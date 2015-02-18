@@ -18,7 +18,7 @@ use Doctrine\Common\Collections\Collection;
  *
  * A (Game) @World contains @Continent's and is created using a @Configuration.
  *
- *
+ * NOTE: Please ensure that implementing classes are forced to use the create method!
  *
  * @package Anneck\Game
  * @see The @DefaultWorld class, it is the default implemenation.
