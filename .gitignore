@@ -38,6 +38,7 @@ composer.lock
 
 # Build data
 /build/
+/cache/
 
 # Composer PHAR
 /composer.phar
