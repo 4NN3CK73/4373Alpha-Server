@@ -13,15 +13,21 @@ use Anneck\Game\Product;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * Interface ProductFactory
+ * The interface ProductFactory describes a factory class pattern which
+ * works using a (Game)@World in order to create world specific @Product's.
+ *
  * @package Anneck\Game
  */
 interface ProductFactory
 {
 
     /**
-     * @param World $world
-     * @return self
+     * Creates the ProductFactory using the specified world.
+     *
+     *
+     * @param World $world The world to use for product creation.
+     *
+     * @return self The ProductFactory specific to this world.
      */
     public static function getInstance(World $world);
 
@@ -35,8 +41,11 @@ interface ProductFactory
     public function createProduct(Collection $collectionOfResources);
 
     /**
+     * Uses a product and a licence to create a licenced product.
+     *
      * @param License $license
      * @param Product $product
+     *
      * @return Product $product
      */
     public function createLicensedProduct(License $license, Product $product);

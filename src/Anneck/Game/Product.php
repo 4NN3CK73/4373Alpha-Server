@@ -13,6 +13,7 @@ namespace Anneck\Game;
  * the combination of Resources using a compatibility check.
  *
  * To combine @Resource's ...
+ *
  * * 'add' them to the @Product.
  * * 'build' the product using a @ProductFactory
  *
