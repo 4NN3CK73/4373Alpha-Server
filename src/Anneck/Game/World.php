@@ -13,6 +13,8 @@ use Doctrine\Common\Collections\Collection;
 
 /**
  * The interface World defines all common game world functions.
+ * A @World contains @Continent's and is created using a @Configuration.
+ *
  * @package Anneck\Game
  */
 interface World
