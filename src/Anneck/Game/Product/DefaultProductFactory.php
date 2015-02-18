@@ -69,11 +69,13 @@ class DefaultProductFactory implements ProductFactory
                 , '0001');
         }
 
+        /* @todo: put them into an array so we have a singleton for each world
         if (null === self::$singleton) {
             self::$singleton = self::create($world);
         }
+         */
 
-        return self::$singleton;
+        return self::create($world);
     }
 
     /**
@@ -92,7 +94,9 @@ class DefaultProductFactory implements ProductFactory
     /**
      * ATTENTION PRIVATE ON PURPOSE!
      * Cause it shall only be used internally during construction of self.
-     * @param mixed $world
+     * @SuppressWarnings(PHPMD)
+     *
+*@param mixed $world
      */
     private function setWorld(World $world)
     {
@@ -129,6 +133,8 @@ class DefaultProductFactory implements ProductFactory
         }
 
         $newProduct->setWorld($usingWorld);
+
+        $newProduct->build($this);
 
         return $newProduct;
     }

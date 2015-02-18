@@ -50,4 +50,11 @@ interface ProductFactory
      */
     public function createLicensedProduct(License $license, Product $product);
 
+    /**
+     * Returns the @World used.
+     *
+     * @return World the world used in this ProductFactory.
+     */
+    public function getWorld();
+
 }

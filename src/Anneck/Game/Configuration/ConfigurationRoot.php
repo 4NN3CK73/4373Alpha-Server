@@ -48,7 +48,9 @@ abstract class ConfigurationRoot implements Configuration
     }
 
     /**
-     * @inheritdoc
+     * Returns all configuration key's.
+     *
+     * @return array of configuration key's;
      */
     public function getConfigurationKeys()
     {
@@ -56,7 +58,9 @@ abstract class ConfigurationRoot implements Configuration
     }
 
     /**
-     * @inheritdoc
+     * Returns the configuration as a collection.
+     *
+     * @return mixed
      */
     public function getConfiguration()
     {
@@ -74,8 +78,11 @@ abstract class ConfigurationRoot implements Configuration
         $this->configuration->set($key, $value);
     }
 
+
     /**
-     * @inheritdoc
+     * @param $key
+     *
+     * @return mixed
      */
     public function hasConfigurationKey($key)
     {
