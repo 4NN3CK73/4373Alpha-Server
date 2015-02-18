@@ -13,7 +13,7 @@ namespace Anneck\Game;
  * Resources are added together inside a Product but only if they are "compatible" with each other.
  *
  * * NOTE: Compatible does not mean "equal", each resource defines it compatibility with other resources.
- * * 
+ * *
  *
  * @package Anneck\Game
  * @see Anneck\Game\Product
