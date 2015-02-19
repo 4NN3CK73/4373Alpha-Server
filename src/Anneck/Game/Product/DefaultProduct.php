@@ -8,6 +8,7 @@
  */
 namespace Anneck\Game\Product;
 
+use Anneck\Game\Exception\GameException;
 use Anneck\Game\License;
 use Anneck\Game\Product;
 use Anneck\Game\ProductFactory;
@@ -116,11 +117,21 @@ class DefaultProduct implements Product
     }
 
     /**
+     * Uses the specified @ProductFactory to build itself with all resources added.
+     *
      * @param ProductFactory $productFactory
+     *
      * @return Product
+     * @throws GameException
      */
     public function build(ProductFactory $productFactory)
     {
+        $this->setWorld($productFactory->getWorld());
+
+        if (!$this->validate()) {
+            throw new GameException('Failed to create product', '0000');
+        }
+
         return $this;
     }
 

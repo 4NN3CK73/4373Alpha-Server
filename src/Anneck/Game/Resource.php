@@ -9,8 +9,15 @@
 namespace Anneck\Game;
 
 /**
- * The interface Resource
+ * The (Game) Resource interface describes parts of Products.
+ *
+ * * NOTE: Compatible does not mean "equal", each resource defines it compatibility with other resources.
+ * *
+ *
  * @package Anneck\Game
+ * @see Anneck\Game\Product
+ *
+ *
  */
 interface Resource
 {
@@ -24,6 +31,12 @@ interface Resource
      */
     public function isCompatible(Resource $anotherResource);
 
+    /**
+     * Returns the name of this resource.
+     *
+     * @return mixed the resourceName of this resource.
+     * @todo: this needs to be refactored to Type instead of name!
+     */
     public function getResourceName();
 
 }

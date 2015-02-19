@@ -27,17 +27,28 @@ use Doctrine\Common\Collections\Collection;
  * The resources found in $myResources will be validated against the resources allowed in the world configuration,
  * if the resources are valid and compatible, a product is created.
  *
- * @use
- *      $myProduct = $defaultProductFactory->getInstance($myWorld)->createProduct($myResources)
+ * * $myProduct = $defaultProductFactory->getInstance($myWorld)->createProduct($myResources)
+ * *
  *
  * @package Anneck\Game\Product
  */
 class DefaultProductFactory implements ProductFactory
 {
 
+    /**
+     * @var DefaultProductFactory instance of self
+     */
     protected static $singleton;
+
+    /**
+     * @var World used during product creation.
+     */
     private $world;
 
+    /**
+     * WARNING! Don't create this class using this constructor, its a singleton!
+     * Use getInstance();
+     */
     protected function __construct()
     {
 
@@ -58,11 +69,7 @@ class DefaultProductFactory implements ProductFactory
                 , '0001');
         }
 
-        if (null === self::$singleton) {
-            self::$singleton = self::create($world);
-        }
-
-        return self::$singleton;
+        return self::create($world);
     }
 
     /**
@@ -81,7 +88,9 @@ class DefaultProductFactory implements ProductFactory
     /**
      * ATTENTION PRIVATE ON PURPOSE!
      * Cause it shall only be used internally during construction of self.
-     * @param mixed $world
+     * @SuppressWarnings(PHPMD)
+     *
+*@param mixed $world
      */
     private function setWorld(World $world)
     {
@@ -119,11 +128,15 @@ class DefaultProductFactory implements ProductFactory
 
         $newProduct->setWorld($usingWorld);
 
+        $newProduct->build($this);
+
         return $newProduct;
     }
 
     /**
-     * @return World
+     * The world used for the creation of products.
+     *
+     * @return World the world in use by this factory.
      */
     public function getWorld()
     {
@@ -131,18 +144,21 @@ class DefaultProductFactory implements ProductFactory
     }
 
     /**
-     * @param Resource $resource
-     * @return bool
-     * @throws GameException
+     * Searches all continents from the world configuration for the resource (type).
+     *
+     * @param Resource $resource The resource to check for availability.
+     *
+     * @return bool true if the resource is found, otherwise false.
+     * @throws GameException If the world configuration does not provide a list of resources.
      */
     private function checkIfResourceIsAvailable(Resource $resource)
     {
         $resourceName = $resource->getResourceName();
         $allContinents = $this->getWorld()->getContinents()->getIterator();
         $resourceFound = false;
-        /** @var Continent $allContinents */
-        foreach ($allContinents as $continent) {
 
+        foreach ($allContinents as $continent) {
+            /** @var Continent $continent */
             $availableResources = $continent->getListOfResources();
 
             if (null === $availableResources) {
@@ -159,8 +175,11 @@ class DefaultProductFactory implements ProductFactory
     }
 
     /**
+     * Uses a product and a licence to create a licenced product.
+     *
      * @param License $license
      * @param Product $product
+     *
      * @return Product $product
      */
     public function createLicensedProduct(License $license, Product $product)
