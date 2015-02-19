@@ -30,7 +30,7 @@ class DefaultContinentConfiguration extends ConfigurationRoot
         $this->setConfiguration(self::NAME, 'defaultContinent');
 
         $resourceList = new ArrayCollection();
-        $resourceList->add('defaultResource');
+        $resourceList->add('defaultResourceType');
         $this->setConfiguration('RESOURCES', $resourceList);
     }
 

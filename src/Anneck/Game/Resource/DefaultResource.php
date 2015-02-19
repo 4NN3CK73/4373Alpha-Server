@@ -10,6 +10,7 @@
 namespace Anneck\Game\Resource;
 
 use Anneck\Game\Configuration\ConfigurationFactory;
+use Anneck\Game\Configuration\DefaultResourceConfiguration;
 use Anneck\Game\Resource;
 use Doctrine\Common\Collections\Collection;
 
@@ -53,15 +54,15 @@ class DefaultResource implements Resource
 
     public function __toString()
     {
-        return $this->getResourceName();
+        return $this->getResourceType();
     }
 
     /**
      * @return string
      */
-    public function getResourceName()
+    public function getResourceType()
     {
-        return $this->resourceConfiguration->get('NAME');
+        return $this->resourceConfiguration->get(DefaultResourceConfiguration::TYPE);
     }
 
 }

@@ -25,6 +25,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 abstract class ConfigurationRoot implements Configuration
 {
     const NAME = 'NAME';
+    const UUID = 'UUID';
 
     /**
      * @var ArrayCollection holds the configuration keys and values.
@@ -41,7 +42,7 @@ abstract class ConfigurationRoot implements Configuration
 
         $defaultConfiguration->set(self::NAME,
             'default');
-        $defaultConfiguration->set('UUID',
+        $defaultConfiguration->set(self::UUID,
             'default');
 
         $this->configuration = $defaultConfiguration;
@@ -69,9 +70,10 @@ abstract class ConfigurationRoot implements Configuration
 
     /**
      * Set configuration values using the specified key.
+     * Only extending classes should use this method during construction, that's why it's protected.
      *
-     * @param $key
-     * @param $value
+     * @param $key   string the key to use
+     * @param $value string the value to use
      */
     protected function setConfiguration($key, $value)
     {
@@ -80,9 +82,11 @@ abstract class ConfigurationRoot implements Configuration
 
 
     /**
-     * @param $key
+     * Returns true if the specified key is found in the configuration.
      *
-     * @return mixed
+     * @param $key string the key to look for in the configuration.
+     *
+     * @return bool true if the key is found, otherwise false.
      */
     public function hasConfigurationKey($key)
     {

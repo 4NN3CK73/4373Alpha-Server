@@ -32,11 +32,10 @@ interface Resource
     public function isCompatible(Resource $anotherResource);
 
     /**
-     * Returns the name of this resource.
+     * Returns the type of this resource.
      *
-     * @return mixed the resourceName of this resource.
-     * @todo: this needs to be refactored to Type instead of name!
+     * @return mixed the type of this resource.
      */
-    public function getResourceName();
+    public function getResourceType();
 
 }

@@ -153,7 +153,7 @@ class DefaultProductFactory implements ProductFactory
      */
     private function checkIfResourceIsAvailable(Resource $resource)
     {
-        $resourceName = $resource->getResourceName();
+        $resourceType = $resource->getResourceType();
         $allContinents = $this->getWorld()->getContinents()->getIterator();
         $resourceFound = false;
 
@@ -164,7 +164,7 @@ class DefaultProductFactory implements ProductFactory
             if (null === $availableResources) {
                 throw new GameException(sprintf('Failed to get list of resources from %s', $continent), '0000');
             } else {
-                if ($availableResources->contains($resourceName)) {
+                if ($availableResources->contains($resourceType)) {
                     $resourceFound = true;
                 }
             }
