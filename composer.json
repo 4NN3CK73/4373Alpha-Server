@@ -23,7 +23,12 @@
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
         "phpspec/phpspec": "~2.0",
-        "sami/sami": "3.0.*@dev"
+      "sami/sami": "3.0.*@dev",
+      "phpunit/phpunit": "4.4.5",
+      "phpunit/phpunit-dom-assertions": "1.0.x-dev",
+      "phpunit/phpunit-selenium": "1.4.2",
+      "phpunit/php-code-coverage": "2.0.15"
+
     },
     "scripts": {
         "post-root-package-install": [
