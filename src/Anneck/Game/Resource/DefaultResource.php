@@ -26,10 +26,7 @@ class DefaultResource implements Resource
      */
     private $resourceConfiguration;
 
-    /**
-     * @param string $resourceName
-     */
-    public function __construct($resourceName)
+    public function __construct()
     {
         $this->resourceConfiguration = ConfigurationFactory::getInstance('DefaultResource')->getConfiguration();
         // $this->resourceConfiguration->set(ConfigurationRoot::NAME, $resourceName);
