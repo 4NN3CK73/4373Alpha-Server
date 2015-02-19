@@ -13,6 +13,7 @@ namespace Anneck\Game\Configuration;
 
 use Anneck\Game\Configuration;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * The abstract class ConfigurationRoot defines the default behaviour of all
@@ -80,7 +81,6 @@ abstract class ConfigurationRoot implements Configuration
         $this->configuration->set($key, $value);
     }
 
-
     /**
      * Returns true if the specified key is found in the configuration.
      *
@@ -102,5 +102,16 @@ abstract class ConfigurationRoot implements Configuration
     {
         // collection to array into json_encode PHP function.
         return json_encode($this->configuration->toArray());
+    }
+
+    /**
+     * Set configuration from a .yml file
+     */
+    protected function loadConfiguration()
+    {
+
+        $ymlParser = new Parser();
+        $ymlParser->parse(file_get_contents(__CLASS__ . '.yml'));
+
     }
 }
