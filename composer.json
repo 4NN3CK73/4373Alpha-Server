@@ -19,15 +19,17 @@
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "monolog/monolog": "~1.12"
+
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
         "phpspec/phpspec": "~2.0",
-      "sami/sami": "3.0.*@dev",
-      "phpunit/phpunit": "4.4.5",
-      "phpunit/phpunit-dom-assertions": "1.0.x-dev",
-      "phpunit/phpunit-selenium": "1.4.2",
-      "phpunit/php-code-coverage": "2.0.15"
+        "sami/sami": "3.0.*@dev",
+        "phpunit/phpunit": "4.4.5",
+        "phpunit/phpunit-dom-assertions": "1.0.x-dev",
+        "phpunit/phpunit-selenium": "1.4.2",
+        "phpunit/php-code-coverage": "2.0.15",
+        "halleck45/phpmetrics": "~1.1"
 
     },
     "scripts": {
