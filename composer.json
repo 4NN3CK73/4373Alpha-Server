@@ -29,7 +29,10 @@
         "phpunit/phpunit-dom-assertions": "1.0.x-dev",
         "phpunit/phpunit-selenium": "1.4.2",
         "phpunit/php-code-coverage": "2.0.15",
-        "halleck45/phpmetrics": "~1.1"
+      "halleck45/phpmetrics": "~1.1",
+      "phpmd/phpmd": "~2.2",
+      "phpcheckstyle/phpcheckstyle": "0.14.*",
+      "henrikbjorn/phpspec-code-coverage": "~1.0"
 
     },
     "scripts": {
