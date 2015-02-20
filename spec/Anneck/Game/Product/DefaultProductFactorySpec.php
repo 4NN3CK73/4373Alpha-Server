@@ -24,8 +24,8 @@ class DefaultProductFactorySpec extends ObjectBehavior
         $this->beConstructedThrough('getInstance', [$defaultWorld]);
 
         $resourceCollection = new ArrayCollection();
-        $resourceA = new DefaultResource($defaultWorld);
-        $resourceB = new DefaultResource($defaultWorld);
+        $resourceA = new DefaultResource();
+        $resourceB = new DefaultResource();
         $resourceCollection->add($resourceA);
         $resourceCollection->add($resourceB);
 

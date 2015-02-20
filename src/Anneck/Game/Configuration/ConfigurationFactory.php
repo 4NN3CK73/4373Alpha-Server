@@ -34,11 +34,12 @@ class ConfigurationFactory
     }
 
     /**
-     * Creates new instances of Configuration.
+     * Creates a new instance of Configuration specified by the class name.
      *
-     * @param $configurationClass string of the configuration class name
-     * @return Configuration the configuration class matching
-     * @throws GameException
+     * @param $configurationClass string of the configuration class name.
+     *
+     * @return Configuration the configuration class matching.
+     * @throws GameException if the creation of the configuration class failed.
      */
     public static function getInstance($configurationClass)
     {
