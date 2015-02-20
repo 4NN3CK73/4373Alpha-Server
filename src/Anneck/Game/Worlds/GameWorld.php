@@ -30,6 +30,28 @@ class GameWorld implements World
     }
 
     /**
+     * A factory method to create worlds using a @Configuration.
+     *
+     * @param Configuration $worldConfig the configuration used to create it.
+     *
+     * @return World creates itself using a world Configuration.
+     */
+    public function create(Configuration $worldConfig)
+    {
+        // TODO: Implement create() method.
+    }
+
+    /**
+     * Returns a string representation of the GameWorld.
+     *
+     * @return string the GameWorld string representation.
+     */
+    public function __toString()
+    {
+        return $this->getName() . '(' . $this->getUUID() . ')';
+    }
+
+    /**
      * Returns the name of this world as defined in its configuration.
      *
      * @return mixed the Name of the world.
@@ -47,18 +69,6 @@ class GameWorld implements World
     public function getUUID()
     {
         // TODO: Implement getUUID() method.
-    }
-
-    /**
-     * A factory method to create worlds using a @Configuration.
-     *
-     * @param Configuration $worldConfig the configuration used to create it.
-     *
-     * @return World creates itself using a world Configuration.
-     */
-    public function create(Configuration $worldConfig)
-    {
-        // TODO: Implement create() method.
     }
 
 }

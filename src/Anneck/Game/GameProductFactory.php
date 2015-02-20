@@ -39,7 +39,28 @@ class GameProductFactory implements ProductFactory
             throw new GameException('Failed to create instance! Not a GameWorld!', 0000);
         }
 
-        // create using helper
+        // has it a name ...
+        if (is_null($world->getName())) {
+            throw new GameException(
+                sprintf(
+                    'The GameWorld: %s does not have a name!',
+                    $world
+                ),
+                0000
+            );
+        }
+        // at least 1 continent please ...
+        if (count($world->getContinents()) < 1) {
+            throw new GameException(
+                sprintf(
+                    'The GameWorld: %s did not contain 1 continent!',
+                    $world
+                ),
+                0000
+            );
+        }
+
+        // all good, continue to create using helper an return result
         return self::create($world);
     }
 
