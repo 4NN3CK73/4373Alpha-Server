@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @package Anneck\Game\Configuration
  */
-class DefaultWorldConfiguration extends ConfigurationRoot
+class DefaultWorldConfiguration extends YMLConfigurationRoot
 {
 
     public function __construct()
