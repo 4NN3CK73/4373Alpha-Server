@@ -10,3 +10,14 @@ Project Documentation
 =====================
 
 Google Doc:  [Project Main](http://goo.gl/ywPwKL)
+
+
+WiP - Work in Progress
+======================
+
+The Master ToDo-List
+--------------------
+
+* Refactor/Think about Product=>ProductSpecification
+* Create more code and concepts! 
+     
