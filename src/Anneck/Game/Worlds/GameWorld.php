@@ -13,11 +13,18 @@ namespace Anneck\Game\Worlds;
 
 
 use Anneck\Game\Configuration;
+use Anneck\Game\Configuration\ConfigurationRoot;
 use Anneck\Game\World;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 class GameWorld implements World
 {
+
+    /**
+     * @var ArrayCollection
+     */
+    private $configuration;
 
     /**
      * Returns the continents who are a part of this world
@@ -26,7 +33,10 @@ class GameWorld implements World
      */
     public function getContinents()
     {
-        // TODO: Implement getContinents() method.
+        // $arr = $this->configuration->toArray();
+        // print_r($arr);
+        return $this->configuration->get('Continents');
+
     }
 
     /**
@@ -38,7 +48,7 @@ class GameWorld implements World
      */
     public function create(Configuration $worldConfig)
     {
-        // TODO: Implement create() method.
+        $this->configuration = $worldConfig->getConfiguration();
     }
 
     /**
@@ -58,7 +68,7 @@ class GameWorld implements World
      */
     public function getName()
     {
-        // TODO: Implement getName() method.
+        return $this->configuration->get(ConfigurationRoot::NAME);
     }
 
     /**
@@ -68,7 +78,7 @@ class GameWorld implements World
      */
     public function getUUID()
     {
-        // TODO: Implement getUUID() method.
+        return $this->configuration->get(ConfigurationRoot::UUID);
     }
 
 }

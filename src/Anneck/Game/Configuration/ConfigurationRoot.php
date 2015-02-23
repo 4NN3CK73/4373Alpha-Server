@@ -41,11 +41,6 @@ abstract class ConfigurationRoot implements Configuration
     {
         $defaultConfiguration = new ArrayCollection();
 
-        $defaultConfiguration->set(self::NAME,
-            'default');
-        $defaultConfiguration->set(self::UUID,
-            'default');
-
         $this->configuration = $defaultConfiguration;
     }
 
@@ -105,13 +100,19 @@ abstract class ConfigurationRoot implements Configuration
     }
 
     /**
-     * Set configuration from a .yml file
+     * Another utility method for extending classes.
+     *
+     * @param ArrayCollection $collectionToAdd the array collection to add to the internal configuration.
      */
-    protected function loadConfiguration()
+    protected function addConfiguration(ArrayCollection $collectionToAdd)
     {
-
-        $ymlParser = new Parser();
-        $ymlParser->parse(file_get_contents(__CLASS__ . '.yml'));
-
+        $this->configuration =
+            new ArrayCollection(
+                array_merge(
+                    $collectionToAdd->toArray(),
+                    $this->configuration->toArray()
+                )
+            );
     }
+
 }

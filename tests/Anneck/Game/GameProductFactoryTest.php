@@ -12,6 +12,7 @@
 namespace Anneck\Game;
 
 
+use Anneck\Game\Configuration\GameWorldConfiguration;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\Worlds\GameWorld;
 use PHPUnit_Framework_TestCase;
@@ -19,12 +20,17 @@ use PHPUnit_Framework_TestCase;
 class GameProductFactoryTest extends PHPUnit_Framework_TestCase
 {
 
+    /**
+     *
+     */
     public function testCreationOfGameProductFactory()
     {
         $gameProductFactory = null; // Default to enable test fail with null.
         
         try {
-            $gameProductFactory = GameProductFactory::getInstance(new GameWorld());
+            $gameWorld = new GameWorld();
+            $gameWorld->create(new GameWorldConfiguration());
+            $gameProductFactory = GameProductFactory::getInstance($gameWorld);
         } catch (GameException $gameException) {
             static::fail($gameException->getMessage());
         }
