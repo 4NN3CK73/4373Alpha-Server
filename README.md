@@ -1,4 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/4NN3CK73/4373Alpha-Server.png?label=ready&title=Ready)](https://waffle.io/4NN3CK73/4373Alpha-Server)
 4373Alpha Server
 ========================
 
@@ -15,6 +14,8 @@ Google Doc:  [Project Main](http://goo.gl/ywPwKL)
 
 WiP - Work in Progress
 ======================
+
+[![Stories in Ready](https://badge.waffle.io/4NN3CK73/4373Alpha-Server.png?label=ready&title=Ready)](https://waffle.io/4NN3CK73/4373Alpha-Server)
 
 The Master ToDo-List
 --------------------
