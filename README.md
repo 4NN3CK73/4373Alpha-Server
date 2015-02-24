@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/4NN3CK73/4373Alpha-Server.png?label=ready&title=Ready)](https://waffle.io/4NN3CK73/4373Alpha-Server)
 4373Alpha Server
 ========================
 
