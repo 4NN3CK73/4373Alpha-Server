@@ -18,9 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * Class GameWorld
- *
- * @package Anneck\Game\Worlds
+ * Class GameWorld.
  */
 class GameWorld implements World
 {
