@@ -17,6 +17,11 @@ use Anneck\Game\World;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
+/**
+ * Class GameWorld
+ *
+ * @package Anneck\Game\Worlds
+ */
 class GameWorld implements World
 {
     /**
