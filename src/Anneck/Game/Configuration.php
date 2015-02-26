@@ -17,7 +17,6 @@ namespace Anneck\Game;
  * The implementations of this class MUST NOT allow access to its internal data.
  *
  * Please use @ConfigurationRoot and extend it.
- *
  */
 interface Configuration
 {
@@ -36,5 +35,4 @@ interface Configuration
     public function getConfiguration();
 
     public function hasConfigurationKey($key);
-
 }

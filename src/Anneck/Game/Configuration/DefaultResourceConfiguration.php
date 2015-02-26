@@ -13,13 +13,11 @@ namespace Anneck\Game\Configuration;
 
 /**
  * The class DefaultResourceConfiguration is used during dev and for testing purposes.
- *
- * @package Anneck\Game\Configuration
  */
 class DefaultResourceConfiguration extends ConfigurationRoot
 {
     /**
-     * the key to retrieve the value of the resource type
+     * the key to retrieve the value of the resource type.
      */
     const TYPE = 'RESOURCE_TYPE';
 
@@ -29,5 +27,4 @@ class DefaultResourceConfiguration extends ConfigurationRoot
         $this->setConfiguration(self::NAME, 'defaultResourceName');
         $this->setConfiguration(self::TYPE, 'defaultResourceType');
     }
-
 }

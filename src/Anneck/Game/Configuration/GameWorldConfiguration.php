@@ -15,10 +15,7 @@ namespace Anneck\Game\Configuration;
  * The class GameWorldConfiguration is a first demo of loading world configs from a file.
  *
  * @see     YMLConfiguration for the implementation of the loading method.
- *
- * @package Anneck\Game\Configuration
  */
 class GameWorldConfiguration extends YMLConfigurationRoot
 {
-
 }

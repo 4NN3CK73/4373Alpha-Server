@@ -9,7 +9,6 @@
 
 namespace Anneck\Game\Worlds;
 
-
 use Anneck\Game\Configuration;
 use Anneck\Game\Configuration\DefaultWorldConfiguration;
 use Anneck\Game\World;
@@ -17,7 +16,6 @@ use Doctrine\Common\Collections\Collection;
 
 class DefaultWorld implements World
 {
-
     private $configuration;
 
     /**
@@ -30,7 +28,7 @@ class DefaultWorld implements World
     }
 
     /**
-     * Returns the continents who are a part of this world
+     * Returns the continents who are a part of this world.
      *
      * @return Collection of continents.
      */
@@ -48,6 +46,7 @@ class DefaultWorld implements World
      * A factory method to create worlds using configurations.
      *
      * @param Configuration $worldConfig the configuration used to create it.
+     *
      * @return World creates itself using a world Configuration.
      */
     public function create(Configuration $worldConfig)
@@ -73,6 +72,4 @@ class DefaultWorld implements World
     {
         return $this->configuration->get('NAME');
     }
-
-
 }

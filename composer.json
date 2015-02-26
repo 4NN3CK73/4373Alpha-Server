@@ -18,7 +18,8 @@
         "sensio/distribution-bundle": "~3.0.12",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        "monolog/monolog": "~1.12"
+        "monolog/monolog": "~1.12",
+        "fabpot/php-cs-fixer": "~1.5"
 
     },
     "require-dev": {

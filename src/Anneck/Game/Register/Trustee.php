@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the 4373Alpha-Server
+ * This file is part of the 4373Alpha-Server.
  *
  * User: andre
  * Date: 2/3/15
@@ -12,18 +12,16 @@ namespace Anneck\Register;
 use Anneck\Game\Product;
 
 /**
- * The interface Trustee
- * @package Anneck\Register
+ * The interface Trustee.
  */
 interface Trustee
 {
-
     public function addProduct(Product $product);
 
     /**
      * @param Product $product
+     *
      * @return bool true if the product is registered
      */
     public function isRegistered(Product $product);
-
 }

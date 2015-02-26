@@ -20,12 +20,9 @@ use Symfony\Component\Yaml\Parser;
 /**
  * The abstract class YMLConfigurationRoot implements the default way of loading a WorldConfiguration
  * from a YAML file.
- *
- * @package Anneck\Game\Configuration
  */
 abstract class YMLConfigurationRoot extends ConfigurationRoot implements YMLConfiguration
 {
-
     const YAML_CONFIGURATION_ROOT = __DIR__;
 
     public function __construct()
@@ -39,18 +36,16 @@ abstract class YMLConfigurationRoot extends ConfigurationRoot implements YMLConf
      */
     public function loadConfiguration()
     {
-
         $fileName = (new \ReflectionClass($this))->getShortName();
         $fileSuffix = '.yml';
-        $fqfn = self::YAML_CONFIGURATION_ROOT . '/' . $fileName . $fileSuffix;
+        $fqfn = self::YAML_CONFIGURATION_ROOT.'/'.$fileName.$fileSuffix;
 
         if (!file_exists($fqfn)) {
-            throw new GameException('Configuration YML file ' . $fqfn . ' does not exist!', 0000);
+            throw new GameException('Configuration YML file '.$fqfn.' does not exist!', 0000);
         }
         $yaml = new Parser();
 
         try {
-
             $arrayValue = $yaml->parse(
                 file_get_contents(
                     $fqfn // the fully qualified file name
@@ -58,14 +53,11 @@ abstract class YMLConfigurationRoot extends ConfigurationRoot implements YMLConf
             );
 
             $this->addConfiguration(new ArrayCollection($arrayValue));
-
         } catch (ParseException $parseException) {
             throw new GameException(
                 sprintf('Failed to load Configuration %s, parser error: %s', $fqfn, $parseException->getMessage()),
                 0000
             );
         }
-
     }
-
 }

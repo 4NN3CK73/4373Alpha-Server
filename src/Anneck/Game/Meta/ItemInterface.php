@@ -5,19 +5,21 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 23.02.15, 13:31 by 4nn3ck
+ * Created at 26.02.15, 14:53 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game\Configuration;
+namespace Anneck\Game\Meta;
 
 /**
- * Interface YMLConfiguration.
+ * Class ItemInterface.
  */
-interface YMLConfiguration
+interface ItemInterface
 {
     /**
+     * @param ActionInterface $action
+     *
      * @return mixed
      */
-    public function loadConfiguration();
+    public function executeAction(ActionInterface $action);
 }

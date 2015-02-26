@@ -13,15 +13,13 @@ namespace Anneck\Game\Configuration;
 
 use Anneck\Game\Configuration;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Yaml\Parser;
 
 /**
- * The abstract class ConfigurationRoot defines the default behaviour of all
+ * The abstract class ConfigurationRoot defines the default behaviour of all.
+ *
  * @Configuration implementations.
  *
  * The "default" is set to a NAME and a UUID.
- *
- * @package Anneck\Game\Configuration
  */
 abstract class ConfigurationRoot implements Configuration
 {
@@ -114,5 +112,4 @@ abstract class ConfigurationRoot implements Configuration
                 )
             );
     }
-
 }

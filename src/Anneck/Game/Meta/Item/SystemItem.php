@@ -5,19 +5,27 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 23.02.15, 13:31 by 4nn3ck
+ * Created at 26.02.15, 14:57 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game\Configuration;
+namespace Anneck\Game\Meta\Item;
+
+use Anneck\Game\Meta\ActionInterface;
+use Anneck\Game\Meta\ItemInterface;
 
 /**
- * Interface YMLConfiguration.
+ * Class SystemItem.
  */
-interface YMLConfiguration
+class SystemItem implements ItemInterface
 {
     /**
-     * @return mixed
+     * @param ActionInterface $actionInterface
+     *
+     * @return mixed|void
      */
-    public function loadConfiguration();
+    public function executeAction(ActionInterface $actionInterface)
+    {
+        $actionInterface->execute();
+    }
 }
