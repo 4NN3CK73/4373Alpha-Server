@@ -16,8 +16,6 @@ namespace Anneck\Game;
  *
  * @package Anneck\Game
  * @see Anneck\Game\Product
- *
- *
  */
 interface Resource
 {

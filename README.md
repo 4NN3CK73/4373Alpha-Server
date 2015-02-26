@@ -23,3 +23,7 @@ The Master ToDo-List
 * Refactor/Think about Product=>ProductSpecification
 * Create more code and concepts! 
      
+Dev Setup
+---------
+
+You know composer? Well then :P !
