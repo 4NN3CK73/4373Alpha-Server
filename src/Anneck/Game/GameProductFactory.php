@@ -17,20 +17,18 @@ use Doctrine\Common\Collections\Collection;
 
 /**
  * The GameProductFactory creates GameProduct's for GameWorld's.
- *
- * @package Anneck\Game
  */
 class GameProductFactory implements ProductFactory
 {
-
     /**
      * Creates the ProductFactory using the specified world.
      *
      *
      * @param World $world The world to use for product creation.
      *
-     * @return GameProductFactory   The GameProductFactory specific to this world.
-     * @throws GameException        If the instance creation fails.
+     * @return GameProductFactory The GameProductFactory specific to this world.
+     *
+     * @throws GameException If the instance creation fails.
      */
     public static function getInstance(World $world)
     {
@@ -82,6 +80,7 @@ class GameProductFactory implements ProductFactory
     /**
      * ATTENTION PRIVATE ON PURPOSE!
      * Cause it shall only be used internally during construction of self.
+     *
      * @SuppressWarnings(PHPMD)
      *
      * @param mixed $world

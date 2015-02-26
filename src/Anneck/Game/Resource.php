@@ -6,6 +6,7 @@
  * file that was distributed with this source code.
  * ***********************************************************************
  */
+
 namespace Anneck\Game;
 
 /**
@@ -14,19 +15,16 @@ namespace Anneck\Game;
  * * NOTE: Compatible does not mean "equal", each resource defines it compatibility with other resources.
  * *
  *
- * @package Anneck\Game
  * @see Anneck\Game\Product
- *
- *
  */
 interface Resource
 {
-
     /**
      * Determines if another resource is compatible with this resource.
      * Returns a boolean to indicate the result of the check.
      *
      * @param Resource $anotherResource
+     *
      * @return bool true if resources are compatible, else false
      */
     public function isCompatible(Resource $anotherResource);
@@ -37,5 +35,4 @@ interface Resource
      * @return mixed the type of this resource.
      */
     public function getResourceType();
-
 }

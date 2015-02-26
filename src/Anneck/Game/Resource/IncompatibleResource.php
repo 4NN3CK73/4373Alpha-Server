@@ -6,6 +6,7 @@
  * file that was distributed with this source code.
  * ***********************************************************************
  */
+
 namespace Anneck\Game\Resource;
 
 use Anneck\Game\Resource;
@@ -13,8 +14,7 @@ use Anneck\Game\Resource;
 /**
  * The class IncompatibleResource is used for testing purposes only.
  * It defaults to be incompatible! Nothing more to it :)
- * If you find another use for this class, please document it here, thank you. :)
- *
+ * If you find another use for this class, please document it here, thank you. :).
  */
 class IncompatibleResource implements Resource
 {
@@ -29,8 +29,8 @@ class IncompatibleResource implements Resource
     }
 
     /**
-     *
      * @param Resource $anotherResource
+     *
      * @return bool false - its always incompatible
      */
     public function isCompatible(Resource $anotherResource)

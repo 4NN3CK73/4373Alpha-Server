@@ -6,6 +6,7 @@
  * file that was distributed with this source code.
  * ***********************************************************************
  */
+
 namespace Anneck\Game;
 
 /**
@@ -13,11 +14,7 @@ namespace Anneck\Game;
  * Classes who represent a legal licence.
  *
  * In Game terms a licence allows the creation of licenced products.
- *
- *
- * @package Anneck\Game
  */
 interface License
 {
-
 }

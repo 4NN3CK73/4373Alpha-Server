@@ -6,6 +6,7 @@
  * file that was distributed with this source code.
  * ***********************************************************************
  */
+
 namespace Anneck\Game\Product;
 
 use Anneck\Game\Exception\GameException;
@@ -16,13 +17,10 @@ use Anneck\Game\Resource;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Class DefaultProduct
- * @package Anneck\Game\Product
+ * Class DefaultProduct.
  */
 class DefaultProduct implements Product
 {
-
-
     /**
      * @var ArrayCollection
      */
@@ -69,7 +67,9 @@ class DefaultProduct implements Product
 
     /**
      * @todo: what should we return, I vote for true|false ...
+     *
      * @param Resource $resource
+     *
      * @return mixed|void
      */
     public function addResource(Resource $resource)
@@ -88,6 +88,7 @@ class DefaultProduct implements Product
      * If any already contained resource is not compatible FALSE is returned.
      *
      * @param Resource $resource the resource to check for compatibility with all contained resources.
+     *
      * @return bool TRUE if the Resource specified in the param is compatible with all contained resources.
      */
     private function checkIfCompatibleWithContained(Resource $resource)
@@ -122,6 +123,7 @@ class DefaultProduct implements Product
      * @param ProductFactory $productFactory
      *
      * @return Product
+     *
      * @throws GameException
      */
     public function build(ProductFactory $productFactory)

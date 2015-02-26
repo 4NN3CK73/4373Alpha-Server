@@ -16,13 +16,9 @@ use Doctrine\Common\Collections\Collection;
  *
  * Each Continent is defined through an internal Configuration which associates each Continent to a World and a list
  * of Resource's available for the creation of Product's.
- *
- * @package Anneck\Game
- *
  */
 interface Continent
 {
-
     /**
      * Returns a collection of Resource's available in this continent.
      *

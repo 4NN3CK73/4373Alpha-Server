@@ -12,13 +12,10 @@
 namespace Anneck\Game\Configuration;
 
 /**
- * Interface YMLConfiguration
- *
- * @package Anneck\Game\Configuration
+ * Interface YMLConfiguration.
  */
 interface YMLConfiguration
 {
-
     /**
      * @return mixed
      */

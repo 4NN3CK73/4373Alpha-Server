@@ -8,21 +8,19 @@
  * Created by 4nn3ck
  * ***********************************************************************
  */
+
 namespace Anneck\Game\Configuration;
 
-use Anneck\Game\Configuration;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * The class DefaultContinentConfiguration is a default class for testing purposes,
  * and error handling maybe ...
- *
  */
 class DefaultContinentConfiguration extends ConfigurationRoot
 {
-
     /**
-     * Creates a DefaultContinentConfiguration
+     * Creates a DefaultContinentConfiguration.
      */
     public function __construct()
     {
@@ -35,12 +33,12 @@ class DefaultContinentConfiguration extends ConfigurationRoot
     }
 
     /**
-     * A string representation of the DefaultContinentConfiguration
+     * A string representation of the DefaultContinentConfiguration.
+     *
      * @return string
      */
     public function __toString()
     {
         return $this->getConfiguration()->get(self::NAME);
     }
-
 }
