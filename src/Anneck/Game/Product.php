@@ -6,6 +6,7 @@
  * file that was distributed with this source code.
  * ***********************************************************************
  */
+
 namespace Anneck\Game;
 
 /**
@@ -19,16 +20,15 @@ namespace Anneck\Game;
  *
  * The "build" process includes setting attributes of the created @Product specific to the chosen @ProductFactory
  *
- * @package Anneck\Game
  * @see Anneck\Game\ProductFactory
  */
 interface Product
 {
-
     /**
      * Add's resources who are compatible with each other.
      *
      * @param Resource $resource
+     *
      * @return mixed
      */
     public function addResource(Resource $resource);
@@ -41,5 +41,4 @@ interface Product
      * @return Product the created product
      */
     public function build(ProductFactory $productFactory);
-
 }

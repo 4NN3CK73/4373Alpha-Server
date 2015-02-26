@@ -7,18 +7,16 @@
  * ***********************************************************************
  */
 
-
 namespace Anneck\Game\Product;
 
 use Anneck\Game\License;
-use Anneck\Game\Product;
 use Anneck\Game\ProductFactory;
 use Anneck\Game\Resource;
 
 /**
  * The class LicencedDefaultProduct ...
- * @ToDo: Define the purpose of the class with "separation of concerns" in mind.
  *
+ * @ToDo: Define the purpose of the class with "separation of concerns" in mind.
  */
 class LicencedDefaultProduct extends DefaultProduct implements LicencedProduct
 {

@@ -7,7 +7,6 @@
  * ***********************************************************************
  */
 
-
 namespace Anneck\Game\Continent;
 
 use Anneck\Game\Configuration;
@@ -17,8 +16,8 @@ use Doctrine\Common\Collections\Collection;
 
 /**
  * The class DefaultContinent ...
- * @ToDo: Define the purpose of the class with "separation of concerns" in mind.
  *
+ * @ToDo: Define the purpose of the class with "separation of concerns" in mind.
  */
 class DefaultContinent implements Continent
 {
@@ -28,7 +27,6 @@ class DefaultContinent implements Continent
     public function __construct(Configuration $continentConfiguration)
     {
         $this->configuration = $continentConfiguration->getConfiguration();
-
     }
 
     /**
@@ -41,7 +39,7 @@ class DefaultContinent implements Continent
 
     public function __toString()
     {
-        return __CLASS__ . $this->getName() . $this->getGameWorld();
+        return __CLASS__.$this->getName().$this->getGameWorld();
     }
 
     public function getName()
@@ -58,5 +56,4 @@ class DefaultContinent implements Continent
     {
         $this->gameWorld = $world;
     }
-
 }

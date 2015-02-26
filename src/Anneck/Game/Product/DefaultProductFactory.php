@@ -29,12 +29,9 @@ use Doctrine\Common\Collections\Collection;
  *
  * * $myProduct = $defaultProductFactory->getInstance($myWorld)->createProduct($myResources)
  * *
- *
- * @package Anneck\Game\Product
  */
 class DefaultProductFactory implements ProductFactory
 {
-
     /**
      * @var DefaultProductFactory instance of self
      */
@@ -47,26 +44,26 @@ class DefaultProductFactory implements ProductFactory
 
     /**
      * WARNING! Don't create this class using this constructor, its a singleton!
-     * Use getInstance();
+     * Use getInstance();.
      */
     protected function __construct()
     {
-
     }
 
     /**
      * Create a product factory using the configuration of a (Game)World.
      *
      * @param World $world the world to use for the factory
+     *
      * @return ProductFactory|void the product factory
+     *
      * @throws GameException if the creation of the factory fails
      */
     public static function getInstance(World $world)
     {
         if (count($world->getContinents()) < 1) {
             throw new GameException(sprintf('Can not create the factory instance without Continents in the World!'
-                    . 'Required > 1 found %d', count($world->getContinents()))
-                , '0001');
+                    .'Required > 1 found %d', count($world->getContinents())), '0001');
         }
 
         return self::create($world);
@@ -74,7 +71,9 @@ class DefaultProductFactory implements ProductFactory
 
     /**
      * Internal static construction helper method used in getInstance.
+     *
      * @param $world world this factory works with.
+     *
      * @return DefaultProductFactory
      */
     private static function create($world)
@@ -88,9 +87,10 @@ class DefaultProductFactory implements ProductFactory
     /**
      * ATTENTION PRIVATE ON PURPOSE!
      * Cause it shall only be used internally during construction of self.
+     *
      * @SuppressWarnings(PHPMD)
      *
-*@param mixed $world
+     *@param mixed $world
      */
     private function setWorld(World $world)
     {
@@ -101,7 +101,9 @@ class DefaultProductFactory implements ProductFactory
      * Takes a collection of resources and creates a product from them.
      *
      * @param Collection $collectionOfResources
+     *
      * @return Product $createdProduct
+     *
      * @throws GameException If the resource is not available in this world configuration.
      */
     public function createProduct(Collection $collectionOfResources)
@@ -111,7 +113,6 @@ class DefaultProductFactory implements ProductFactory
         $incomingResource = $collectionOfResources->getIterator();
 
         foreach ($incomingResource as $resource) {
-
             if ($this->checkIfResourceIsAvailable($resource)) {
                 $newProduct->addResource($resource);
             } else {
@@ -123,7 +124,6 @@ class DefaultProductFactory implements ProductFactory
                     ), '0002'
                 );
             }
-
         }
 
         $newProduct->setWorld($usingWorld);
@@ -149,6 +149,7 @@ class DefaultProductFactory implements ProductFactory
      * @param Resource $resource The resource to check for availability.
      *
      * @return bool true if the resource is found, otherwise false.
+     *
      * @throws GameException If the world configuration does not provide a list of resources.
      */
     private function checkIfResourceIsAvailable(Resource $resource)
@@ -158,7 +159,7 @@ class DefaultProductFactory implements ProductFactory
         $resourceFound = false;
 
         foreach ($allContinents as $continent) {
-            /** @var Continent $continent */
+            /* @var Continent $continent */
             $availableResources = $continent->getListOfResources();
 
             if (null === $availableResources) {
@@ -168,7 +169,6 @@ class DefaultProductFactory implements ProductFactory
                     $resourceFound = true;
                 }
             }
-
         }
 
         return $resourceFound;

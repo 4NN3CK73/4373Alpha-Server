@@ -9,7 +9,6 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\Configuration;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -17,14 +16,12 @@ use Doctrine\Common\Collections\Collection;
  *
  * NOTE: Please ensure that implementing classes are forced to use the create method!
  *
- * @package Anneck\Game
  * @see The @DefaultWorld class, it is the default implemenation.
  */
 interface World
 {
-
     /**
-     * Returns the continents who are a part of this world
+     * Returns the continents who are a part of this world.
      *
      * @return Collection of continents.
      */
@@ -48,8 +45,8 @@ interface World
      * A factory method to create worlds using a @Configuration.
      *
      * @param Configuration $worldConfig the configuration used to create it.
+     *
      * @return World creates itself using a world Configuration.
      */
     public function create(Configuration $worldConfig);
-
 }

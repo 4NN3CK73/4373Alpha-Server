@@ -16,8 +16,8 @@ use Doctrine\Common\Collections\Collection;
 
 /**
  * The class DefaultResource ...
- * @ToDo: Define the purpose of the class with "separation of concerns" in mind.
  *
+ * @ToDo: Define the purpose of the class with "separation of concerns" in mind.
  */
 class DefaultResource implements Resource
 {
@@ -30,18 +30,17 @@ class DefaultResource implements Resource
     {
         $this->resourceConfiguration = ConfigurationFactory::getInstance('DefaultResource')->getConfiguration();
         // $this->resourceConfiguration->set(ConfigurationRoot::NAME, $resourceName);
-
     }
 
     public function setGameWorld()
     {
-
     }
 
     /**
      * The default resource is compatible with anything.
      *
      * @param Resource $anotherResource
+     *
      * @return bool true - this is just a default
      */
     public function isCompatible(Resource $anotherResource)
@@ -61,5 +60,4 @@ class DefaultResource implements Resource
     {
         return $this->resourceConfiguration->get(DefaultResourceConfiguration::TYPE);
     }
-
 }

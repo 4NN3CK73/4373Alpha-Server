@@ -9,18 +9,14 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\Product;
 use Doctrine\Common\Collections\Collection;
 
 /**
  * The (Game) ProductFactory describes a factory interface which
  * works using a (Game)@World in order to create world specific @Product's.
- *
- * @package Anneck\Game
  */
 interface ProductFactory
 {
-
     /**
      * Creates the ProductFactory using the specified world.
      *
@@ -31,11 +27,11 @@ interface ProductFactory
      */
     public static function getInstance(World $world);
 
-
     /**
      * Takes a collection of resources and creates a product from them.
      *
      * @param Collection $collectionOfResources
+     *
      * @return Product $createdProduct
      */
     public function createProduct(Collection $collectionOfResources);
@@ -56,5 +52,4 @@ interface ProductFactory
      * @return World the world used in this ProductFactory.
      */
     public function getWorld();
-
 }

@@ -1,4 +1,14 @@
 # This is a world configuration ...
-NAME: WORLD_ONE
+NAME: "WORLD ONE"
 UUID: GAME_WORLD_1
-Continents: Wollland, Codecountry, Bastelheim
+Continents:
+  Wollland:
+    { resources: [Material, Anleitungen, Zubehör, Bücher] }
+  Codecountry:
+    { resources: [Material, Anleitungen, Zubehör, Bücher] }
+  Bastelheim:
+    { resources: [Material, Anleitungen, Zubehör, Bücher] }
+# This does not work yet, but should @todo
+Material:
+  isCompatibleWith: [Anleitung, Zubehör]
+  isActive: true
