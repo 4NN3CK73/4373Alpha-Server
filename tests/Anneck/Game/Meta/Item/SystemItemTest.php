@@ -11,21 +11,17 @@
 
 namespace Anneck\Game\Meta\Item;
 
-
 use Anneck\Game\Meta\Action\Item\DefaultItemAction;
 use Anneck\Game\Meta\Action\System\DefaultSystemAction;
 
-
 class SystemItemTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testSystemItemDefaultItemAction()
     {
         $sysItem = new SystemItem();
         $sysItemAction = new DefaultSystemAction();
         $result = $sysItem->executeAction($sysItemAction);
         $this->assertNotNull($result);
-
     }
 
     public function testUserItemDefaultWrongItemAction()
@@ -33,6 +29,5 @@ class SystemItemTest extends \PHPUnit_Framework_TestCase
         $userItem = new UserItem();
         $result = $userItem->executeAction(new DefaultItemAction());
         $this->assertNull($result);
-
     }
 }

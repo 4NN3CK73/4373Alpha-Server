@@ -11,13 +11,11 @@
 
 namespace Anneck\Game;
 
-
 use Anneck\Game\Meta\Action\Item\DefaultItemAction;
 use Anneck\Game\Meta\Action\System\DefaultSystemAction;
 
 class ItemActionTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testDefaultItemActionUse()
     {
         $defaultItemAction = new DefaultItemAction();
@@ -36,6 +34,4 @@ class ItemActionTest extends \PHPUnit_Framework_TestCase
         $result = $defaultSystemAction->execute();
         $this->assertTrue($result);
     }
-
-
 }

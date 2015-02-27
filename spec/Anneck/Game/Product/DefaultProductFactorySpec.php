@@ -6,7 +6,6 @@ use Anneck\Game\Resource\DefaultResource;
 use Anneck\Game\Worlds\DefaultWorld;
 use Doctrine\Common\Collections\ArrayCollection;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class DefaultProductFactorySpec extends ObjectBehavior
 {
@@ -19,7 +18,6 @@ class DefaultProductFactorySpec extends ObjectBehavior
 
     public function it_can_create_default_products($resourceCollection)
     {
-
         $defaultWorld = new DefaultWorld();
         $this->beConstructedThrough('getInstance', [$defaultWorld]);
 
@@ -32,6 +30,5 @@ class DefaultProductFactorySpec extends ObjectBehavior
         $product = $this->createProduct($resourceCollection);
         $product->shouldImplement('Anneck\Game\Product');
         $product->shouldHaveType('Anneck\Game\Product\DefaultProduct');
-
     }
 }
