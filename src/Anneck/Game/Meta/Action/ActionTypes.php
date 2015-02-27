@@ -14,12 +14,9 @@ namespace Anneck\Game\Meta\Action;
 /**
  * The class ActionTypes currently just holds CONST values
  * used by Action classes to identify by type.
- *
- * @package Anneck\Game\Meta\Action
  */
 class ActionTypes
 {
-
     const ITEM = 'ActionType::ITEM';
     const USER = 'ActionType::USER';
     const SYSTEM = 'ActionType::SYS';

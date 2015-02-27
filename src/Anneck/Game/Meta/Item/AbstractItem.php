@@ -11,14 +11,12 @@
 
 namespace Anneck\Game\Meta\Item;
 
-
 use Anneck\Game\Meta\ActionInterface;
 use Anneck\Game\Meta\ItemInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 abstract class AbstractItem implements ItemInterface
 {
-
     /**
      * Private executeAction helper to validate if incoming action class is of the correct type.
      *
@@ -33,5 +31,4 @@ abstract class AbstractItem implements ItemInterface
         // I know its a one line conditional, but I like it.
         return $validTypes->contains($action->getType()) ? true : false;
     }
-
 }

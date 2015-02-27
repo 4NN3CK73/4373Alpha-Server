@@ -17,7 +17,7 @@ use Anneck\Game\Meta\ActionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * The class SystemItem consumes SystemItemActions
+ * The class SystemItem consumes SystemItemActions.
  */
 class SystemItem extends AbstractItem
 {
@@ -51,6 +51,4 @@ class SystemItem extends AbstractItem
 
         return $actionResult;
     }
-
-
 }

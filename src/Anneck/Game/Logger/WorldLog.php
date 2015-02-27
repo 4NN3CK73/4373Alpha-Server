@@ -30,5 +30,4 @@ class WorldLog extends Logger
                 Logger::DEBUG)
         );
     }
-
 }

@@ -31,13 +31,13 @@ class DefaultSystemAction implements ActionInterface
      */
     public function execute()
     {
-        $this->worldLog->addNotice('Called execute on ' . __CLASS__);
+        $this->worldLog->addNotice('Called execute on '.__CLASS__);
 
         return true;
     }
 
     /**
-     * Identifies it's action type
+     * Identifies it's action type.
      *
      * @return mixed
      */
@@ -55,5 +55,4 @@ class DefaultSystemAction implements ActionInterface
     {
         return __CLASS__;
     }
-
 }

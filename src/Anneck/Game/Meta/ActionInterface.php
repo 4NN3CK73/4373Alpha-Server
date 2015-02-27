@@ -24,7 +24,7 @@ interface ActionInterface
     public function execute();
 
     /**
-     * Identifies it's action type
+     * Identifies it's action type.
      *
      * @return mixed
      */
