@@ -19,7 +19,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * The class SystemItem consumes SystemItemActions
  */
-class SystemItem extends AbstractItem
+class UserItem extends AbstractItem
 {
     private $logger;
     private $validActionTypes;
@@ -27,8 +27,9 @@ class SystemItem extends AbstractItem
     public function __construct()
     {
         $this->logger = new WorldLog();
-        $this->validActionTypes = new ArrayCollection([ActionTypes::SYSTEM]);
+        $this->validActionTypes = new ArrayCollection([ActionTypes::USER]);
     }
+
     /**
      * @param ActionInterface $action
      *
@@ -51,6 +52,5 @@ class SystemItem extends AbstractItem
 
         return $actionResult;
     }
-
 
 }

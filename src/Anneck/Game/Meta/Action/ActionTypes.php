@@ -5,28 +5,22 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 26.02.15, 14:54 by 4nn3ck
+ * Created at 27.02.15, 11:16 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game\Meta;
+namespace Anneck\Game\Meta\Action;
 
 /**
- * Interface ItemActionInterface.
+ * The class ActionTypes currently just holds CONST values
+ * used by Action classes to identify by type.
+ *
+ * @package Anneck\Game\Meta\Action
  */
-interface ActionInterface
+class ActionTypes
 {
-    /**
-     * Executes itself.
-     *
-     * @return boolean true|false
-     */
-    public function execute();
 
-    /**
-     * Identifies it's action type
-     *
-     * @return mixed
-     */
-    public function getType();
+    const ITEM = 'ActionType::ITEM';
+    const USER = 'ActionType::USER';
+    const SYSTEM = 'ActionType::SYS';
 }

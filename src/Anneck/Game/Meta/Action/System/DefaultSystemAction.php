@@ -9,13 +9,13 @@
  * ************************************************************************
  */
 
-namespace Anneck\Game\Meta\Action\Item;
+namespace Anneck\Game\Meta\Action\System;
 
 use Anneck\Game\Logger\WorldLog;
 use Anneck\Game\Meta\Action\ActionTypes;
 use Anneck\Game\Meta\ActionInterface;
 
-class DefaultItemAction implements ActionInterface
+class DefaultSystemAction implements ActionInterface
 {
     private $worldLog;
 
@@ -43,7 +43,7 @@ class DefaultItemAction implements ActionInterface
      */
     public function getType()
     {
-        return ActionTypes::ITEM;
+        return ActionTypes::SYSTEM;
     }
 
     /**
@@ -55,6 +55,5 @@ class DefaultItemAction implements ActionInterface
     {
         return __CLASS__;
     }
-
 
 }
