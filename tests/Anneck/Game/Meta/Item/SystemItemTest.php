@@ -21,13 +21,16 @@ class SystemItemTest extends \PHPUnit_Framework_TestCase
         $sysItem = new SystemItem();
         $sysItemAction = new DefaultSystemAction();
         $result = $sysItem->executeAction($sysItemAction);
-        $this->assertNotNull($result);
+        // using the correct action type ...
+        static::assertNotNull($result);
     }
 
     public function testUserItemDefaultWrongItemAction()
     {
         $userItem = new UserItem();
         $result = $userItem->executeAction(new DefaultItemAction());
-        $this->assertNull($result);
+
+        // using the wrong action type should return null ...
+        static::assertNull($result);
     }
 }

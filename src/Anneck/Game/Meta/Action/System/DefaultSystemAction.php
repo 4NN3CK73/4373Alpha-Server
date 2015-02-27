@@ -11,17 +11,22 @@
 
 namespace Anneck\Game\Meta\Action\System;
 
-use Anneck\Game\Logger\WorldLog;
+use Anneck\Game\Meta\Action\AbstractAction;
 use Anneck\Game\Meta\Action\ActionTypes;
-use Anneck\Game\Meta\ActionInterface;
 
-class DefaultSystemAction implements ActionInterface
+/**
+ * Class DefaultSystemAction
+ *
+ * @package Anneck\Game\Meta\Action\System
+ */
+class DefaultSystemAction extends AbstractAction
 {
-    private $worldLog;
-
-    public function __construct()
+    /**
+     * @param string $actionName
+     */
+    public function __construct($actionName = 'DefaultSystemAction')
     {
-        $this->worldLog = new WorldLog();
+        parent::__construct($actionName);
     }
 
     /**
@@ -31,7 +36,7 @@ class DefaultSystemAction implements ActionInterface
      */
     public function execute()
     {
-        $this->worldLog->addNotice('Called execute on '.__CLASS__);
+        $this->worldLog->addNotice('Called execute on ' . $this);
 
         return true;
     }
@@ -44,15 +49,5 @@ class DefaultSystemAction implements ActionInterface
     public function getType()
     {
         return ActionTypes::SYSTEM;
-    }
-
-    /**
-     * The string representation of this class.
-     *
-     * @return string The string representation of this class
-     */
-    public function __toString()
-    {
-        return __CLASS__;
     }
 }

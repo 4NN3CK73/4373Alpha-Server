@@ -11,17 +11,20 @@
 
 namespace Anneck\Game\Meta\Action\Item;
 
-use Anneck\Game\Logger\WorldLog;
+use Anneck\Game\Meta\Action\AbstractAction;
 use Anneck\Game\Meta\Action\ActionTypes;
-use Anneck\Game\Meta\ActionInterface;
 
-class DefaultItemAction implements ActionInterface
+/**
+ * The class DefaultItemAction as of now just serves to enable integration test's.
+ */
+class DefaultItemAction extends AbstractAction
 {
-    private $worldLog;
-
-    public function __construct()
+    /**
+     * @param string $actionName
+     */
+    public function __construct($actionName = 'DefaultItemAction')
     {
-        $this->worldLog = new WorldLog();
+        parent::__construct($actionName);
     }
 
     /**
@@ -31,7 +34,7 @@ class DefaultItemAction implements ActionInterface
      */
     public function execute()
     {
-        $this->worldLog->addNotice('Called execute on '.__CLASS__);
+        $this->worldLog->addNotice('Called execute on ' . $this);
 
         return true;
     }
@@ -44,15 +47,5 @@ class DefaultItemAction implements ActionInterface
     public function getType()
     {
         return ActionTypes::ITEM;
-    }
-
-    /**
-     * The string representation of this class.
-     *
-     * @return string The string representation of this class
-     */
-    public function __toString()
-    {
-        return __CLASS__;
     }
 }

@@ -20,18 +20,18 @@ class ItemActionTest extends \PHPUnit_Framework_TestCase
     {
         $defaultItemAction = new DefaultItemAction();
         // Testing toString ...
-        $this->assertEquals('Anneck\Game\Meta\Action\Item\DefaultItemAction', "$defaultItemAction");
+        static::assertEquals($defaultItemAction->__toString(), "$defaultItemAction");
         // Testing usage ...
         $result = $defaultItemAction->execute();
-        $this->assertTrue($result);
+        static::assertTrue($result);
     }
 
     public function testSystemItemActionUse()
     {
         $defaultSystemAction = new DefaultSystemAction();
         // Testing toString ...
-        $this->assertEquals('Anneck\Game\Meta\Action\System\DefaultSystemAction', "$defaultSystemAction");
+        static::assertEquals($defaultSystemAction->__toString(), "$defaultSystemAction");
         $result = $defaultSystemAction->execute();
-        $this->assertTrue($result);
+        static::assertTrue($result);
     }
 }
