@@ -15,9 +15,7 @@ use Anneck\Game\Meta\Action\AbstractAction;
 use Anneck\Game\Meta\Action\ActionTypes;
 
 /**
- * Class DefaultSystemAction
- *
- * @package Anneck\Game\Meta\Action\System
+ * Class DefaultSystemAction.
  */
 class DefaultSystemAction extends AbstractAction
 {
@@ -36,7 +34,7 @@ class DefaultSystemAction extends AbstractAction
      */
     public function execute()
     {
-        $this->worldLog->addNotice('Called execute on ' . $this);
+        $this->worldLog->addNotice('Called execute on '.$this);
 
         return true;
     }

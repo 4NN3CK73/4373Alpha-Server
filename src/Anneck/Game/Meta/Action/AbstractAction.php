@@ -42,7 +42,7 @@ abstract class AbstractAction implements ActionInterface
      */
     public function __toString()
     {
-        return $this->getType() . '::' . $this->getName();
+        return $this->getType().'::'.$this->getName();
     }
 
     /**
