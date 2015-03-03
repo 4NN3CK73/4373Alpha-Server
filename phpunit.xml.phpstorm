@@ -12,6 +12,7 @@
     <testsuites>
         <testsuite name="Alpha-Server Test Suite">
             <directory>tests/**</directory>
+            <directory>src/AlphaServerBundle/Tests/**</directory>
         </testsuite>
     </testsuites>
 
@@ -22,11 +23,11 @@
         <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
 
-    <!--
+
     <php>
-        <server name="KERNEL_DIR" value="/path/to/your/app/" />
+        <server name="KERNEL_DIR" value="app/" />
     </php>
-    -->
+
 
     <filter>
         <whitelist>
