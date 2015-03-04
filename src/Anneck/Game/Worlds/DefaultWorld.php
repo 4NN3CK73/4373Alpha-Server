@@ -9,6 +9,7 @@
 
 namespace Anneck\Game\Worlds;
 
+use Anneck\Game\ActionQueueInterface;
 use Anneck\Game\Configuration;
 use Anneck\Game\Configuration\DefaultWorldConfiguration;
 use Anneck\Game\World;
@@ -49,7 +50,7 @@ class DefaultWorld implements World
      *
      * @return World creates itself using a world Configuration.
      */
-    public function create(Configuration $worldConfig)
+    public function configure(Configuration $worldConfig)
     {
         $newWorld = new DefaultWorld();
 
@@ -71,5 +72,15 @@ class DefaultWorld implements World
     public function getName()
     {
         return $this->configuration->get('NAME');
+    }
+
+    /**
+     * @param ActionQueueInterface $worldActions
+     *
+     * @return World changes itself using world actions
+     */
+    public function change(ActionQueueInterface $worldActions)
+    {
+
     }
 }

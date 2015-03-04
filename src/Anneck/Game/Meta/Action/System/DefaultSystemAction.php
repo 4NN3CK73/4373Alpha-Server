@@ -34,7 +34,7 @@ class DefaultSystemAction extends AbstractAction
      */
     public function execute()
     {
-        $this->worldLog->addNotice('Called execute on '.$this);
+        $this->worldLog->addNotice('Called execute on ' . $this . ' changing world: ');
 
         return true;
     }

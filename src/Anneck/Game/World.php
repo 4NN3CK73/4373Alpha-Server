@@ -46,7 +46,15 @@ interface World
      *
      * @param Configuration $worldConfig the configuration used to create it.
      *
-     * @return World creates itself using a world Configuration.
+     * @return World configures itself using a world Configuration.
      */
-    public function create(Configuration $worldConfig);
+    public function configure(Configuration $worldConfig);
+
+    /**
+     * @param ActionQueueInterface $worldActions
+     *
+     * @return World changes itself using world actions
+     */
+    public function change(ActionQueueInterface $worldActions);
+
 }

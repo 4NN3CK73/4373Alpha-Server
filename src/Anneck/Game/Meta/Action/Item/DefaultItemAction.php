@@ -13,18 +13,21 @@ namespace Anneck\Game\Meta\Action\Item;
 
 use Anneck\Game\Meta\Action\AbstractAction;
 use Anneck\Game\Meta\Action\ActionTypes;
+use Anneck\Game\Worlds\DefaultWorld;
 
 /**
  * The class DefaultItemAction as of now just serves to enable integration test's.
  */
 class DefaultItemAction extends AbstractAction
 {
+    private $world;
     /**
      * @param string $actionName
      */
     public function __construct($actionName = 'DefaultItemAction')
     {
         parent::__construct($actionName);
+        $this->world = new DefaultWorld();
     }
 
     /**
@@ -34,7 +37,8 @@ class DefaultItemAction extends AbstractAction
      */
     public function execute()
     {
-        $this->worldLog->addNotice('Called execute on '.$this);
+
+        $this->worldLog->addNotice('Called execute on ' . $this . ' changing world: ' . $this->world);
 
         return true;
     }

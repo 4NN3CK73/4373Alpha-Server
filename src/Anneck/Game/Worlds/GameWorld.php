@@ -11,8 +11,11 @@
 
 namespace Anneck\Game\Worlds;
 
+use Anneck\Game\ActionQueue;
+use Anneck\Game\ActionQueueInterface;
 use Anneck\Game\Configuration;
 use Anneck\Game\Configuration\ConfigurationRoot;
+use Anneck\Game\Meta\ActionInterface;
 use Anneck\Game\World;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -46,9 +49,10 @@ class GameWorld implements World
      *
      * @return World creates itself using a world Configuration.
      */
-    public function create(Configuration $worldConfig)
+    public function configure(Configuration $worldConfig)
     {
         $this->configuration = $worldConfig->getConfiguration();
+        return $this;
     }
 
     /**
@@ -80,4 +84,21 @@ class GameWorld implements World
     {
         return $this->configuration->get(ConfigurationRoot::UUID);
     }
+
+    /**
+     * @param ActionQueueInterface $worldActions
+     *
+     * @return World changes itself using world actions
+     */
+    public function change(ActionQueueInterface $worldActions)
+    {
+        $actionIterator = $worldActions->getActionQueue()->getIterator();
+        foreach($actionIterator as $action) {
+            if($action instanceof ActionInterface) {
+                $action->execute($this);
+            }
+        }
+
+    }
+
 }

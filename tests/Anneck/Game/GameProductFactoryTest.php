@@ -27,7 +27,7 @@ class GameProductFactoryTest extends PHPUnit_Framework_TestCase
 
         try {
             $gameWorld = new GameWorld();
-            $gameWorld->create(new GameWorldConfiguration());
+            $gameWorld->configure(new GameWorldConfiguration());
             $gameProductFactory = GameProductFactory::getInstance($gameWorld);
         } catch (GameException $gameException) {
             static::fail($gameException->getMessage());

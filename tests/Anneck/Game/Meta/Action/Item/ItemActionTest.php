@@ -13,6 +13,7 @@ namespace Anneck\Game;
 
 use Anneck\Game\Meta\Action\Item\DefaultItemAction;
 use Anneck\Game\Meta\Action\System\DefaultSystemAction;
+use Anneck\Game\Worlds\DefaultWorld;
 
 class ItemActionTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,7 +23,7 @@ class ItemActionTest extends \PHPUnit_Framework_TestCase
         // Testing toString ...
         static::assertEquals($defaultItemAction->__toString(), "$defaultItemAction");
         // Testing usage ...
-        $result = $defaultItemAction->execute();
+        $result = $defaultItemAction->execute(new DefaultWorld());
         static::assertTrue($result);
     }
 
@@ -31,7 +32,7 @@ class ItemActionTest extends \PHPUnit_Framework_TestCase
         $defaultSystemAction = new DefaultSystemAction();
         // Testing toString ...
         static::assertEquals($defaultSystemAction->__toString(), "$defaultSystemAction");
-        $result = $defaultSystemAction->execute();
+        $result = $defaultSystemAction->execute(new DefaultWorld());
         static::assertTrue($result);
     }
 }

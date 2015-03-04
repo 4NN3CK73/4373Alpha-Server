@@ -32,5 +32,7 @@ class GameEngineTest extends ContainerAwareUnitTestCase {
             'GameEngineSpec requires method: nextTurn()'
         );
 
+        $result = $gameEngine->nextTurn();
+
     }
 }
