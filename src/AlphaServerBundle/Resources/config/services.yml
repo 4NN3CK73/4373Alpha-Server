@@ -1,4 +1,0 @@
-services:
-    alpha_server.game_engine:
-        class: AlphaServerBundle\Services\GameEngine
-        arguments: [@mailer, @logger]

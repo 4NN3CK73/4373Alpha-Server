@@ -1,3 +1,0 @@
-alpha_server_homepage:
-    path:     /GameEngine/{name}
-    defaults: { _controller: AlphaServerBundle:Default:index }
