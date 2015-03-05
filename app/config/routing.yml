@@ -1,3 +1,7 @@
-app:
-    resource: @AppBundle/Controller/
-    type:     annotation
+#alpha_server:
+#    resource: "@AlphaServerBundle/Resources/config/routing.yml"
+#    prefix:   /
+
+#app:
+#    resource: @AlphaServerBundle/Controller/
+#    type:     annotation

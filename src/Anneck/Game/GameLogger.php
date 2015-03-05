@@ -5,14 +5,17 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 05.03.15, 16:12 by 4nn3ck
+ * Created at 04.03.15, 16:15 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game\Exception;
+namespace Anneck\Game;
+
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 /**
- * The GameException.
+ * The GameLogger uses Monolog.
  *
  * @todo    Write PHPDoc for this class!
  *
@@ -20,6 +23,17 @@ namespace Anneck\Game\Exception;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class GameException extends \Exception
+class GameLogger extends Logger
 {
+    /**
+     * Creates the logger.
+     */
+    public function __construct()
+    {
+        parent::__construct('GameLog');
+
+        $this->pushHandler(
+            new StreamHandler('/tmp/game.log', Logger::DEBUG)
+        );
+    }
 }

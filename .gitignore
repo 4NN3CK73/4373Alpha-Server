@@ -1,3 +1,6 @@
+# STrange tmp
+tmp*
+
 # PHPStorm
 .idea/*
 
@@ -26,6 +29,7 @@ composer.lock
 /bin/*
 !bin/console
 !bin/symfony_requirements
+!bin/fixPermissions.sh
 /vendor/
 
 # Assets and user uploads

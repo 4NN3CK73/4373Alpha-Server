@@ -1,0 +1,6 @@
+# 4373Alpha-Server Project Setting for scruntinizer ...
+# We integrate from local jenkins ..
+tools:
+    external_code_coverage: true
+    timeout: 600    # Timeout in seconds.
+    runs: 2    # Scrutinizer will wait for two code coverage submissions
