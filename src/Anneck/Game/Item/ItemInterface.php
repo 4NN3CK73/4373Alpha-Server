@@ -12,23 +12,43 @@
 namespace Anneck\Game\Item;
 
 use Anneck\Game\Action\ItemActionInterface;
+use Doctrine\Common\Collections\Collection;
 
 /**
- * The interface ItemInterface describes a game item on which a distinct collection of available actions can be applied.
- *
- * The ItemInterface is used together with ItemActionInterface.
- *
+ * The ItemInterface is a game item on which a distinct collection of available actions can be applied.
  *
  * @package Anneck\Game\Item
+ * @since   0.0.1-dev
+ * @author  André Anneck <andreanneck73@gmail.com>
  */
 interface ItemInterface {
 
     /**
-     * @return 
+     * The available item actions.
+     * @return Collection of ItemActionInterface objects.
      */
     public function getAvailableActions();
+
+    /**
+     * Executes the ItemActionInterface changing the world.
+     *
+     * @param ItemActionInterface $action the action to use.
+     *
+     * @return boolean true if the action was applied, false otherwise.
+     */
     public function applyAction(ItemActionInterface $action);
 
+    /**
+     * Returns the name of the item.
+     *
+     * @return string the name of the item.
+     */
     public function getName();
+
+    /**
+     * Returns the string representation of this class.
+     *
+     * @return string the string representation of this class.
+     */
     public function __toString();
 }

@@ -17,11 +17,30 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * The DefaultWorld
+ *
+ * @package Anneck\Game\World
+ * @todo    Write PHPDoc for this class!
+ * @since   0.0.1-dev
+ * @author  André Anneck <andreanneck73@gmail.com>
+ */
 class DefaultWorld implements WorldInterface {
 
+    /**
+     * @var
+     */
     private $config;
+    /**
+     * @var
+     */
     private $name;
 
+    /**
+     * @param ConfigurationInterface $configuration
+     *
+     * @return array
+     */
     public function configure(ConfigurationInterface $configuration)
     {
         // First we load the treeBuild
@@ -45,26 +64,35 @@ class DefaultWorld implements WorldInterface {
         return $processedConfiguration;
     }
 
+    /**
+     * @param $worldName
+     *
+     * @return $this
+     */
     public function createByName($worldName)
     {
         $this->name = $worldName;
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
     public function getContinents()
     {
         return new ArrayCollection();
     }
 
+    /**
+     * @param ResourceInterface $itemResource
+     *
+     * @return bool
+     */
     public function isResourceAvailableIn(ResourceInterface $itemResource)
     {
         return false;
     }
 
-    public function getName()
-    {
-        return $this->name;
-    }
     /**
      * The world plus its name ...
      * @return string the shortName of the class.
@@ -73,5 +101,13 @@ class DefaultWorld implements WorldInterface {
     {
         $reClass = new \ReflectionClass($this);
         return $reClass->getShortName() . '(' . $this->getName() . ')';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

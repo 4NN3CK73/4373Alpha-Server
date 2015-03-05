@@ -15,11 +15,23 @@ namespace Anneck\Game;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
+/**
+ * The GameLogger uses Monolog.
+ *
+ * @package Anneck\Game
+ * @todo    Write PHPDoc for this class!
+ * @since   0.0.1-dev
+ * @author  André Anneck <andreanneck73@gmail.com>
+ */
 class GameLogger extends Logger {
 
+    /**
+     * Creates the logger.
+     */
     public function __construct()
     {
         parent::__construct('GameLog');
+
         $this->pushHandler(
             new StreamHandler('/tmp/game.log', Logger::DEBUG)
         );

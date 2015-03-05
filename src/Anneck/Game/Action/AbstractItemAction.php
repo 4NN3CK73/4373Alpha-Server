@@ -12,9 +12,11 @@
 namespace Anneck\Game\Action;
 
 /**
- * Class AbstractItemAction
+ * The AbstractItemAction class serves all implementations as a base class.
  *
  * @package Anneck\Game\Action
+ * @since   0.0.1-dev
+ * @author  André Anneck <andreanneck73@gmail.com>
  */
 abstract class AbstractItemAction implements ItemActionInterface {
     /**
