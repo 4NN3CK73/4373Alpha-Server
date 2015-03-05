@@ -8,6 +8,7 @@
  * Created at 04.03.15, 14:07 by 4nn3ck
  * ************************************************************************
  */
+
 namespace Anneck\Game;
 
 use Anneck\Game\Item\ItemInterface;
@@ -16,9 +17,9 @@ use Doctrine\Common\Collections\Collection;
 /**
  * The RegisterInterface works with the GameInterface to enable the registration and manipulation of items.
  *
- * @package Anneck\Game
  *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
 interface RegisterInterface
@@ -42,6 +43,7 @@ interface RegisterInterface
      * Update an item.
      *
      * @todo: Is that a real use case?
+     *
      * @param ItemInterface $item to update.
      *
      * @return boolean true if update was successful, else false.

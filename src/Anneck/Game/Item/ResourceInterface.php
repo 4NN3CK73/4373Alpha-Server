@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 11:46 by 4nn3ck  
+ * Created at 04.03.15, 11:46 by 4nn3ck
  * ************************************************************************
  */
 
@@ -16,12 +16,12 @@ namespace Anneck\Game\Item;
  * Resources can be incompatible with each other, this enables or disables certain resource combinations during item
  * creation. The compatibility of resources is defined in the WorldConfiguration.
  *
- * @package Anneck\Game\Item
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface ResourceInterface {
-
+interface ResourceInterface
+{
     /**
      * Checks if resources are compatible.
      *
@@ -33,6 +33,7 @@ interface ResourceInterface {
 
     /**
      * Returns the string representation of the resource.
+     *
      * @return string the string representation of the resource.
      */
     public function __toString();

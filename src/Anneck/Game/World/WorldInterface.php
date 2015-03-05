@@ -5,12 +5,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 11:22 by 4nn3ck  
+ * Created at 04.03.15, 11:22 by 4nn3ck
  * ************************************************************************
  */
 
 namespace Anneck\Game\World;
-
 
 use Anneck\Game\Configuration\ConfigurationInterface;
 use Anneck\Game\Item\ResourceInterface;
@@ -18,12 +17,12 @@ use Anneck\Game\Item\ResourceInterface;
 /**
  * The WorldInterface holds continents and resources according to its configuration used by the game.
  *
- * @package Anneck\Game\World
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface WorldInterface {
-
+interface WorldInterface
+{
     /**
      * Configures the world using a ConfigurationInterface and returns the configured world.
      *
@@ -35,6 +34,7 @@ interface WorldInterface {
 
     /**
      * @todo: implement this idea
+     *
      * @param $worldName
      *
      * @return mixed
@@ -43,13 +43,16 @@ interface WorldInterface {
 
     /**
      * Each world contains continents which in turn contain specific resources used in the game.
+     *
      * @todo: implement this idea
+     *
      * @return mixed
      */
     public function getContinents();
 
     /**
      * @todo: implement this idea
+     *
      * @param ResourceInterface $itemResource
      *
      * @return mixed

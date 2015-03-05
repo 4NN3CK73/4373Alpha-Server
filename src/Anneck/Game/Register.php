@@ -11,21 +11,20 @@
 
 namespace Anneck\Game;
 
-
 use Anneck\Game\Item\ItemInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * The Register administrates game items.
  *
- * @package Anneck\Game
  * @todo    Write PHPDoc for this class and all methods!
+ *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
 class Register implements RegisterInterface
 {
-
     /**
      * @var ArrayCollection
      */
@@ -58,7 +57,6 @@ class Register implements RegisterInterface
     {
         $this->removeItem($item);
         $this->registerItem($item);
-
     }
 
     /**

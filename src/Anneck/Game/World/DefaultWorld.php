@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 13:05 by 4nn3ck  
+ * Created at 04.03.15, 13:05 by 4nn3ck
  * ************************************************************************
  */
 
@@ -18,15 +18,16 @@ use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * The DefaultWorld
+ * The DefaultWorld.
  *
- * @package Anneck\Game\World
  * @todo    Write PHPDoc for this class!
+ *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class DefaultWorld implements WorldInterface {
-
+class DefaultWorld implements WorldInterface
+{
     /**
      * @var
      */
@@ -50,7 +51,7 @@ class DefaultWorld implements WorldInterface {
         $className = $reflectionClass->getShortName();
         $configSpec = Yaml::parse(
             file_get_contents(
-                __DIR__ . '/../Configuration/' . $className . '.yml'
+                __DIR__.'/../Configuration/'.$className.'.yml'
             )
         );
         $configSpecs = [$configSpec];
@@ -72,6 +73,7 @@ class DefaultWorld implements WorldInterface {
     public function createByName($worldName)
     {
         $this->name = $worldName;
+
         return $this;
     }
 
@@ -95,12 +97,14 @@ class DefaultWorld implements WorldInterface {
 
     /**
      * The world plus its name ...
+     *
      * @return string the shortName of the class.
      */
     public function __toString()
     {
         $reClass = new \ReflectionClass($this);
-        return $reClass->getShortName() . '(' . $this->getName() . ')';
+
+        return $reClass->getShortName().'('.$this->getName().')';
     }
 
     /**

@@ -5,18 +5,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 13:12 by 4nn3ck  
+ * Created at 04.03.15, 13:12 by 4nn3ck
  * ************************************************************************
  */
 
 namespace Anneck\Game\Configuration;
 
-
-use Anneck\Common\Stringable;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
-use Symfony\Component\Config\Definition\Processor;
 
-class WorldConfiguration implements ConfigurationInterface {
+class WorldConfiguration implements ConfigurationInterface
+{
     /**
      * Generates the configuration tree builder.
      *
@@ -37,17 +35,18 @@ class WorldConfiguration implements ConfigurationInterface {
                     ->end()
             ->end();
 
-
         return $treeBuilder;
     }
 
     /**
      * One default toString implementation ...
+     *
      * @return string the shortName of the class.
      */
     public function __toString()
     {
         $reClass = new \ReflectionClass($this);
+
         return $reClass->getShortName();
     }
 }

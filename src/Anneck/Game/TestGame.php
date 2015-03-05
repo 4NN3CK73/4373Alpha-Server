@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 12:56 by 4nn3ck  
+ * Created at 04.03.15, 12:56 by 4nn3ck
  * ************************************************************************
  */
 
@@ -19,12 +19,12 @@ use Anneck\Game\World\WorldInterface;
 /**
  * The TestGame is as of now just a developer playground.
  *
- * @package Anneck\Game
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestGame implements GameInterface {
-
+class TestGame implements GameInterface
+{
     /**
      * @var WorldInterface
      */
@@ -51,7 +51,7 @@ class TestGame implements GameInterface {
     private $logger;
 
     /**
-     * Creates the TestGame
+     * Creates the TestGame.
      */
     public function __construct()
     {
@@ -64,7 +64,8 @@ class TestGame implements GameInterface {
      */
     public function getWorld()
     {
-        $this->logger->addInfo('getWorld_' . $this->world);
+        $this->logger->addInfo('getWorld_'.$this->world);
+
         return $this->world;
     }
 
@@ -73,7 +74,7 @@ class TestGame implements GameInterface {
      */
     public function setWorld(WorldInterface $world)
     {
-        $this->logger->addInfo('setWorld_' . $world);
+        $this->logger->addInfo('setWorld_'.$world);
         $this->world = $world;
     }
 
@@ -82,7 +83,7 @@ class TestGame implements GameInterface {
      */
     public function setRegister(RegisterInterface $register)
     {
-        $this->logger->addInfo('setRegister:' . $register);
+        $this->logger->addInfo('setRegister:'.$register);
         $this->register = $register;
     }
 
@@ -91,7 +92,8 @@ class TestGame implements GameInterface {
      */
     public function getScore()
     {
-        $this->logger->addInfo('getScore:' . $this->score);
+        $this->logger->addInfo('getScore:'.$this->score);
+
         return $this->score;
     }
 
@@ -100,7 +102,7 @@ class TestGame implements GameInterface {
      */
     public function addScore($points)
     {
-        $this->logger->addInfo('addScore:' . $this->score);
+        $this->logger->addInfo('addScore:'.$this->score);
         $this->score += $points;
     }
 
@@ -109,7 +111,7 @@ class TestGame implements GameInterface {
      */
     public function addItemToRegister(ItemInterface $gameItem)
     {
-        $this->logger->addInfo('addItemToRegister:' . $gameItem);
+        $this->logger->addInfo('addItemToRegister:'.$gameItem);
         $this->register->registerItem($gameItem);
     }
 
@@ -118,7 +120,7 @@ class TestGame implements GameInterface {
      */
     public function updateItem(ItemInterface $gameItem)
     {
-        $this->logger->addInfo('updateItem:' . $gameItem);
+        $this->logger->addInfo('updateItem:'.$gameItem);
         $this->register->updateItem($gameItem);
     }
 
@@ -127,7 +129,7 @@ class TestGame implements GameInterface {
      */
     public function removeItem(ItemInterface $gameItem)
     {
-        $this->logger->addInfo('removeItem:' . $gameItem);
+        $this->logger->addInfo('removeItem:'.$gameItem);
         $this->register->removeItem($gameItem);
     }
 
@@ -170,6 +172,4 @@ class TestGame implements GameInterface {
     {
         return __CLASS__;
     }
-
-
 }

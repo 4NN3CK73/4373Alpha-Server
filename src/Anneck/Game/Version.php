@@ -23,6 +23,7 @@ namespace Anneck\Game;
  * Class to store and retrieve the version of Game running on 4373Alpha-Server.
  *
  * @since  0.0.1-dev
+ *
  * @author André Anneck <andreanneck73@gmail.com>
  */
 class Version
@@ -49,6 +50,6 @@ class Version
 
     public function __toString()
     {
-        return '4373AlphaServer[Game] version ' . self::VERSION;
+        return '4373AlphaServer[Game] version '.self::VERSION;
     }
 }

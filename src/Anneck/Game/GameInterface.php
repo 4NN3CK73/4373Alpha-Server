@@ -5,22 +5,19 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 11:23 by 4nn3ck  
+ * Created at 04.03.15, 11:23 by 4nn3ck
  * ************************************************************************
  */
 
 namespace Anneck\Game;
 
-
 use Anneck\Game\Item\ItemInterface;
 use Anneck\Game\World\WorldInterface;
 
-interface GameInterface {
-
+interface GameInterface
+{
     /**
      * @param WorldInterface $world
-     *
-     * @return void
      */
     public function setWorld(WorldInterface $world);
     /**
@@ -36,5 +33,4 @@ interface GameInterface {
     public function safe();
     public function nextTurn();
     public function getTurn();
-
 }
