@@ -11,6 +11,8 @@
 
 namespace Anneck\Game;
 
+use Anneck\Game\World\WorldInterface;
+
 /**
  * The interface Engine drives the game forward by executing all Actions of the ActionQueue.
  *
@@ -20,10 +22,21 @@ namespace Anneck\Game;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface Engine
+interface EngineInterface
 {
     /**
-     * Run's the engine ...
+     * The engine needs to be build before it can be run.
+     *
+     * @param GameInterface  $game
+     * @param WorldInterface $world
+     *
+     * @return boolean true|false
      */
-    public function run();
+    public function build(GameInterface $game, WorldInterface $world);
+
+    /**
+     * Start the engine ...
+     */
+    public function start();
+
 }

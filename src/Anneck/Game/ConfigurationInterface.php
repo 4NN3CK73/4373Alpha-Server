@@ -9,7 +9,7 @@
  * ************************************************************************
  */
 
-namespace Anneck\Game\Configuration;
+namespace Anneck\Game;
 
 use Symfony\Component\Config\Definition\ConfigurationInterface as SymfonyConfigurationInterface;
 

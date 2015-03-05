@@ -11,7 +11,7 @@
 
 namespace Anneck\Game\World;
 
-use Anneck\Game\Configuration\ConfigurationInterface;
+use Anneck\Game\ConfigurationInterface;
 use Anneck\Game\Item\ResourceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Config\Definition\Processor;
