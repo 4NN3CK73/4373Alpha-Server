@@ -15,11 +15,12 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Anneck\Game\ConfigurationInterface;
 
 /**
- * The WorldConfiguration
+ * The WorldConfiguration.
  *
- * @package Anneck\Game\Configuration
  * @todo    Write PHPDoc for this class!
+ *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
 class WorldConfiguration implements ConfigurationInterface

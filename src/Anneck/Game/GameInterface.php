@@ -11,15 +11,13 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\ItemInterface;
-use Anneck\Game\WorldInterface;
-
 /**
- * The interface GameInterface
+ * The interface GameInterface.
  *
- * @package Anneck\Game
  * @todo    Write PHPDoc for this interface!
+ *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
 interface GameInterface

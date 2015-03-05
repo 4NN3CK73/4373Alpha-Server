@@ -11,9 +11,7 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\ItemInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use Anneck\Game\RegisterInterface;
 
 /**
  * The Register administrates game items.

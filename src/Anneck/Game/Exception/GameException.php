@@ -5,14 +5,21 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 11:56 by 4nn3ck
+ * Created at 05.03.15, 16:12 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game;
+namespace Anneck\Game\Exception;
 
-interface ActionInterface
+/**
+ * The GameException.
+ *
+ * @todo    Write PHPDoc for this class!
+ *
+ * @since   0.0.1-dev
+ *
+ * @author  André Anneck <andreanneck73@gmail.com>
+ */
+class GameException extends \Exception
 {
-    public function applyOn(GameInterface $game);
-    public function __toString();
 }
