@@ -9,10 +9,10 @@
  * ************************************************************************
  */
 
-namespace Anneck\Game\World;
+namespace Anneck\Game;
 
 use Anneck\Game\ConfigurationInterface;
-use Anneck\Game\Item\ResourceInterface;
+use Anneck\Game\ResourceInterface;
 
 /**
  * The WorldInterface holds continents and resources according to its configuration used by the game.

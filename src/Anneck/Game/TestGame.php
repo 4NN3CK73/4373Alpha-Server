@@ -14,7 +14,7 @@ namespace Anneck\Game;
 use Anneck\Game\Action\CreateShopProduct;
 use Anneck\Game\ItemInterface;
 use Anneck\Game\Item\Shop;
-use Anneck\Game\World\WorldInterface;
+use Anneck\Game\WorldInterface;
 
 /**
  * The TestGame is as of now just a developer playground.

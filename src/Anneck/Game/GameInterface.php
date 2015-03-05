@@ -12,7 +12,7 @@
 namespace Anneck\Game;
 
 use Anneck\Game\ItemInterface;
-use Anneck\Game\World\WorldInterface;
+use Anneck\Game\WorldInterface;
 
 /**
  * The interface GameInterface

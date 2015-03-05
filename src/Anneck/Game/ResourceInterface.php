@@ -9,7 +9,7 @@
  * ************************************************************************
  */
 
-namespace Anneck\Game\Item;
+namespace Anneck\Game;
 
 /**
  * The ResourceInterface is used by the game during game actions who create new item's.
