@@ -11,7 +11,7 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\Item\ItemInterface;
+use Anneck\Game\ItemInterface;
 use Doctrine\Common\Collections\Collection;
 
 /**

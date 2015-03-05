@@ -11,9 +11,17 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\Item\ItemInterface;
+use Anneck\Game\ItemInterface;
 use Anneck\Game\World\WorldInterface;
 
+/**
+ * The interface GameInterface
+ *
+ * @package Anneck\Game
+ * @todo    Write PHPDoc for this interface!
+ * @since   0.0.1-dev
+ * @author  André Anneck <andreanneck73@gmail.com>
+ */
 interface GameInterface
 {
     /**
@@ -24,13 +32,59 @@ interface GameInterface
      * @return WorldInterface
      */
     public function getWorld();
+
+    /**
+     * @param RegisterInterface $register
+     *
+     * @return mixed
+     */
     public function setRegister(RegisterInterface $register);
+
+    /**
+     * @return mixed
+     */
     public function getScore();
+
+    /**
+     * @param $points
+     *
+     * @return mixed
+     */
     public function addScore($points);
+
+    /**
+     * @param ItemInterface $gameItem
+     *
+     * @return mixed
+     */
     public function addItemToRegister(ItemInterface $gameItem);
+
+    /**
+     * @param ItemInterface $gameItem
+     *
+     * @return mixed
+     */
     public function updateItem(ItemInterface $gameItem);
+
+    /**
+     * @param ItemInterface $gameItem
+     *
+     * @return mixed
+     */
     public function removeItem(ItemInterface $gameItem);
+
+    /**
+     * @return mixed
+     */
     public function safe();
+
+    /**
+     * @return mixed
+     */
     public function nextTurn();
+
+    /**
+     * @return mixed
+     */
     public function getTurn();
 }

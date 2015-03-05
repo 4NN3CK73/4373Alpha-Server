@@ -12,7 +12,7 @@
 namespace Anneck\Game;
 
 use Anneck\Game\Action\CreateShopProduct;
-use Anneck\Game\Item\ItemInterface;
+use Anneck\Game\ItemInterface;
 use Anneck\Game\Item\Shop;
 use Anneck\Game\World\WorldInterface;
 
