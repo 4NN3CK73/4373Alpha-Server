@@ -21,7 +21,7 @@ return new Sami($iterator, array(
     // 'theme'                => 'symfony',
     'versions'             => $versions,
     'title'                => '4373Alpha-Server API',
-    'build_dir'            => __DIR__.'/../build/%version%',
+    'build_dir'            => __DIR__.'/../build/phpdoc/%version%',
     'cache_dir'            => __DIR__.'/../cache/%version%',
     // use a custom theme directory
     // 'template_dirs'        => array(__DIR__.'/themes/symfony'),
