@@ -16,6 +16,13 @@ use Anneck\Game\Configuration\WorldConfiguration;
 use Anneck\Game\Item\Shop;
 use Anneck\Game\World\DefaultWorld;
 
+/**
+ * The TestGameTest the first, just to see where we are going ..
+ *
+ * @package Anneck\Game
+ * @since   0.0.1-dev
+ * @author  André Anneck <andreanneck73@gmail.com>
+ */
 class TestGameTest extends \PHPUnit_Framework_TestCase {
 
     public function testGameSpecification()

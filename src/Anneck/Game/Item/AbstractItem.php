@@ -11,16 +11,39 @@
 
 namespace Anneck\Game\Item;
 
-use Anneck\Game\Action\ItemActionInterface;
+use Anneck\Game\Action\ActionInterface;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 
+/**
+ * The AbstractItem.
+ *
+ * @todo    Write PHPDoc for this class!
+ *
+ * @since   0.0.1-dev
+ *
+ * @author  André Anneck <andreanneck73@gmail.com>
+ */
 abstract class AbstractItem implements ItemInterface
 {
+    /**
+     * @var GameInterface
+     */
     private $game;
+
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var GameLogger
+     */
     private $logger;
 
+    /**
+     * @param GameInterface $game
+     */
     public function __construct(GameInterface $game)
     {
         $this->game = $game;
@@ -35,7 +58,10 @@ abstract class AbstractItem implements ItemInterface
         return $this->name;
     }
 
-    public function applyAction(ItemActionInterface $action)
+    /**
+     * @param ActionInterface $action
+     */
+    public function applyAction(ActionInterface $action)
     {
         if ($this->getAvailableActions()->contains($action)) {
             $this->logger->addInfo('ApplyAction '.$action.' on '.$this);

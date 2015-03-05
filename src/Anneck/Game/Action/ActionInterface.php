@@ -13,7 +13,7 @@ namespace Anneck\Game\Action;
 
 use Anneck\Game\GameInterface;
 
-interface ItemActionInterface
+interface ActionInterface
 {
     public function applyOn(GameInterface $game);
     public function __toString();

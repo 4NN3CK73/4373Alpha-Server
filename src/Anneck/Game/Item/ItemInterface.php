@@ -11,7 +11,7 @@
 
 namespace Anneck\Game\Item;
 
-use Anneck\Game\Action\ItemActionInterface;
+use Anneck\Game\Action\ActionInterface;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -33,11 +33,11 @@ interface ItemInterface
     /**
      * Executes the ItemActionInterface changing the world.
      *
-     * @param ItemActionInterface $action the action to use.
+     * @param ActionInterface $action the action to use.
      *
      * @return boolean true if the action was applied, false otherwise.
      */
-    public function applyAction(ItemActionInterface $action);
+    public function applyAction(ActionInterface $action);
 
     /**
      * Returns the name of the item.

@@ -13,8 +13,22 @@ namespace Anneck\Game\Action;
 
 use Anneck\Game\GameInterface;
 
-class ScoreOnePoint extends AbstractItemAction
+/**
+ * The ScoreOnePoint.
+ *
+ * @todo    Write PHPDoc for this class!
+ *
+ * @since   0.0.1-dev
+ *
+ * @author  André Anneck <andreanneck73@gmail.com>
+ */
+class ScoreOnePoint extends AbstractAction
 {
+    /**
+     * @param GameInterface $game
+     *
+     * @return bool
+     */
     public function applyOn(GameInterface $game)
     {
         $game->addScore(1);
@@ -22,6 +36,9 @@ class ScoreOnePoint extends AbstractItemAction
         return true;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         $reClass = new \ReflectionClass($this);

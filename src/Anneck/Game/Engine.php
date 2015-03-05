@@ -5,30 +5,25 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 16:28 by 4nn3ck
+ * Created at 05.03.15, 15:12 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game\Action;
+namespace Anneck\Game;
 
 /**
- * The AbstractItemAction class serves all implementations as a base class.
+ * The interface Engine drives the game forward by executing all Actions of the ActionQueue.
+ *
+ * @todo    Write PHPDoc for this interface!
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-abstract class AbstractItemAction implements ItemActionInterface
+interface Engine
 {
     /**
-     * One default toString implementation ...
-     *
-     * @return string the shortName of the class.
+     * Run's the engine ...
      */
-    public function __toString()
-    {
-        $reClass = new \ReflectionClass($this);
-
-        return $reClass->getShortName();
-    }
+    public function run();
 }
