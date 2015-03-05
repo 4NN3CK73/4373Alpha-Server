@@ -11,7 +11,7 @@
 
 namespace Anneck\Game\Item;
 
-use Anneck\Game\Action\ActionInterface;
+use Anneck\Game\ActionInterface;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 

@@ -11,6 +11,8 @@
 
 namespace Anneck\Game\Action;
 
+use Anneck\Game\ActionInterface;
+
 /**
  * The AbstractItemAction class serves all implementations as a base class.
  *

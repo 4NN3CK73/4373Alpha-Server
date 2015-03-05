@@ -9,7 +9,7 @@
  * ************************************************************************
  */
 
-namespace Anneck\Game\Action;
+namespace Anneck\Game;
 
 use Anneck\Game\GameInterface;
 
