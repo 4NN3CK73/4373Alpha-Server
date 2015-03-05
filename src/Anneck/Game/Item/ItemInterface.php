@@ -28,5 +28,7 @@ interface ItemInterface {
      */
     public function getAvailableActions();
     public function applyAction(ItemActionInterface $action);
+
     public function getName();
+    public function __toString();
 }

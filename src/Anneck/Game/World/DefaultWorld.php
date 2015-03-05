@@ -11,7 +11,6 @@
 
 namespace Anneck\Game\World;
 
-
 use Anneck\Game\Configuration\ConfigurationInterface;
 use Anneck\Game\Item\ResourceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -66,12 +65,13 @@ class DefaultWorld implements WorldInterface {
     {
         return $this->name;
     }
-
-    function __toString()
+    /**
+     * The world plus its name ...
+     * @return string the shortName of the class.
+     */
+    public function __toString()
     {
-        $refClass = new \ReflectionClass($this);
-        return $refClass->getShortName();
+        $reClass = new \ReflectionClass($this);
+        return $reClass->getShortName() . '(' . $this->getName() . ')';
     }
-
-
 }

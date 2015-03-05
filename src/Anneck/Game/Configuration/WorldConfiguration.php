@@ -12,6 +12,7 @@
 namespace Anneck\Game\Configuration;
 
 
+use Anneck\Common\Stringable;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\Processor;
 
@@ -40,4 +41,13 @@ class WorldConfiguration implements ConfigurationInterface {
         return $treeBuilder;
     }
 
+    /**
+     * One default toString implementation ...
+     * @return string the shortName of the class.
+     */
+    public function __toString()
+    {
+        $reClass = new \ReflectionClass($this);
+        return $reClass->getShortName();
+    }
 }

@@ -51,7 +51,15 @@ abstract class AbstractItem implements ItemInterface {
         }
 
     }
-
+    /**
+     * One default toString implementation ...
+     * @return string the shortName of the class.
+     */
+    public function __toString()
+    {
+        $reClass = new \ReflectionClass($this);
+        return $reClass->getShortName();
+    }
     /**
      * @return mixed
      */
@@ -60,9 +68,4 @@ abstract class AbstractItem implements ItemInterface {
         return $this->game;
     }
 
-    public function __toString()
-    {
-        $refClass = new \ReflectionClass($this);
-        return $refClass->getShortName();
-    }
 }

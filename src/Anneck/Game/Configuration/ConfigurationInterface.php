@@ -15,6 +15,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface as SymfonyConfigu
 
 interface ConfigurationInterface extends SymfonyConfigurationInterface {
 
-
+    public function __toString();
 
 }

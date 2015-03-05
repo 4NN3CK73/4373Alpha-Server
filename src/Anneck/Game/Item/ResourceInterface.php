@@ -16,4 +16,5 @@ interface ResourceInterface {
 
     public function isCompatible(ResourceInterface $resource);
 
+    public function __toString();
 }

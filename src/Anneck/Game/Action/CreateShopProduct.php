@@ -11,7 +11,7 @@
 
 namespace Anneck\Game\Action;
 
-
+use Anneck\Common\ToString;
 use Anneck\Game\GameInterface;
 use Anneck\Game\Item\ShopProduct;
 use Anneck\Game\RegisterInterface;
