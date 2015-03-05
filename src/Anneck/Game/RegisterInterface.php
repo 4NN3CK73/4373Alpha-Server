@@ -10,14 +10,13 @@
  */
 namespace Anneck\Game;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Anneck\Game\Item\ItemInterface;
-use Anneck\Game\World\WorldInterface;
+use Doctrine\Common\Collections\Collection;
 
 interface RegisterInterface
 {
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
     public function getRegistryData();
 
@@ -25,4 +24,6 @@ interface RegisterInterface
     public function updateItem(ItemInterface $item);
     public function removeItem(ItemInterface $item);
     public function hasItem(ItemInterface $item);
+
+    public function __toString();
 }

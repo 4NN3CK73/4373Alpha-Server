@@ -11,11 +11,21 @@
 
 namespace Anneck\Game\Item;
 
-
 use Anneck\Game\Action\ItemActionInterface;
 
+/**
+ * The interface ItemInterface describes a game item on which a distinct collection of available actions can be applied.
+ *
+ * The ItemInterface is used together with ItemActionInterface.
+ *
+ *
+ * @package Anneck\Game\Item
+ */
 interface ItemInterface {
 
+    /**
+     * @return 
+     */
     public function getAvailableActions();
     public function applyAction(ItemActionInterface $action);
     public function getName();

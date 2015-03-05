@@ -21,8 +21,7 @@ class GameLogger extends Logger {
     {
         parent::__construct('GameLog');
         $this->pushHandler(
-            new StreamHandler('/tmp/Game.Log', Logger::DEBUG)
+            new StreamHandler('/tmp/game.log', Logger::DEBUG)
         );
-        $this->addError('Foo');
     }
 }

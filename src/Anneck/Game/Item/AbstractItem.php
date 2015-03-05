@@ -22,12 +22,34 @@ abstract class AbstractItem implements ItemInterface {
     private $name;
     private $logger;
 
+    public function __construct(GameInterface $game)
+    {
+        $this->game = $game;
+        $this->logger = new GameLogger();
+    }
+
     /**
      * @return mixed
      */
     public function getName()
     {
         return $this->name;
+    }
+
+    public function applyAction(ItemActionInterface $action)
+    {
+        if($this->getAvailableActions()->contains($action)) {
+            $this->logger->addInfo('ApplyAction ' . $action . ' on ' . $this);
+            $action->applyOn($this->getGame());
+        } else {
+            $this->logger->addWarning('Action: ' . $action . ' is not one of ' .
+                implode(
+                    ', ',
+                    $this->getAvailableActions()->toArray()
+                )
+            );
+        }
+
     }
 
     /**
@@ -38,23 +60,9 @@ abstract class AbstractItem implements ItemInterface {
         return $this->game;
     }
 
-    public function __construct(GameInterface $game)
-    {
-        $this->game = $game;
-        $this->logger = new GameLogger();
-    }
-
-    public function applyAction(ItemActionInterface $action)
-    {
-        if($this->getAvailableActions()->contains($action)) {
-            $this->logger->addInfo('ApplyAction ' . $action . ' on ' . $this);
-            $action->applyOn($this->getGame());
-        }
-
-    }
-
     public function __toString()
     {
-        return $this->getName();
+        $refClass = new \ReflectionClass($this);
+        return $refClass->getShortName();
     }
 }

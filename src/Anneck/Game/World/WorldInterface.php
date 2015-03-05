@@ -12,9 +12,8 @@
 namespace Anneck\Game\World;
 
 
-use Anneck\Game\Item\ItemInterface;
-use Anneck\Game\Item\ResourceInterface;
 use Anneck\Game\Configuration\ConfigurationInterface;
+use Anneck\Game\Item\ResourceInterface;
 
 interface WorldInterface {
 
@@ -25,4 +24,5 @@ interface WorldInterface {
     public function isResourceAvailableIn(ResourceInterface $itemResource);
 
     public function getName();
+    public function __toString();
 }

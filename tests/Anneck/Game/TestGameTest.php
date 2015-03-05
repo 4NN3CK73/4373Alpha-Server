@@ -14,7 +14,6 @@ namespace Anneck\Game;
 
 use Anneck\Game\Configuration\WorldConfiguration;
 use Anneck\Game\Item\Shop;
-use Anneck\Game\Item\ShopProduct;
 use Anneck\Game\World\DefaultWorld;
 
 class TestGameTest extends \PHPUnit_Framework_TestCase {
@@ -50,8 +49,9 @@ class TestGameTest extends \PHPUnit_Framework_TestCase {
         $game->nextTurn();
 
         self::assertEquals(1, $game->getTurn());
-        $shopProductCreatedByTurn = new ShopProduct($game);
-        self::assertTrue($register->hasItem($shopProductCreatedByTurn));
+        // @todo: enable actions to manipulate ... but not here! :) in the game engine where the action queue is used.
+//        $shopProductCreatedByTurn = new ShopProduct($game);
+//        self::assertTrue($register->hasItem($shopProductCreatedByTurn));
 
         $game->safe();
 

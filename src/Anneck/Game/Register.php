@@ -12,9 +12,8 @@
 namespace Anneck\Game;
 
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Anneck\Game\Item\ItemInterface;
-use Anneck\Game\World\WorldInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Register implements RegisterInterface
 {
@@ -37,24 +36,29 @@ class Register implements RegisterInterface
         return $this->registryData;
     }
 
-    public function registerItem(ItemInterface $item) {
-        $this->registryData->set($item->getName(), $item);
-    }
-
-
-    public function removeItem(ItemInterface $item)
-    {
-        $this->registryData->remove($item->getName());
-    }
-
     public function updateItem(ItemInterface $item)
     {
         $this->removeItem($item);
         $this->registerItem($item);
     }
 
+    public function removeItem(ItemInterface $item)
+    {
+        $this->registryData->remove($item->getName());
+    }
+
+    public function registerItem(ItemInterface $item) {
+        $this->registryData->set($item->getName(), $item);
+    }
+
     public function hasItem(ItemInterface $item)
     {
         return $this->registryData->containsKey($item->getName());
+    }
+
+    public function __toString()
+    {
+        $refClass = new \ReflectionClass($this);
+        return $refClass->getShortName();
     }
 }

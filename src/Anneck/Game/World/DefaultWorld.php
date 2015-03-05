@@ -12,10 +12,9 @@
 namespace Anneck\Game\World;
 
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Anneck\Game\Configuration\WorldConfiguration;
 use Anneck\Game\Configuration\ConfigurationInterface;
 use Anneck\Game\Item\ResourceInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Yaml\Yaml;
 
@@ -70,7 +69,8 @@ class DefaultWorld implements WorldInterface {
 
     function __toString()
     {
-        return __CLASS__;
+        $refClass = new \ReflectionClass($this);
+        return $refClass->getShortName();
     }
 
 
