@@ -61,6 +61,14 @@ class TestEngine implements EngineInterface
         if (!$this->readyToStart) {
             throw new GameException('The Engine has not been build, can not start!');
         }
+        // Process all actions ...
+        $actions = $this->actionQ->getIterator();
+
+        /** @var ActionInterface $action */
+        foreach ($actions as $action) {
+            $action->applyOn($this->game);
+        }
+
         // yeah ...
         $this->game->nextTurn();
     }

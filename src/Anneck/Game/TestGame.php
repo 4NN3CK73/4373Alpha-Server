@@ -11,8 +11,6 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\Action\CreateShopProduct;
-use Anneck\Game\Item\Shop;
 
 /**
  * The TestGame is as of now just a developer playground.
@@ -145,14 +143,8 @@ class TestGame implements GameInterface
      */
     public function nextTurn()
     {
-        $this->logger->addInfo('nextTurn()');
-        // testing ...
-        $shopItem = new Shop($this);
-        $createProductUsingShopItem = new CreateShopProduct($this->register);
-
-        $shopItem->applyAction($createProductUsingShopItem);
         $this->turn++;
-        $this->logger->addInfo('nextTurn()-END');
+        $this->logger->addInfo('nextTurn('.$this->turn.')');
     }
 
     /**

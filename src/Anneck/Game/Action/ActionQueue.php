@@ -13,10 +13,13 @@ namespace Anneck\Game\Action;
 
 use Anneck\Game\ActionInterface;
 use Anneck\Game\Exception\GameException;
+use Anneck\Game\GameLogger;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * The ActionQueue is a Collection which only allows ActionInterface to be added.
+ *
+ * @todo: Maybe this needs to be a linked list?
  *
  * @since   0.0.1-dev
  *
@@ -35,17 +38,15 @@ class ActionQueue extends ArrayCollection
      */
     public function add($element)
     {
+        $log = new GameLogger();
         // Only accept ActionInterface ...
         if ($element instanceof ActionInterface) {
+            $log->addDebug('ActionQueue: add('.$element.')!');
+
             return parent::add($element);
         }
-        // Error state, lets compile a nice error message ...
-        if (is_object($element)) {
-            $refClass = new \ReflectionClass($element);
-            $interfaceNames = implode(', ', $refClass->getInterfaceNames());
-            throw new GameException('Expected ActionInterface but got element implementing: '.$interfaceNames);
-        }
-        throw new GameException('Expected ActionInterface but got something non object like! :( ');
+        // Everything else is triggers exception and is logged.
+        $log->addWarning('ActionQueue: failed to add! Not an ActionInterace!');
+        throw new GameException('ActionQueue: failed to add! Not an ActionInterace!');
     }
-
 }
