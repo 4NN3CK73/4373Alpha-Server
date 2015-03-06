@@ -16,6 +16,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class ShopProduct extends AbstractItem
 {
+    /**
+     * @return ArrayCollection
+     */
     public function getAvailableActions()
     {
         $actionList = new ArrayCollection();
