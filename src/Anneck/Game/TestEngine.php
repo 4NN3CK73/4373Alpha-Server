@@ -15,13 +15,13 @@ use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\Exception\GameException;
 
 /**
- * The TestEngine.
- *
- * @todo    Write PHPDoc for this class!
+ * The TestEngine drives the game forward executing all action in the action queue.
+ * The TestEngine has to be build before it can be started!
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
+ * @use     ActionQueue, GameInterface
  */
 class TestEngine implements EngineInterface
 {
@@ -61,6 +61,14 @@ class TestEngine implements EngineInterface
         if (!$this->readyToStart) {
             throw new GameException('The Engine has not been build, can not start!');
         }
+        // Process all actions ...
+        $actions = $this->actionQ->getIterator();
+
+        /** @var ActionInterface $action */
+        foreach ($actions as $action) {
+            $action->applyOn($this->game);
+        }
+
         // yeah ...
         $this->game->nextTurn();
     }

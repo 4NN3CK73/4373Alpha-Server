@@ -12,6 +12,8 @@
 namespace Anneck\Game;
 
 use Anneck\Game\Action\ActionQueue;
+use Anneck\Game\Action\CreateShopProduct;
+use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\World\DefaultWorld;
 
@@ -36,6 +38,12 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase {
         $game->setRegister($register);
         // Need game and action queue for engine
         $actionQ = new ActionQueue();
+        $action1 = new ScoreOnePoint();
+        $action2 = new CreateShopProduct();
+        $action3 = new ScoreOnePoint();
+        $actionQ->add($action1);
+        $actionQ->add($action2);
+        $actionQ->add($action3);
         $engine = new TestEngine();
         // build engine ...
         $engine->build($game, $actionQ);

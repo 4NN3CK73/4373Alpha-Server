@@ -21,6 +21,10 @@ class VersionTest extends \PHPUnit_Framework_TestCase {
 
         self::assertTrue($refClass->hasMethod('compare'));
         self::assertEquals('0.0.1', $version::VERSION);
+
+        $versionString = $version . "";
+        self::assertTrue(is_string($versionString));
+
     }
 
     public function testVersionCompare()

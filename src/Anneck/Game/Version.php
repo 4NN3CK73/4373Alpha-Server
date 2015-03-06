@@ -48,6 +48,10 @@ class Version
         return version_compare($version, $currentVersion);
     }
 
+    /**
+     * Returns the string representation of this version class.
+     * @return string the string representation of this version class.
+     */
     public function __toString()
     {
         return '4373AlphaServer[Game] version '.self::VERSION;
