@@ -16,7 +16,6 @@ use Anneck\Game\Action\ActionQueue;
 /**
  * The interface Engine drives the game forward by executing all Actions of the ActionQueue.
  *
- * @todo    Write PHPDoc for this interface!
  *
  * @since   0.0.1-dev
  *

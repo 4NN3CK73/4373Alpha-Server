@@ -11,7 +11,6 @@
 
 namespace Anneck\Game;
 
-
 /**
  * The TestGame is as of now just a developer playground.
  *

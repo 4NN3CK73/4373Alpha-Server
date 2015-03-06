@@ -30,11 +30,17 @@ class Register implements RegisterInterface
     private $registryData;
 
     /**
+     * @var GameLogger
+     */
+    private $logger;
+
+    /**
      * Creates a new register.
      */
     public function __construct()
     {
         $this->registryData = new ArrayCollection();
+        $this->logger = new GameLogger();
     }
 
     /**
@@ -65,6 +71,9 @@ class Register implements RegisterInterface
      */
     public function removeItem(ItemInterface $item)
     {
+        $this->logger->addInfo(
+            sprintf('Remove %s from %s', $item, $this)
+        );
         $this->registryData->remove($item->getName());
     }
 
@@ -75,6 +84,10 @@ class Register implements RegisterInterface
      */
     public function registerItem(ItemInterface $item)
     {
+        $this->logger->addInfo(
+            sprintf('registerItem: %s ...', $item)
+        );
+
         $this->registryData->set($item->getName(), $item);
     }
 

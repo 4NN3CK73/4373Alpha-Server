@@ -11,11 +11,15 @@
 
 namespace Anneck\Game\Item;
 
+use Anneck\Game\Action\ScoreOnePoint;
+use Doctrine\Common\Collections\ArrayCollection;
+
 class ShopProduct extends AbstractItem
 {
     public function getAvailableActions()
     {
         $actionList = new ArrayCollection();
+        $actionList->add(new ScoreOnePoint());
 
         return $actionList;
     }

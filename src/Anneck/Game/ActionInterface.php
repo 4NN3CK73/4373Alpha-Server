@@ -11,8 +11,31 @@
 
 namespace Anneck\Game;
 
+/**
+ * The interface ActionInterface changes the game through applying itself onto it!
+ * Actions are queued in the ActionQueue and are processed during each game turn.
+ *
+ * @use     ActionQueue
+ *
+ * @since   0.0.1-dev
+ *
+ * @author  André Anneck <andreanneck73@gmail.com>
+ */
 interface ActionInterface
 {
+    /**
+     * Applies itself to a running game.
+     *
+     * @param GameInterface $game the game to change.
+     *
+     * @return mixed
+     */
     public function applyOn(GameInterface $game);
+
+    /**
+     * Return the string representation of the Action.
+     *
+     * @return mixed the string representation of the Action.
+     */
     public function __toString();
 }
