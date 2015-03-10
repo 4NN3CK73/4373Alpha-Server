@@ -12,6 +12,7 @@
 namespace Anneck\Game;
 
 use Anneck\Game\Features\ItemRegisterGameInterface;
+use Anneck\Game\Features\SingleScoreGameInterace;
 use Anneck\Game\Features\TurnBasedGameInterface;
 
 /**
@@ -21,7 +22,7 @@ use Anneck\Game\Features\TurnBasedGameInterface;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGameInterface
+class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGameInterface, SingleScoreGameInterace
 {
     /**
      * @var WorldInterface

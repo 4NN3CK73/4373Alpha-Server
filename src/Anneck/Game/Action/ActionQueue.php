@@ -15,6 +15,7 @@ use Anneck\Game\ActionInterface;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\GameLogger;
 use Doctrine\Common\Collections\ArrayCollection;
+use Monolog\Logger;
 
 /**
  * The ActionQueue is a Collection which only allows ActionInterface to be added.
@@ -27,6 +28,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class ActionQueue extends ArrayCollection
 {
+    const FAILED_TO_ADD_NOT_AN_ACTION = 'ActionQueue: failed to add! Not an ActionInterface!';
+
     /**
      * Overloading add Method, enforcing delegation to addAction(ActionInterface).
      *
@@ -38,15 +41,24 @@ class ActionQueue extends ArrayCollection
      */
     public function add($element)
     {
-        $log = new GameLogger();
         // Only accept ActionInterface ...
         if ($element instanceof ActionInterface) {
-            $log->addDebug('ActionQueue: add('.$element.')!');
-
-            return parent::add($element);
+            return $this->addAction($element);
         }
         // Everything else is triggers exception and is logged.
-        $log->addWarning('ActionQueue: failed to add! Not an ActionInterace!');
-        throw new GameException('ActionQueue: failed to add! Not an ActionInterace!');
+        GameLogger::addToGameLog(
+            self::FAILED_TO_ADD_NOT_AN_ACTION,
+            Logger::WARNING);
+        throw new GameException(self::FAILED_TO_ADD_NOT_AN_ACTION);
+    }
+
+    /**
+     * @param ActionInterface $action
+     *
+     * @return bool
+     */
+    public function addAction(ActionInterface $action) {
+        GameLogger::addToGameLog('ActionQueue: add('.$action.')!');
+        return parent::add($action);
     }
 }

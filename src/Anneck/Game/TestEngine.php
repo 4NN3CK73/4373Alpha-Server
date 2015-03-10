@@ -13,6 +13,9 @@ namespace Anneck\Game;
 
 use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\Exception\GameException;
+use Anneck\Game\Features\ItemRegisterGameInterface;
+use Anneck\Game\Features\SingleScoreGameInterace;
+use Anneck\Game\Features\TurnBasedGameInterface;
 
 /**
  * The TestEngine drives the game forward executing all action in the action queue.
@@ -50,7 +53,8 @@ class TestEngine implements EngineInterface
     {
         $this->game = $game;
         $this->actionQ = $actionQueue;
-        $this->readyToStart = true;
+
+        $this->readyToStart = $this->validateGameFeatures();
     }
 
     /**
@@ -69,7 +73,35 @@ class TestEngine implements EngineInterface
             $action->applyOn($this->game);
         }
 
-        // yeah ...
-        $this->game->nextTurn();
+        if($this->game instanceof TurnBasedGameInterface) {
+            $this->game->nextTurn();
+        }
+
+        return true;
+
+    }
+
+    /**
+     * @return bool
+     */
+    private function validateGameFeatures()
+    {
+        // The TestEngine requires a Game with Turns, Scores and Items with a Register
+
+        if(!$testTurns = $this->game instanceof TurnBasedGameInterface) {
+            throw new GameException('Gamefeature missing: TurnBased!');
+        }
+        if(!$testScores = $this->game instanceof SingleScoreGameInterace) {
+            throw new GameException('Gamefeature missing: SingleScore!');
+        }
+        if(!$testRegister = $this->game instanceof ItemRegisterGameInterface)  {
+            throw new GameException('Gamefeature missing: ItemRegister!');
+        }
+
+        if($testRegister && $testScores && $testTurns) {
+            return true;
+        }
+
+
     }
 }
