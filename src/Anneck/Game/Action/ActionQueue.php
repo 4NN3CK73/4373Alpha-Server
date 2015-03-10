@@ -57,8 +57,10 @@ class ActionQueue extends ArrayCollection
      *
      * @return bool
      */
-    public function addAction(ActionInterface $action) {
+    public function addAction(ActionInterface $action)
+    {
         GameLogger::addToGameLog('ActionQueue: add('.$action.')!');
+
         return parent::add($action);
     }
 }

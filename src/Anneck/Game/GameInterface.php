@@ -13,7 +13,7 @@ namespace Anneck\Game;
 
 /**
  * The interface Game defines the basic functionality of every game and uses the configuration for game rules and other
- * game specific settings. The implementation
+ * game specific settings. The implementation.
  *
  * @todo    Write PHPDoc for this interface!
  *
@@ -33,11 +33,8 @@ interface GameInterface
      */
     public function getWorld();
 
-
-
     /**
      * @return boolean
      */
     public function safe();
-
 }

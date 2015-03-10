@@ -73,7 +73,7 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
      */
     public function setWorld(WorldInterface $world)
     {
-        $this->logger->addInfo('setWorld: ' . $world);
+        $this->logger->addInfo('setWorld: '.$world);
         $this->world = $world;
     }
 
@@ -82,7 +82,7 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
      */
     public function setRegister(RegisterInterface $register)
     {
-        $this->logger->addInfo('setRegister: ' . $register);
+        $this->logger->addInfo('setRegister: '.$register);
         $this->register = $register;
     }
 
@@ -91,7 +91,7 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
      */
     public function getScore()
     {
-        $this->logger->addInfo('getScore: ' . $this->score);
+        $this->logger->addInfo('getScore: '.$this->score);
 
         return $this->score;
     }
@@ -103,8 +103,9 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
      */
     public function addScore($points)
     {
-        $this->logger->addInfo('addScore: ' . $this->score);
+        $this->logger->addInfo('addScore: '.$this->score);
         $this->score += $points;
+
         return $this->score;
     }
 
@@ -113,7 +114,7 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
      */
     public function addItemToRegister(ItemInterface $gameItem)
     {
-        $this->logger->addInfo('addItemToRegister: ' . $gameItem);
+        $this->logger->addInfo('addItemToRegister: '.$gameItem);
         $this->register->registerItem($gameItem);
     }
 
@@ -122,7 +123,7 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
      */
     public function updateItem(ItemInterface $gameItem)
     {
-        $this->logger->addInfo('updateItem: ' . $gameItem);
+        $this->logger->addInfo('updateItem: '.$gameItem);
         $this->register->updateItem($gameItem);
     }
 
@@ -137,13 +138,15 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
 
     /**
      * Safes the game.
+     *
      * @return bool true|false
      */
     public function safe()
     {
         $this->logger->addInfo(
-            'safe(' . $this->safeGame . ')'
+            'safe('.$this->safeGame.')'
         );
+
         return true; // TODO: Implement safe() method.
     }
 

@@ -19,7 +19,9 @@ use Anneck\Game\Action\ActionQueue;
  *
  *
  * @since   0.0.1-dev
+ *
  * @todo    Enable start to safe games on each n-turn (int) start($safeTurnInterval = 3) // Safes on each 3rd turn
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
 interface EngineInterface

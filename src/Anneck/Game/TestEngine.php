@@ -73,12 +73,11 @@ class TestEngine implements EngineInterface
             $action->applyOn($this->game);
         }
 
-        if($this->game instanceof TurnBasedGameInterface) {
+        if ($this->game instanceof TurnBasedGameInterface) {
             $this->game->nextTurn();
         }
 
         return true;
-
     }
 
     /**
@@ -88,20 +87,18 @@ class TestEngine implements EngineInterface
     {
         // The TestEngine requires a Game with Turns, Scores and Items with a Register
 
-        if(!$testTurns = $this->game instanceof TurnBasedGameInterface) {
+        if (!$testTurns = $this->game instanceof TurnBasedGameInterface) {
             throw new GameException('Gamefeature missing: TurnBased!');
         }
-        if(!$testScores = $this->game instanceof SingleScoreGameInterace) {
+        if (!$testScores = $this->game instanceof SingleScoreGameInterace) {
             throw new GameException('Gamefeature missing: SingleScore!');
         }
-        if(!$testRegister = $this->game instanceof ItemRegisterGameInterface)  {
+        if (!$testRegister = $this->game instanceof ItemRegisterGameInterface) {
             throw new GameException('Gamefeature missing: ItemRegister!');
         }
 
-        if($testRegister && $testScores && $testTurns) {
+        if ($testRegister && $testScores && $testTurns) {
             return true;
         }
-
-
     }
 }

@@ -6,11 +6,12 @@ use Anneck\Game\Action\ScoreOnePoint;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * The DefaultController
+ * The DefaultController.
  *
- * @package Anneck\Game\AlphaServerBundle\Controller
  * @todo    Write PHPDoc for this class!
+ *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
 class DefaultController extends Controller

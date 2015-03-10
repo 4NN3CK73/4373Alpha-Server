@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 10.03.15, 07:52 by 4nn3ck  
+ * Created at 10.03.15, 07:52 by 4nn3ck
  * ************************************************************************
  */
 
@@ -14,13 +14,14 @@ namespace Anneck\Game\Features;
 /**
  * The interface TurnBasedGameInterface adds the feature of a "turn" to the game which advances the game.
  *
- * @package Anneck\Game\Features
  * @todo    Write PHPDoc for this interface!
+ *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface TurnBasedGameInterface {
-
+interface TurnBasedGameInterface
+{
     /**
      * @return mixed
      */
@@ -30,5 +31,4 @@ interface TurnBasedGameInterface {
      * @return mixed
      */
     public function getTurn();
-
 }
