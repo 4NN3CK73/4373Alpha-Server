@@ -11,6 +11,9 @@
 
 namespace Anneck\Game;
 
+use Anneck\Game\Features\ItemRegisterGameInterface;
+use Anneck\Game\Features\TurnBasedGameInterface;
+
 /**
  * The TestGame is as of now just a developer playground.
  *
@@ -18,7 +21,7 @@ namespace Anneck\Game;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestGame implements GameInterface
+class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGameInterface
 {
     /**
      * @var WorldInterface
@@ -69,7 +72,7 @@ class TestGame implements GameInterface
      */
     public function setWorld(WorldInterface $world)
     {
-        $this->logger->addInfo('setWorld_'.$world);
+        $this->logger->addInfo('setWorld: ' . $world);
         $this->world = $world;
     }
 
@@ -78,7 +81,7 @@ class TestGame implements GameInterface
      */
     public function setRegister(RegisterInterface $register)
     {
-        $this->logger->addInfo('setRegister:'.$register);
+        $this->logger->addInfo('setRegister: ' . $register);
         $this->register = $register;
     }
 
@@ -87,18 +90,21 @@ class TestGame implements GameInterface
      */
     public function getScore()
     {
-        $this->logger->addInfo('getScore:'.$this->score);
+        $this->logger->addInfo('getScore: ' . $this->score);
 
         return $this->score;
     }
 
     /**
      * @param $points
+     *
+     * @return int
      */
     public function addScore($points)
     {
-        $this->logger->addInfo('addScore:'.$this->score);
+        $this->logger->addInfo('addScore: ' . $this->score);
         $this->score += $points;
+        return $this->score;
     }
 
     /**
@@ -106,7 +112,7 @@ class TestGame implements GameInterface
      */
     public function addItemToRegister(ItemInterface $gameItem)
     {
-        $this->logger->addInfo('addItemToRegister:'.$gameItem);
+        $this->logger->addInfo('addItemToRegister: ' . $gameItem);
         $this->register->registerItem($gameItem);
     }
 
@@ -115,7 +121,7 @@ class TestGame implements GameInterface
      */
     public function updateItem(ItemInterface $gameItem)
     {
-        $this->logger->addInfo('updateItem:'.$gameItem);
+        $this->logger->addInfo('updateItem: ' . $gameItem);
         $this->register->updateItem($gameItem);
     }
 
@@ -129,12 +135,15 @@ class TestGame implements GameInterface
     }
 
     /**
-     *
+     * Safes the game.
+     * @return bool true|false
      */
     public function safe()
     {
-        $this->logger->addInfo('safe()');
-        // TODO: Implement safe() method.
+        $this->logger->addInfo(
+            'safe(' . $this->safeGame . ')'
+        );
+        return true; // TODO: Implement safe() method.
     }
 
     /**
