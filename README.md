@@ -20,8 +20,10 @@ WiP - Work in Progress
 The Master ToDo-List
 --------------------
 
-* Refactor/Think about Product=>ProductSpecification
-* Create more code and concepts! 
+* Get coverage up!
+* Re-Enable continents concept in configuration!
+* Implement safe games!
+
      
 Dev Setup
 ---------

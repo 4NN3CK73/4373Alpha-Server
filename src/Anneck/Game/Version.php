@@ -20,7 +20,7 @@
 namespace Anneck\Game;
 
 /**
- * Class to store and retrieve the version of Game running on 4373Alpha-Server.
+ * Class to store and retrieve the version of the game.
  *
  * @since  0.0.1-dev
  *
@@ -50,6 +50,7 @@ class Version
 
     /**
      * Returns the string representation of this version class.
+     *
      * @return string the string representation of this version class.
      */
     public function __toString()

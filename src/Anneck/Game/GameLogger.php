@@ -26,6 +26,17 @@ use Monolog\Logger;
 class GameLogger extends Logger
 {
     /**
+     * A static helper to reduce bloat in logging classes.
+     *
+     * @param string $message
+     * @param int    $level
+     */
+    public static function addToGameLog($message = '-empty-', $level = Logger::DEBUG)
+    {
+        $logger = new GameLogger();
+        $logger->log($level, $message);
+    }
+    /**
      * Creates the logger.
      */
     public function __construct()

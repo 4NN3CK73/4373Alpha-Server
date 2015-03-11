@@ -5,15 +5,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 11:23 by 4nn3ck
+ * Created at 10.03.15, 08:02 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game;
+namespace Anneck\Game\Features;
 
 /**
- * The interface Game defines the basic functionality of every game and uses the configuration for game rules and other
- * game specific settings. The implementation.
+ * The interface SingleScoreGameInterace adds the feature to track a single int based score in the game.
  *
  * @todo    Write PHPDoc for this interface!
  *
@@ -21,20 +20,17 @@ namespace Anneck\Game;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface GameInterface
+interface SingleScoreGameInterace
 {
     /**
-     * @param WorldInterface $world
+     * @return int
      */
-    public function setWorld(WorldInterface $world);
+    public function getScore();
 
     /**
-     * @return WorldInterface
+     * @param $points
+     *
+     * @return int
      */
-    public function getWorld();
-
-    /**
-     * @return boolean
-     */
-    public function safe();
+    public function addScore($points);
 }
