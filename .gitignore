@@ -1,3 +1,7 @@
+# AlphaServer
+!bin/fixPermissions.sh
+!bin/ocular.phar
+
 # STrange tmp
 tmp*
 
@@ -29,7 +33,6 @@ composer.lock
 /bin/*
 !bin/console
 !bin/symfony_requirements
-!bin/fixPermissions.sh
 /vendor/
 
 # Assets and user uploads
