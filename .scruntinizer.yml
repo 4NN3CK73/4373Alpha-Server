@@ -1,6 +1,20 @@
 # 4373Alpha-Server Project Setting for scruntinizer ...
-# We integrate from local jenkins ..
+# Integrate from travis ..
+filter:
+    paths: [lib/*]
+    excluded_paths: [vendor/*, tests/*]
+before_commands:
+    - 'composer install --dev --prefer-source'
 tools:
     external_code_coverage: true
-    timeout: 600    # Timeout in seconds.
-#    runs: 2    # Scrutinizer will wait for two code coverage submissions
+    php_mess_detector: true
+    php_code_sniffer: true
+    sensiolabs_security_checker: true
+    php_code_coverage: true
+    php_pdepend: true
+    php_loc:
+        enabled: true
+        excluded_dirs: [vendor, tests]
+    php_cpd:
+        enabled: true
+        excluded_dirs: [vendor, tests]
