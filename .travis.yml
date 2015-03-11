@@ -3,14 +3,14 @@ language: php
 
 # list any PHP version you want to test against
 php:
-  - 5.4
+  # - 5.4
   - 5.5
   # - 5.6
 
 # optionally specify a list of environments, for example to test different RDBMS
 env:
   # - DB=pgsql
-
+    - CODECLIMATE_REPO_TOKEN=7b5018a854cb785f11c23d044cbe002a1809c6d3a6c76c322211d126fb5efd18
 # execute any number of scripts before the test run, custom env's are available as variables
 before_script:
   - composer self-update
@@ -19,15 +19,16 @@ before_script:
 #  - if [[ "$DB" == "pgsql" ]]; then psql -c "create database hello_world_test;" -U postgres; fi
 #  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS hello_world_test;" -uroot; fi
 
-# omitting "script:" will default to phpunit
-# use the $DB env variable to determine the phpunit.xml to use
+# Using phpunit and phpspec just to be sure ...
 script:
-  - bin/phpunit --coverage-clover=coverage.clover
+  - bin/phpunit --coverage-clover=build/logs/cloverxml
   - bin/phpspec run
 
+# Sending code coverage to scruntinizer-ci
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/cloverxml
+  - php bin/test-reporter
 
 # configure notifications (email, IRC, campfire etc)
 notifications:
