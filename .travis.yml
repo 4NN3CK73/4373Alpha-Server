@@ -21,13 +21,13 @@ before_script:
 
 # Using phpunit and phpspec just to be sure ...
 script:
-  - bin/phpunit --coverage-clover=build/logs/cloverxml
+  - bin/phpunit --coverage-clover=build/logs/clover.xml
   - bin/phpspec run
 
 # Sending code coverage to scruntinizer-ci
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover build/logs/cloverxml
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
   - php bin/test-reporter
 
 # configure notifications (email, IRC, campfire etc)
