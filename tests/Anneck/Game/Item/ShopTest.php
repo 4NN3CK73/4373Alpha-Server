@@ -32,5 +32,13 @@ class ShopTest extends \PHPUnit_Framework_TestCase {
         if($actionCollection->count() < 1) {
             self::fail('Shop has no actions!');
         }
+        $shopItem->getName();
+    }
+
+    public function testShopApplyAction()
+    {
+        $game = new TestGame();
+        $shopItem = new Shop($game);
+        $shopItem->applyAction(new ScoreOnePoint());
     }
 }

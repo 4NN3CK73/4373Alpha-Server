@@ -49,6 +49,11 @@ class TestGameService
     {
         return $this->actionQ->addAction($action);
     }
+
+    /**
+     * @return bool
+     * @throws \Anneck\Game\Exception\GameException
+     */
     public function run()
     {
         // Get all required classes to build the game engine ...

@@ -44,6 +44,7 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase {
         $actionQ->add($action1);
         $actionQ->add($action2);
         $actionQ->add($action3);
+
         $engine = new TestEngine();
         // build engine ...
         $engine->build($game, $actionQ);
