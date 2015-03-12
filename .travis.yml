@@ -29,7 +29,7 @@ after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
   - php bin/test-reporter
-  - bin/test-reporter --stdout > codeclimate.json
+  - CODECLIMATE_REPO_TOKEN=7b5018a854cb785f11c23d044cbe002a1809c6d3a6c76c322211d126fb5efd18 bin/test-reporter --stdout > codeclimate.json
   - "curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
 # configure notifications (email, IRC, campfire etc)
 notifications:
