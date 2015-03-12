@@ -49,3 +49,5 @@ composer.lock
 
 # Composer PHAR
 /composer.phar
+/nbproject/private/
+/nbproject/
