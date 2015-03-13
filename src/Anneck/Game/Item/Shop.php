@@ -33,7 +33,7 @@ class Shop extends AbstractItem
     {
         $actionList = new ArrayCollection();
         $actionList->add(new ScoreOnePoint());
-        $actionList->add(new CreateShopProduct());
+        $actionList->add(new CreateShopProduct('ShopProduct'));
 
         return $actionList;
     }
