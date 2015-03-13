@@ -13,12 +13,14 @@ namespace Anneck\Game\AlphaServerBundle\Services;
 
 use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\ActionInterface;
+use Anneck\Game\Configuration\WorldConfiguration;
 use Anneck\Game\Features\SingleScoreGameInterace;
 use Anneck\Game\Features\TurnBasedGameInterface;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 use Anneck\Game\TestEngine;
 use Anneck\Game\TestGame;
+use Anneck\Game\World\DefaultWorld;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Monolog\Logger;
 
@@ -50,6 +52,10 @@ class TestGameService
     {
         $this->actionQ = new ActionQueue();
         $this->game = new TestGame();
+        $world = new DefaultWorld();
+        $worldConfig = new WorldConfiguration();
+        $world->configure($worldConfig);
+        $this->game->setWorld($world);
     }
 
     /**
@@ -89,7 +95,7 @@ class TestGameService
 
         $gameResult = new ArrayCollection();
 
-        $gameResult->add($this->game->getWorld());
+        $gameResult->add((string)$this->game->getWorld());
 
         if($this->game instanceof SingleScoreGameInterace) {
             $gameResult->add($this->game->getScore());
