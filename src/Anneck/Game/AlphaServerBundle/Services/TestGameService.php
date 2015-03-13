@@ -95,13 +95,13 @@ class TestGameService
 
         $gameResult = new ArrayCollection();
 
-        $gameResult->add((string)$this->game->getWorld());
+        $gameResult->set('Game-World:', (string)$this->game->getWorld());
 
         if($this->game instanceof SingleScoreGameInterace) {
-            $gameResult->add($this->game->getScore());
+            $gameResult->set('Game-Score:', $this->game->getScore());
         }
         if($this->game instanceof TurnBasedGameInterface) {
-            $gameResult->add($this->game->getTurn());
+            $gameResult->set('Game-Turn:', $this->game->getTurn());
         }
         return json_encode($gameResult->toArray());
     }
