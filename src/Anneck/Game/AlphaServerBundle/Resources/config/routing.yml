@@ -1,3 +1,7 @@
 anneck_game_alpha_server_homepage:
     path:     /rungame/{name}
     defaults: { _controller: AnneckGameAlphaServerBundle:Default:index }
+
+hello:
+    path:  /foo.{_format}
+    defaults: { _controller: AnneckGameAlphaServerBundle:TestGame:index, _format: ~ }

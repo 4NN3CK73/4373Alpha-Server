@@ -16,6 +16,7 @@ use Anneck\Game\Action\CreateShopProduct;
 use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\World\DefaultWorld;
+use Anneck\Game\Register\Register;
 
 /**
  * The TestEngineTest.

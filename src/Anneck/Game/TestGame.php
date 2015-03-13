@@ -14,6 +14,7 @@ namespace Anneck\Game;
 use Anneck\Game\Features\ItemRegisterGameInterface;
 use Anneck\Game\Features\SingleScoreGameInterace;
 use Anneck\Game\Features\TurnBasedGameInterface;
+use Anneck\Game\Register\Register;
 
 /**
  * The TestGame is as of now just a developer playground.

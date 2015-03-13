@@ -9,21 +9,23 @@
     "require": {
         "php": ">=5.4",
         "symfony/symfony": "2.6.*",
-        "doctrine/orm": "~2.2,>=2.2.3",
-        "doctrine/doctrine-bundle": "~1.2",
-        "twig/extensions": "~1.0",
-        "symfony/assetic-bundle": "~2.3",
+        "doctrine/orm": "~2.4,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.4",
+        "twig/extensions": "~1.2",
+        "symfony/assetic-bundle": "~2.6",
         "symfony/swiftmailer-bundle": "~2.3",
-        "symfony/monolog-bundle": "~2.4",
-        "sensio/distribution-bundle": "~3.0.12",
+        "symfony/monolog-bundle": "~2.7",
+        "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
-        "incenteev/composer-parameter-handler": "~2.0",
-        "monolog/monolog": "~1.12"
+        "incenteev/composer-parameter-handler": "~2.1",
+        "monolog/monolog": "~1.12",
+        "jms/serializer-bundle": "0.13.*",
+        "friendsofsymfony/rest-bundle": "1.5.3"
 
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3",
-        "phpspec/phpspec": "~2.0",
+        "sensio/generator-bundle": "~2.5",
+        "phpspec/phpspec": "~2.1",
         "sami/sami": "3.0.*@dev",
         "phpunit/phpunit": "4.4.5",
         "phpunit/phpunit-dom-assertions": "1.0.x-dev",

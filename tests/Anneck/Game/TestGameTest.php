@@ -14,6 +14,7 @@ namespace Anneck\Game;
 use Anneck\Game\Configuration\WorldConfiguration;
 use Anneck\Game\Item\Shop;
 use Anneck\Game\World\DefaultWorld;
+use Anneck\Game\Register\Register;
 
 /**
  * The TestGameTest the first, just to see where we are going ..
