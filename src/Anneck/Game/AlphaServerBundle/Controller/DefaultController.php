@@ -17,16 +17,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     /**
-     * @param $name
+     * @param $game
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction($name)
+    public function indexAction($game)
     {
         $this->get('alphaserver.testgame')->addAction(new ScoreOnePoint());
 
-        $this->get('alphaserver.testgame')->run();
+        $result = $this->get('alphaserver.testgame')->run();
 
-        return $this->render('AnneckGameAlphaServerBundle:Default:index.html.twig', ['name' => $name]);
+        return $this->render('AnneckGameAlphaServerBundle:Default:index.html.twig', ['Result:' => $result]);
     }
 }

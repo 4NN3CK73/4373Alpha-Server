@@ -1,3 +1,3 @@
 anneck_game_alpha_server_homepage:
-    path:     /hello/{name}
+    path:     /rungame/{name}
     defaults: { _controller: AnneckGameAlphaServerBundle:Default:index }
