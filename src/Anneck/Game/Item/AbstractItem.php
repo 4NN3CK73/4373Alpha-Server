@@ -64,7 +64,7 @@ abstract class AbstractItem implements ItemInterface
      */
     public function applyAction(ActionInterface $action)
     {
-        if ($this->getAvailableActions()->contains($action)) {
+        if ($this->isActionAvailable($action)) {
             $this->logger->addInfo('ApplyAction '.$action.' on '.$this);
             $action->applyOn($this->getGame());
         } else {
@@ -76,6 +76,32 @@ abstract class AbstractItem implements ItemInterface
             );
         }
     }
+
+    /**
+     * @param ActionInterface $action
+     *
+     * @return bool
+     */
+    private function isActionAvailable(ActionInterface $action)
+    {
+        $actionIter = $this->getAvailableActions()->getIterator();
+        foreach ($actionIter as $availAction) {
+            if($action->equals($availAction)) {
+                return true;
+            }
+        }
+        return false;
+        // return $this->getAvailableActions()->contains($action);
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getGame()
+    {
+        return $this->game;
+    }
+
     /**
      * One default toString implementation ...
      *
@@ -86,12 +112,5 @@ abstract class AbstractItem implements ItemInterface
         $reClass = new \ReflectionClass($this);
 
         return $reClass->getShortName();
-    }
-    /**
-     * @return mixed
-     */
-    protected function getGame()
-    {
-        return $this->game;
     }
 }

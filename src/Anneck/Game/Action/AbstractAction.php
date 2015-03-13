@@ -23,6 +23,17 @@ use Anneck\Game\ActionInterface;
 abstract class AbstractAction implements ActionInterface
 {
     /**
+     * Returns true if another action has the same short class name.
+     * @param ActionInterface $action
+     *
+     * @return bool
+     */
+    public function equals(ActionInterface $action)
+    {
+        return $this->__toString() == $action->__toString();
+    }
+
+    /**
      * One default toString implementation ...
      *
      * @return string the shortName of the class.
@@ -33,4 +44,5 @@ abstract class AbstractAction implements ActionInterface
 
         return $reClass->getShortName();
     }
+
 }

@@ -14,7 +14,6 @@ namespace Anneck\Game\Item;
 use Anneck\Game\Action\CreateShopProduct;
 use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\TestGame;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * The ShopTest
@@ -41,4 +40,13 @@ class ShopTest extends \PHPUnit_Framework_TestCase {
         $shopItem = new Shop($game);
         $shopItem->applyAction(new ScoreOnePoint());
     }
+
+    public function testShopApplyWrongAction()
+    {
+        $game = new TestGame();
+        $shopItem = new ShopProduct($game);
+        $shopItem->applyAction(new CreateShopProduct());
+
+    }
+
 }

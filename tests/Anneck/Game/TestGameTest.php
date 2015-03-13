@@ -28,6 +28,7 @@ class TestGameTest extends \PHPUnit_Framework_TestCase {
     public function testGameSpecification()
     {
         $game = new TestGame();
+        self::assertEquals($game->__toString(), 'Anneck\Game\TestGame');
 
         $worldConfiguration = new WorldConfiguration();
         $world = new DefaultWorld();
