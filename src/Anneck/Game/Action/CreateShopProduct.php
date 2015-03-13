@@ -11,8 +11,10 @@
 
 namespace Anneck\Game\Action;
 
+use Anneck\Game\Features\ItemRegisterGameInterface;
+use Anneck\Game\Features\SingleScoreGameInterace;
 use Anneck\Game\GameInterface;
-use Anneck\Game\Item\ShopProduct;
+use Anneck\Game\Item\ItemFactory;
 
 /**
  * The CreateShopProduct Action registers a new Item: ShopProduct in the game register.
@@ -24,8 +26,20 @@ use Anneck\Game\Item\ShopProduct;
  */
 class CreateShopProduct extends AbstractAction
 {
+    private $shopProductID;
+
     /**
-     * Applies this action onto the game.
+     * Creates the action using the specified.
+     *
+     * @param string $productIdentifier specifies the product to create
+     */
+    public function __construct($productIdentifier)
+    {
+        $this->shopProductID = $productIdentifier;
+    }
+
+    /**
+     * Add's the specified ShopProduct to the register of the running game.
      *
      * @param GameInterface $game
      *
@@ -33,8 +47,20 @@ class CreateShopProduct extends AbstractAction
      */
     public function applyOn(GameInterface $game)
     {
-        $newItem = new ShopProduct($game);
-        $game->addItemToRegister($newItem);
-        $game->addScore(1);
+        $itemFactory = new ItemFactory($game);
+
+        $newProduct = $itemFactory->createItem($this->shopProductID);
+
+        if($game instanceof ItemRegisterGameInterface) {
+            // Adding the product to the register
+            $game->addItemToRegister(
+                $newProduct
+            );
+        }
+        if($game instanceof SingleScoreGameInterace) {
+            $game->addScore(1);
+        }
+
+
     }
 }
