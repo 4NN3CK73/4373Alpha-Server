@@ -61,7 +61,9 @@ class TestEngine implements EngineInterface
      * Validates if the provided game has the features implemented required by this engine.
      *
      * @todo    Think about if exceptions are the right choice here ...
+     *
      * @return bool
+     *
      * @throws GameException
      */
     private function validateGameFeatures()
@@ -81,6 +83,7 @@ class TestEngine implements EngineInterface
         if ($testRegister && $testScores && $testTurns) {
             return true;
         }
+        return false;
     }
 
     /**

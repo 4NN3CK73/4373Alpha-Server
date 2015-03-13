@@ -5,11 +5,12 @@ namespace Anneck\Game\AlphaServerBundle\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * The DefaultControllerTest
+ * The DefaultControllerTest.
  *
- * @package Anneck\Game\AlphaServerBundle\Tests\Controller
  * @todo    Write PHPDoc for this class!
+ *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
 class DefaultControllerTest extends WebTestCase

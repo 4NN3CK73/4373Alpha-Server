@@ -61,8 +61,11 @@ class TestGameServiceTest extends KernelTestCase
     }
     public function testFirstGameServiceCreateProductAction()
     {
-        self::$service->addAction(new CreateShopProduct());
+        self::$service->addAction(
+            new CreateShopProduct(
+                'ShopProduct'
+            )
+        );
         self::assertTrue(self::$service->run());
     }
-
 }

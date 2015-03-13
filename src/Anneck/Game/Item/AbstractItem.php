@@ -86,10 +86,11 @@ abstract class AbstractItem implements ItemInterface
     {
         $actionIter = $this->getAvailableActions()->getIterator();
         foreach ($actionIter as $availAction) {
-            if($action->equals($availAction)) {
+            if ($action->equals($availAction)) {
                 return true;
             }
         }
+
         return false;
         // return $this->getAvailableActions()->contains($action);
     }

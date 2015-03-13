@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 05.03.15, 16:14 by 4nn3ck  
+ * Created at 05.03.15, 16:14 by 4nn3ck
  * ************************************************************************
  */
 
@@ -18,15 +18,16 @@ use Anneck\Game\Exception\GameException;
 use Anneck\Game\World\DefaultWorld;
 
 /**
- * The TestEngineTest
+ * The TestEngineTest.
  *
- * @package Anneck\Game
  * @todo    Write PHPDoc for this class!
+ *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestEngineTest extends \PHPUnit_Framework_TestCase {
-
+class TestEngineTest extends \PHPUnit_Framework_TestCase
+{
     public function testEngineSpecificationsStartAfterBuild()
     {
         // Need World and Register for Game
@@ -39,7 +40,7 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase {
         // Need game and action queue for engine
         $actionQ = new ActionQueue();
         $action1 = new ScoreOnePoint();
-        $action2 = new CreateShopProduct();
+        $action2 = new CreateShopProduct('ShopProduct');
         $action3 = new ScoreOnePoint();
         $actionQ->add($action1);
         $actionQ->add($action2);
@@ -54,7 +55,6 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase {
         } catch (GameException $gameException) {
             self::fail($gameException->getMessage());
         }
-
     }
 
     public function testEngineSpecificationsStartBeforeBuild()
@@ -67,6 +67,5 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase {
         } catch (GameException $gameException) {
             // all good ..
         }
-
     }
 }

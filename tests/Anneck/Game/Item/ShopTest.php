@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 06.03.15, 08:31 by 4nn3ck  
+ * Created at 06.03.15, 08:31 by 4nn3ck
  * ************************************************************************
  */
 
@@ -16,19 +16,20 @@ use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\TestGame;
 
 /**
- * The ShopTest
+ * The ShopTest.
  *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class ShopTest extends \PHPUnit_Framework_TestCase {
-
+class ShopTest extends \PHPUnit_Framework_TestCase
+{
     public function testSpecification()
     {
         $game = new TestGame();
         $shopItem = new Shop($game);
         $actionCollection = $shopItem->getAvailableActions();
-        if($actionCollection->count() < 1) {
+        if ($actionCollection->count() < 1) {
             self::fail('Shop has no actions!');
         }
         $shopItem->getName();
@@ -45,8 +46,6 @@ class ShopTest extends \PHPUnit_Framework_TestCase {
     {
         $game = new TestGame();
         $shopItem = new ShopProduct($game);
-        $shopItem->applyAction(new CreateShopProduct());
-
+        $shopItem->applyAction(new CreateShopProduct('ShopProduct'));
     }
-
 }
