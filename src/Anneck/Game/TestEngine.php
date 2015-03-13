@@ -83,6 +83,7 @@ class TestEngine implements EngineInterface
         if ($testRegister && $testScores && $testTurns) {
             return true;
         }
+
         return false;
     }
 
@@ -100,6 +101,10 @@ class TestEngine implements EngineInterface
         /** @var ActionInterface $action */
         foreach ($actions as $action) {
             $action->applyOn($this->game);
+            GameLogger::addToGameLog(
+                sprintf('Apply action %s on game %s', $action, $this->game),
+                GameLogger::INFO
+            );
         }
 
         if ($this->game instanceof TurnBasedGameInterface) {

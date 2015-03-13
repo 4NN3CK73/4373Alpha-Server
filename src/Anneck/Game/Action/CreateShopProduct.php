@@ -51,16 +51,14 @@ class CreateShopProduct extends AbstractAction
 
         $newProduct = $itemFactory->createItem($this->shopProductID);
 
-        if($game instanceof ItemRegisterGameInterface) {
+        if ($game instanceof ItemRegisterGameInterface) {
             // Adding the product to the register
             $game->addItemToRegister(
                 $newProduct
             );
         }
-        if($game instanceof SingleScoreGameInterace) {
+        if ($game instanceof SingleScoreGameInterace) {
             $game->addScore(1);
         }
-
-
     }
 }
