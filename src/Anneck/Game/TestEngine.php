@@ -58,6 +58,32 @@ class TestEngine implements EngineInterface
     }
 
     /**
+     * Validates if the provided game has the features implemented required by this engine.
+     *
+     * @todo    Think about if exceptions are the right choice here ...
+     * @return bool
+     * @throws GameException
+     */
+    private function validateGameFeatures()
+    {
+        // The TestEngine requires a Game with Turns, Scores and Items with a Register
+
+        if (!$testTurns = $this->game instanceof TurnBasedGameInterface) {
+            throw new GameException('Gamefeature missing: TurnBased!');
+        }
+        if (!$testScores = $this->game instanceof SingleScoreGameInterace) {
+            throw new GameException('Gamefeature missing: SingleScore!');
+        }
+        if (!$testRegister = $this->game instanceof ItemRegisterGameInterface) {
+            throw new GameException('Gamefeature missing: ItemRegister!');
+        }
+
+        if ($testRegister && $testScores && $testTurns) {
+            return true;
+        }
+    }
+
+    /**
      * Start the engine ...
      */
     public function start()
@@ -78,27 +104,5 @@ class TestEngine implements EngineInterface
         }
 
         return true;
-    }
-
-    /**
-     * @return bool
-     */
-    private function validateGameFeatures()
-    {
-        // The TestEngine requires a Game with Turns, Scores and Items with a Register
-
-        if (!$testTurns = $this->game instanceof TurnBasedGameInterface) {
-            throw new GameException('Gamefeature missing: TurnBased!');
-        }
-        if (!$testScores = $this->game instanceof SingleScoreGameInterace) {
-            throw new GameException('Gamefeature missing: SingleScore!');
-        }
-        if (!$testRegister = $this->game instanceof ItemRegisterGameInterface) {
-            throw new GameException('Gamefeature missing: ItemRegister!');
-        }
-
-        if ($testRegister && $testScores && $testTurns) {
-            return true;
-        }
     }
 }

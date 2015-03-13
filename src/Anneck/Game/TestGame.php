@@ -56,6 +56,9 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
     {
         $this->logger = new GameLogger();
         $this->register = new Register();
+        $this->logger->addInfo(
+            'Created TestGame'
+        );
     }
 
     /**
@@ -79,6 +82,8 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
 
     /**
      * @param RegisterInterface $register
+     *
+     * @return mixed|void
      */
     public function setRegister(RegisterInterface $register)
     {
@@ -111,6 +116,8 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
 
     /**
      * @param ItemInterface $gameItem
+     *
+     * @return mixed|void
      */
     public function addItemToRegister(ItemInterface $gameItem)
     {
@@ -120,6 +127,8 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
 
     /**
      * @param ItemInterface $gameItem
+     *
+     * @return mixed|void
      */
     public function updateItem(ItemInterface $gameItem)
     {
@@ -129,6 +138,8 @@ class TestGame implements GameInterface, TurnBasedGameInterface, ItemRegisterGam
 
     /**
      * @param ItemInterface $gameItem
+     *
+     * @return mixed|void
      */
     public function removeItem(ItemInterface $gameItem)
     {

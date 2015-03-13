@@ -36,13 +36,4 @@ class ScoreOnePoint extends AbstractAction
         return true;
     }
 
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        $reClass = new \ReflectionClass($this);
-
-        return $reClass->getShortName();
-    }
 }

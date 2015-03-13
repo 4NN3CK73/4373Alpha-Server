@@ -5,7 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 10.03.15, 09:23 by 4nn3ck  
+ * Created at 10.03.15, 09:23 by 4nn3ck
  * ************************************************************************
  */
 
@@ -16,21 +16,23 @@ use Anneck\Game\AlphaServerBundle\Services\TestGameService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * The TestGameServiceTest
+ * The TestGameServiceTest.
  *
- * @package Anneck\Services
  * @todo    Write PHPDoc for this class!
+ *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestGameServiceTest extends KernelTestCase {
-
+class TestGameServiceTest extends KernelTestCase
+{
     /**
      * @var TestGameService
      */
     private static $service;
 
-    public static function setUpBeforeClass() {
+    public static function setUpBeforeClass()
+    {
         self::bootKernel();
         self::$service = static::$kernel->getContainer()->get('alphaserver.testgame');
     }

@@ -38,4 +38,13 @@ interface ActionInterface
      * @return mixed the string representation of the Action.
      */
     public function __toString();
+
+    /**
+     * Compares for equality with another action.
+     *
+     * @param ActionInterface $otherAction the other action to compare for equality with this one.
+     *
+     * @return bool true if actions are equal, otherwise false.
+     */
+    public function equals(ActionInterface $otherAction);
 }

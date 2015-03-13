@@ -15,9 +15,8 @@ use Anneck\Game\GameInterface;
 use Anneck\Game\Item\ShopProduct;
 
 /**
- * The CreateShopProduct.
+ * The CreateShopProduct Action registers a new Item: ShopProduct in the game register.
  *
- * @todo    Write PHPDoc for this class!
  *
  * @since   0.0.1-dev
  *
@@ -26,7 +25,11 @@ use Anneck\Game\Item\ShopProduct;
 class CreateShopProduct extends AbstractAction
 {
     /**
+     * Applies this action onto the game.
+     *
      * @param GameInterface $game
+     *
+     * @return mixed|void
      */
     public function applyOn(GameInterface $game)
     {
