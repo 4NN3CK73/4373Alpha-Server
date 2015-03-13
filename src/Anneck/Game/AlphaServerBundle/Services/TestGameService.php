@@ -52,6 +52,7 @@ class TestGameService
 
     /**
      * @return bool
+     *
      * @throws \Anneck\Game\Exception\GameException
      */
     public function run()
