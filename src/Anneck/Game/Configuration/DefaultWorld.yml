@@ -1,2 +1,3 @@
 world:
     name: 'default World'
+    log_file: '/tmp/game.log'
