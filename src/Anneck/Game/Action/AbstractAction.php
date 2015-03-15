@@ -24,6 +24,7 @@ abstract class AbstractAction implements ActionInterface
 {
     /**
      * Returns true if another action has the same short class name.
+     *
      * @param ActionInterface $action
      *
      * @return bool
@@ -44,5 +45,4 @@ abstract class AbstractAction implements ActionInterface
 
         return $reClass->getShortName();
     }
-
 }

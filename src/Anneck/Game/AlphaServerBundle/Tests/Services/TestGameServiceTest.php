@@ -11,6 +11,7 @@
 
 namespace Anneck\Services;
 
+use Anneck\Game\Action\CreateShopProduct;
 use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\AlphaServerBundle\Services\TestGameService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -52,5 +53,19 @@ class TestGameServiceTest extends KernelTestCase
     {
         $result = self::$service->run();
         self::assertTrue($result);
+    }
+    public function testFirstGameServiceRunWithAction()
+    {
+        self::$service->addAction(new ScoreOnePoint());
+        self::assertTrue(self::$service->run());
+    }
+    public function testFirstGameServiceCreateProductAction()
+    {
+        self::$service->addAction(
+            new CreateShopProduct(
+                'ShopProduct'
+            )
+        );
+        self::assertTrue(self::$service->run());
     }
 }

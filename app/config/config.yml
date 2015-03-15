@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: @AnneckGameAlphaServerBundle/Resources/config/fos_rest.yml }
 
 framework:
     #esi:             ~
@@ -65,3 +66,4 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+

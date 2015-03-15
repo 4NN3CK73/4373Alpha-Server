@@ -11,6 +11,8 @@
 
 namespace Anneck\Game;
 
+use Anneck\Game\Configuration\WorldConfiguration;
+use Anneck\Game\World\DefaultWorld;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -26,6 +28,24 @@ use Monolog\Logger;
 class GameLogger extends Logger
 {
     /**
+     * Creates the logger.
+     */
+    public function __construct()
+    {
+        parent::__construct('GameLog');
+
+
+        $defaultWorld = new DefaultWorld();
+        $parsedConfig = $defaultWorld->configure(new WorldConfiguration());
+
+        $logFile = $parsedConfig['world']['log_file'];
+
+        $this->pushHandler(
+            new StreamHandler($logFile, Logger::DEBUG)
+        );
+    }
+
+    /**
      * A static helper to reduce bloat in logging classes.
      *
      * @param string $message
@@ -35,16 +55,5 @@ class GameLogger extends Logger
     {
         $logger = new GameLogger();
         $logger->log($level, $message);
-    }
-    /**
-     * Creates the logger.
-     */
-    public function __construct()
-    {
-        parent::__construct('GameLog');
-
-        $this->pushHandler(
-            new StreamHandler('/tmp/game.log', Logger::DEBUG)
-        );
     }
 }

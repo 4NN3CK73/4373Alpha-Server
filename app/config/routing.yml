@@ -1,6 +1,6 @@
-#alpha_server:
-#    resource: "@AlphaServerBundle/Resources/config/routing.yml"
-#    prefix:   /
+alpha_server:
+    resource: "@AnneckGameAlphaServerBundle/Resources/config/routing.yml"
+    prefix:   /
 
 #app:
 #    resource: @AlphaServerBundle/Controller/

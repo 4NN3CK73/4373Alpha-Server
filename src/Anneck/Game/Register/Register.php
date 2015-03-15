@@ -9,9 +9,13 @@
  * ************************************************************************
  */
 
-namespace Anneck\Game;
+namespace Anneck\Game\Register;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Anneck\Game\RegisterInterface;
+use Anneck\Game\ItemInterface;
+use Anneck\Game\GameLogger;
+use Anneck\Game;
 
 /**
  * The Register administrates game items.

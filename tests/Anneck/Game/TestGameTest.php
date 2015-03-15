@@ -5,26 +5,26 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 14:26 by 4nn3ck  
+ * Created at 04.03.15, 14:26 by 4nn3ck
  * ************************************************************************
  */
 
 namespace Anneck\Game;
 
-
 use Anneck\Game\Configuration\WorldConfiguration;
 use Anneck\Game\Item\Shop;
 use Anneck\Game\World\DefaultWorld;
+use Anneck\Game\Register\Register;
 
 /**
  * The TestGameTest the first, just to see where we are going ..
  *
- * @package Anneck\Game
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestGameTest extends \PHPUnit_Framework_TestCase {
-
+class TestGameTest extends \PHPUnit_Framework_TestCase
+{
     public function testGameSpecification()
     {
         $game = new TestGame();
@@ -38,7 +38,6 @@ class TestGameTest extends \PHPUnit_Framework_TestCase {
 
         $game->setWorld($world);
         $game->setRegister($register);
-
 
         self::assertEquals($game->getScore(), 0);
         $game->addScore(1);
@@ -62,7 +61,5 @@ class TestGameTest extends \PHPUnit_Framework_TestCase {
 //        self::assertTrue($register->hasItem($shopProductCreatedByTurn));
 
         $game->safe();
-
     }
-
 }

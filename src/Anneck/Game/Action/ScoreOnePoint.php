@@ -35,5 +35,4 @@ class ScoreOnePoint extends AbstractAction
 
         return true;
     }
-
 }

@@ -12,7 +12,7 @@
     <testsuites>
         <testsuite name="Alpha-Server Test Suite">
             <directory>tests/**</directory>
-            <directory>src/AlphaServerBundle/Tests/**</directory>
+            <directory>src/Anneck/Game/AlphaServerBundle/Tests/**</directory>
         </testsuite>
     </testsuites>
 

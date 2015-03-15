@@ -11,8 +11,8 @@
 
 namespace Anneck\Game\Configuration;
 
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Anneck\Game\ConfigurationInterface;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
  * The WorldConfiguration.
@@ -37,13 +37,16 @@ class WorldConfiguration implements ConfigurationInterface
 
         $rootNode->
             children()->
-                arrayNode('world')->
-                    children()->
-                        scalarNode('name')
+                arrayNode('world')
+                    ->children()
+                        ->scalarNode('name')
                             ->defaultValue('default')
                         ->end()
+                        ->scalarNode('log_file')
+                            ->defaultValue('/tmp/game.log')
+                        ->end()
                     ->end()
-            ->end();
+                ->end();
 
         return $treeBuilder;
     }
