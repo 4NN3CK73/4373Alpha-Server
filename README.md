@@ -17,15 +17,23 @@ WiP - Work in Progress
 
 [![Stories in Ready](https://badge.waffle.io/4NN3CK73/4373Alpha-Server.png?label=ready&title=Ready)](https://waffle.io/4NN3CK73/4373Alpha-Server)
 
-The Master ToDo-List
---------------------
-
-* Get coverage up!
-* Re-Enable continents concept in configuration!
-* Implement safe games!
-
-     
 Dev Setup
 ---------
 
 You know composer? Well then :P !
+
+    composer install
+
+To run PHPUnit ... 
+    
+    bin/phpunit
+    
+To get some quality metrics and auto-cs-fix use
+
+    composer quality-build
+    
+To fix permission issues with cache/ log/ use
+
+    composer fix-permissions
+    
+   
