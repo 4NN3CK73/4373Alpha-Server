@@ -11,6 +11,8 @@
 
 namespace Anneck\Game;
 
+use Anneck\Game\Player\Player;
+
 /**
  * The interface Game defines the basic functionality of every game and uses the configuration for game rules and other
  * game specific settings. The implementation.
@@ -37,4 +39,18 @@ interface GameInterface
      * @return boolean
      */
     public function safe();
+
+    /**
+     * Set the game player.
+     *
+     * @param Player $player
+     *
+     */
+    public function setPlayer(Player $player);
+
+    /**
+     * Returns the player of the game.
+     * @return Player the current player of the game.
+     */
+    public function getPlayer();
 }

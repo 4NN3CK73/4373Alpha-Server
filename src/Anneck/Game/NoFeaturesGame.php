@@ -11,6 +11,8 @@
 
 namespace Anneck\Game;
 
+use Anneck\Game\Player\Player;
+
 /**
  * The NoFeaturesGame class is just there for the test cases to trigger exceptions.
  *
@@ -44,4 +46,24 @@ class NoFeaturesGame implements GameInterface
 
     }
 
+    /**
+     * Set the game player.
+     *
+     * @param Player $player
+     *
+     */
+    public function setPlayer(Player $player)
+    {
+
+    }
+
+    /**
+     * Returns the player of the game.
+     *
+     * @return Player the current player of the game.
+     */
+    public function getPlayer()
+    {
+
+    }
 }

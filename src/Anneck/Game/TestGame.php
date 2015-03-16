@@ -14,6 +14,7 @@ namespace Anneck\Game;
 use Anneck\Game\Features\ItemRegisterFeature;
 use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\Features\TurnBasedFeature;
+use Anneck\Game\Player\Player;
 use Anneck\Game\Register\Register;
 
 /**
@@ -49,6 +50,10 @@ class TestGame implements GameInterface, TurnBasedFeature, ItemRegisterFeature, 
      * @var GameLogger
      */
     private $logger;
+    /**
+     * @var Player
+     */
+    private $player;
 
     /**
      * Creates the TestGame.
@@ -185,5 +190,26 @@ class TestGame implements GameInterface, TurnBasedFeature, ItemRegisterFeature, 
     public function __toString()
     {
         return __CLASS__;
+    }
+
+    /**
+     * Returns the player of the game.
+     *
+     * @return Player the current player of the game.
+     */
+    public function getPlayer()
+    {
+        return $this->player;
+    }
+
+    /**
+     * Set the game player.
+     *
+     * @param Player $player
+     *
+     */
+    public function setPlayer(Player $player)
+    {
+        $this->player = $player;
     }
 }
