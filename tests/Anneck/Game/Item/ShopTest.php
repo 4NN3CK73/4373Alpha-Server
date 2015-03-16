@@ -11,7 +11,7 @@
 
 namespace Anneck\Game\Item;
 
-use Anneck\Game\Action\CreateShopProduct;
+use Anneck\Game\Action\CreateItem;
 use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\TestGame;
 
@@ -46,6 +46,6 @@ class ShopTest extends \PHPUnit_Framework_TestCase
     {
         $game = new TestGame();
         $shopItem = new ShopProduct($game);
-        $shopItem->applyAction(new CreateShopProduct('ShopProduct'));
+        $shopItem->applyAction(new CreateItem('ShopProduct'));
     }
 }

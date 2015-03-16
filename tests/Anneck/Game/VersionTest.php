@@ -12,11 +12,12 @@
 namespace Anneck\Game;
 
 /**
- * The VersionTest
+ * The VersionTest.
  *
- * @package Anneck\Game
  * @todo    Write PHPDoc for this class!
+ *
  * @since   0.0.1-dev
+ *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
 class VersionTest extends \PHPUnit_Framework_TestCase

@@ -11,7 +11,7 @@
 
 namespace Anneck\Services;
 
-use Anneck\Game\Action\CreateShopProduct;
+use Anneck\Game\Action\CreateItem;
 use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\AlphaServerBundle\Services\TestGameService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -62,7 +62,7 @@ class TestGameServiceTest extends KernelTestCase
     public function testFirstGameServiceCreateProductAction()
     {
         self::$service->addAction(
-            new CreateShopProduct(
+            new CreateItem(
                 'ShopProduct'
             )
         );
