@@ -23,7 +23,7 @@ use Anneck\Game\RegisterInterface;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface ItemRegisterGameInterface
+interface ItemRegisterFeature
 {
     /**
      * @param RegisterInterface $register

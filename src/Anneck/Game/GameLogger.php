@@ -34,7 +34,6 @@ class GameLogger extends Logger
     {
         parent::__construct('GameLog');
 
-
         $defaultWorld = new DefaultWorld();
         $parsedConfig = $defaultWorld->configure(new WorldConfiguration());
 

@@ -20,7 +20,7 @@ namespace Anneck\Game\Features;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface SingleScoreGameInterace
+interface SingleScoreFeature
 {
     /**
      * @return int

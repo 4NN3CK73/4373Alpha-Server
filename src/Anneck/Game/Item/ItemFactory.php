@@ -11,7 +11,7 @@
 
 namespace Anneck\Game\Item;
 
-use Anneck\Game\GameInterface;
+use Anneck\Game\Features\ItemRegisterFeature;
 use Anneck\Game\ItemInterface;
 
 /**
@@ -25,14 +25,14 @@ use Anneck\Game\ItemInterface;
 class ItemFactory
 {
   /**
-   * @var GameInterface
+   * @var ItemRegisterFeature
    */
   private $game;
 
   /**
-   * @param GameInterface $game
+   * @param ItemRegisterFeature $game
    */
-  public function __construct(GameInterface $game)
+  public function __construct(ItemRegisterFeature $game)
   {
       $this->game = $game;
   }
@@ -40,12 +40,12 @@ class ItemFactory
   /**
    * Static factory method to create items for a game.
    *
-   * @param GameInterface $game
+   * @param ItemRegisterFeature $game
    * @param string        $itemIdentifier
    *
    * @return ItemInterface
    */
-  public static function createGameItem(GameInterface $game, $itemIdentifier)
+  public static function createGameItem(ItemRegisterFeature $game, $itemIdentifier)
   {
       $factory = new self($game);
 

@@ -30,12 +30,12 @@ class TestGameController extends FOSRestController
      */
     public function runAction()
     {
-
         $runResult = $this->get('alphaserver.testgame')->run();
 
-        if($runResult) {
+        if ($runResult) {
             return $this->get('alphaserver.testgame')->getGameResult();
         }
+
         return $runResult;
     }
 }

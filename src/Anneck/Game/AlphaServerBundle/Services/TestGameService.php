@@ -15,7 +15,7 @@ use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\ActionInterface;
 use Anneck\Game\Configuration\WorldConfiguration;
 use Anneck\Game\Features\SingleScoreGameInterace;
-use Anneck\Game\Features\TurnBasedGameInterface;
+use Anneck\Game\Features\TurnBasedFeature;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 use Anneck\Game\TestEngine;
@@ -41,6 +41,7 @@ class TestGameService
     private $actionQ;
     /**
      * Used to remember the game internally ...
+     *
      * @var GameInterface
      */
     private $game;
@@ -66,8 +67,8 @@ class TestGameService
     public function addAction(ActionInterface $action)
     {
         GameLogger::addToGameLog(
-            sprintf('Add action %s to running game %s', $action, $this->game)
-            , Logger::ALERT);
+            sprintf('Add action %s to running game %s', $action, $this->game), Logger::ALERT);
+
         return $this->actionQ->addAction($action);
     }
 
@@ -91,20 +92,19 @@ class TestGameService
      *
      * @return string the game result in JSON
      */
-    public function getGameResult() {
-
+    public function getGameResult()
+    {
         $gameResult = new ArrayCollection();
 
-        $gameResult->set('Game-World:', (string)$this->game->getWorld());
+        $gameResult->set('Game-World:', (string) $this->game->getWorld());
 
-        if($this->game instanceof SingleScoreGameInterace) {
+        if ($this->game instanceof SingleScoreGameInterace) {
             $gameResult->set('Game-Score:', $this->game->getScore());
         }
-        if($this->game instanceof TurnBasedGameInterface) {
+        if ($this->game instanceof TurnBasedFeature) {
             $gameResult->set('Game-Turn:', $this->game->getTurn());
         }
+
         return json_encode($gameResult->toArray());
     }
-
-
 }

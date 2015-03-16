@@ -24,6 +24,24 @@ class Player
 {
     private $name;
 
+    private $credits = 5000.00;
+
+    /**
+     * @return mixed
+     */
+    public function getCredits()
+    {
+        return $this->credits;
+    }
+
+    /**
+     * @param mixed $credits
+     */
+    public function setCredits($credits)
+    {
+        $this->credits = $credits;
+    }
+
     /**
      * Creates a new player with a name.
      *

@@ -1,34 +1,34 @@
 <?php
- /************************************************************************
+/************************************************************************
  * This file is part of 4373Alpha-Server Project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 10.03.15, 07:52 by 4nn3ck
+ * Created at 16.03.15, 09:03 by 4nn3ck
  * ************************************************************************
  */
 
 namespace Anneck\Game\Features;
 
+use Anneck\Game\ItemInterface;
+
 /**
- * The interface TurnBasedGameInterface adds the feature of a "turn" to the game which advances the game.
+ * The UseItemFeature.
  *
- * @todo    Write PHPDoc for this interface!
+ * @todo    Write PHPDoc for this class!
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface TurnBasedGameInterface
+interface UseItemFeature
 {
     /**
+     * @param ItemInterface $item
+     * @param               $actionName
+     *
      * @return mixed
      */
-    public function nextTurn();
-
-    /**
-     * @return mixed
-     */
-    public function getTurn();
+    public function useItem(ItemInterface $item, $actionName);
 }

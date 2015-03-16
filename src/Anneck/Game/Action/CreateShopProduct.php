@@ -11,8 +11,8 @@
 
 namespace Anneck\Game\Action;
 
-use Anneck\Game\Features\ItemRegisterGameInterface;
-use Anneck\Game\Features\SingleScoreGameInterace;
+use Anneck\Game\Features\ItemRegisterFeature;
+use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\GameInterface;
 use Anneck\Game\Item\ItemFactory;
 
@@ -51,13 +51,13 @@ class CreateShopProduct extends AbstractAction
 
         $newProduct = $itemFactory->createItem($this->shopProductID);
 
-        if ($game instanceof ItemRegisterGameInterface) {
+        if ($game instanceof ItemRegisterFeature) {
             // Adding the product to the register
             $game->addItemToRegister(
                 $newProduct
             );
         }
-        if ($game instanceof SingleScoreGameInterace) {
+        if ($game instanceof SingleScoreFeature) {
             $game->addScore(1);
         }
     }

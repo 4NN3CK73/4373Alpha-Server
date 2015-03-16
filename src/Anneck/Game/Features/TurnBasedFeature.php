@@ -5,37 +5,30 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 12:03 by 4nn3ck
+ * Created at 10.03.15, 07:52 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game\Action;
-
-use Anneck\Game\Features\SingleScoreFeature;
-use Anneck\Game\GameInterface;
+namespace Anneck\Game\Features;
 
 /**
- * The ScoreOnePoint.
+ * The interface TurnBasedGameInterface adds the feature of a "turn" to the game which advances the game.
  *
- * @todo    Write PHPDoc for this class!
+ * @todo    Write PHPDoc for this interface!
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class ScoreOnePoint extends AbstractAction
+interface TurnBasedFeature
 {
     /**
-     * @param GameInterface $game
-     *
-     * @return bool
+     * @return mixed
      */
-    public function applyOn(GameInterface $game)
-    {
-        if ($game instanceof SingleScoreFeature) {
-            $game->addScore(1);
-        }
+    public function nextTurn();
 
-        return true;
-    }
+    /**
+     * @return mixed
+     */
+    public function getTurn();
 }
