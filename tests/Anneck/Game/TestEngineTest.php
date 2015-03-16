@@ -46,7 +46,7 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
         $actionQ->add($action1);
         $actionQ->add($action2);
         $actionQ->add($action3);
-
+        // the engine will drive the game forward
         $engine = new TestEngine();
         // build engine ...
         $engine->build($game, $actionQ);
@@ -55,6 +55,31 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
             $engine->start();
         } catch (GameException $gameException) {
             self::fail($gameException->getMessage());
+        }
+    }
+
+    public function testEngineProvideWrongGameFeatures()
+    {
+        // Need World and Register for Game
+        $world = new DefaultWorld();
+        $register = new Register();
+        // New TestGame using world and register
+        $game = new NoFeaturesGame();
+        // Need game and action queue for engine
+        $actionQ = new ActionQueue();
+        $action1 = new ScoreOnePoint();
+        $actionQ->add($action1);
+        // The engine will drive the game forward ...
+        $engine = new TestEngine();
+        // build engine ...
+
+
+        // start engine ...
+        try {
+            $engine->build($game, $actionQ);
+            self::fail('This should trigger an exception but didnt!');
+        } catch (GameException $gameException) {
+            // awesome!
         }
     }
 
