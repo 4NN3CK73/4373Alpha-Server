@@ -92,10 +92,44 @@ class TestEngine implements EngineInterface
      */
     public function start()
     {
+        // Check if engine can start ...
         if (!$this->readyToStart) {
             throw new GameException('The Engine has not been build, can not start!');
         }
-        // Process all actions ...
+        // Process the action queue ...
+        $this->processActionQ();
+
+        // Mark end of turn calling next turn ...
+        if ($this->game instanceof TurnBasedFeature) {
+            $this->game->nextTurn();
+        }
+        // Check score ...
+        if($this->game instanceof SingleScoreFeature) {
+
+            $score = $this->game->getScore();
+            $player = $this->game->getPlayer();
+
+            if($player != null ) { // this should only happen during development
+
+                $scoreManager = new GameScoreManager();
+                $scoreManager->addScore($player, $score);
+
+            } else {
+                GameLogger::addToGameLog(
+                    sprintf('We have a score, but no player!'),
+                    GameLogger::WARNING
+                );
+            }
+        }
+
+
+
+        return true;
+    }
+
+    private function processActionQ()
+    {
+// Process all actions ...
         $actions = $this->actionQ->getIterator();
 
         /** @var ActionInterface $action */
@@ -106,11 +140,5 @@ class TestEngine implements EngineInterface
                 GameLogger::INFO
             );
         }
-
-        if ($this->game instanceof TurnBasedFeature) {
-            $this->game->nextTurn();
-        }
-
-        return true;
     }
 }

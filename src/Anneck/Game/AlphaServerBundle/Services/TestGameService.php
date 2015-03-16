@@ -14,7 +14,7 @@ namespace Anneck\Game\AlphaServerBundle\Services;
 use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\ActionInterface;
 use Anneck\Game\Configuration\WorldConfiguration;
-use Anneck\Game\Features\SingleScoreGameInterace;
+use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\Features\TurnBasedFeature;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
@@ -26,6 +26,8 @@ use Symfony\Bridge\Monolog\Logger;
 
 /**
  * The GameService is a manager for the unified use of a game and a game engine.
+ *
+ * The GameService holds the state of its ActionQueue,
  *
  * @todo    Write PHPDoc for this class!
  *
@@ -98,7 +100,7 @@ class TestGameService
 
         $gameResult->set('Game-World:', (string) $this->game->getWorld());
 
-        if ($this->game instanceof SingleScoreGameInterace) {
+        if ($this->game instanceof SingleScoreFeature) {
             $gameResult->set('Game-Score:', $this->game->getScore());
         }
         if ($this->game instanceof TurnBasedFeature) {
