@@ -45,9 +45,12 @@ abstract class AbstractItem implements ItemInterface
     /**
      * @param GameInterface $game
      */
-    public function __construct(GameInterface $game)
+    public function __construct(GameInterface $game = null)
     {
-        $this->game = $game;
+        if(!is_null($game))  {
+            $this->game = $game;
+        }
+
         $this->logger = new GameLogger();
     }
 

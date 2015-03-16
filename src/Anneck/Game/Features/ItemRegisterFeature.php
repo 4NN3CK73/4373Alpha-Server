@@ -52,4 +52,13 @@ interface ItemRegisterFeature
      * @return mixed
      */
     public function removeItem(ItemInterface $gameItem);
+
+    public function hasItem(ItemInterface $gameItem);
+
+    /**
+     * @param ItemInterface $gameItem
+     *
+     * @return ItemInterface
+     */
+    public function getItem(ItemInterface $gameItem);
 }

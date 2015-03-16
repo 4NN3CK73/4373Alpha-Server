@@ -18,6 +18,7 @@ use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\Features\TurnBasedFeature;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
+use Anneck\Game\ItemInterface;
 use Anneck\Game\TestEngine;
 use Anneck\Game\TestGame;
 use Anneck\Game\World\DefaultWorld;
@@ -27,7 +28,7 @@ use Symfony\Bridge\Monolog\Logger;
 /**
  * The GameService is a manager for the unified use of a game and a game engine.
  *
- * The GameService holds the state of its ActionQueue,
+ * The GameService holds the state of its ActionQueue, the TestGame and a DefaultWorld.
  *
  * @todo    Write PHPDoc for this class!
  *
@@ -59,6 +60,18 @@ class TestGameService
         $worldConfig = new WorldConfiguration();
         $world->configure($worldConfig);
         $this->game->setWorld($world);
+    }
+
+    /**
+     * Searches the game (register) for the specified game item and returns it.
+     *
+     * @param ItemInterface $item the item to look up.
+     *
+     * @return ItemInterface the item found or NULL.
+     */
+    public function getItem(ItemInterface $item)
+    {
+        return $item;
     }
 
     /**
