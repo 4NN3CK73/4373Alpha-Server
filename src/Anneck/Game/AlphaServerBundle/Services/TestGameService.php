@@ -96,7 +96,8 @@ class TestGameService
     {
         // Build the game engine ...
         $gameEngine = new TestEngine();
-        $gameEngine->build($this->game, $this->actionQ);
+        $gameEngine->build($this->game);
+        $gameEngine->fuelWith($this->actionQ);
 
         // start it ...
         return $gameEngine->start();

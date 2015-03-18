@@ -11,13 +11,11 @@
 
 namespace Anneck\Game\Action;
 
-
 use Anneck\Game\Features\ItemRegisterFeature;
 use Anneck\Game\GameInterface;
-use Anneck\Game\ItemInterface;
 
 /**
- * The SellItem
+ * The SellItem.
  *
  * @since   0.0.1-dev
  *
@@ -25,10 +23,12 @@ use Anneck\Game\ItemInterface;
  */
 class SellItem extends AbstractAction
 {
-
+    /**
+     * @param $itemUUID
+     * @param $credits
+     */
     public function __construct($itemUUID, $credits)
     {
-
     }
     /**
      * Applies itself to a running game.
@@ -39,9 +39,8 @@ class SellItem extends AbstractAction
      */
     public function applyOn(GameInterface $game)
     {
-        if(!$game instanceof ItemRegisterFeature) {
+        if (!$game instanceof ItemRegisterFeature) {
             $this->throwFeatureMissingException($game);
         }
-        $game->updateItem();
     }
 }

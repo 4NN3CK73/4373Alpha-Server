@@ -13,11 +13,8 @@ namespace Anneck\Services;
 
 use Anneck\Game\Action\CreateItem;
 use Anneck\Game\Action\ScoreOnePoint;
-use Anneck\Game\Action\UseItemAction;
 use Anneck\Game\AlphaServerBundle\Services\TestGameService;
 use Anneck\Game\Item\Shop;
-use Anneck\Game\Item\ShopProduct;
-use Anneck\Game\Item\ShopTest;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**

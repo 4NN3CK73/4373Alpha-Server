@@ -27,7 +27,6 @@ class NoFeaturesGame implements GameInterface
      */
     public function setWorld(WorldInterface $world)
     {
-
     }
 
     /**
@@ -35,7 +34,6 @@ class NoFeaturesGame implements GameInterface
      */
     public function getWorld()
     {
-
     }
 
     /**
@@ -43,18 +41,15 @@ class NoFeaturesGame implements GameInterface
      */
     public function safe()
     {
-
     }
 
     /**
      * Set the game player.
      *
      * @param Player $player
-     *
      */
     public function setPlayer(Player $player)
     {
-
     }
 
     /**
@@ -64,6 +59,14 @@ class NoFeaturesGame implements GameInterface
      */
     public function getPlayer()
     {
+    }
 
+    /**
+     * Returns the string representation of this game.
+     * @return string the string representation of this game.
+     */
+    public function __toString()
+    {
+        return __CLASS__;
     }
 }

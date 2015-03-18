@@ -53,6 +53,11 @@ interface ItemRegisterFeature
      */
     public function removeItem(ItemInterface $gameItem);
 
+    /**
+     * @param ItemInterface $gameItem
+     *
+     * @return bool
+     */
     public function hasItem(ItemInterface $gameItem);
 
     /**

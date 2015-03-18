@@ -36,6 +36,7 @@ class Shop extends AbstractItem
         $actionList->add(new ScoreOnePoint());
         $actionList->add(new CreateItem('ShopProduct'));
         $actionList->add(new SellItem('ShopProduct', 19.95));
+
         return $actionList;
     }
 }

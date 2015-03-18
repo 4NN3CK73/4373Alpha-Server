@@ -11,6 +11,7 @@
 
 namespace Anneck\Game;
 
+use Anneck\Game\Player\Player;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -35,9 +36,19 @@ interface RegisterInterface
      *
      * @param ItemInterface $item to register.
      *
-     * @return boolean true if registration was successful, else false.
+     * @return bool true if registration was successful, else false.
      */
     public function registerItem(ItemInterface $item);
+
+    /**
+     * Registers an item and associates it to a player.
+     *
+     * @param ItemInterface $item
+     * @param Player        $player
+     *
+     * @return bool true if registration was successful, else false.
+     */
+    public function registerPlayerItem(ItemInterface $item, Player $player);
     /**
      * Update an item.
      *

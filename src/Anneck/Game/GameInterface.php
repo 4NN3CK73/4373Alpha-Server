@@ -44,13 +44,15 @@ interface GameInterface
      * Set the game player.
      *
      * @param Player $player
-     *
      */
     public function setPlayer(Player $player);
 
     /**
      * Returns the player of the game.
+     *
      * @return Player the current player of the game.
      */
     public function getPlayer();
+
+    public function __toString();
 }

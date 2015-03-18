@@ -48,7 +48,6 @@ class ItemFactory
    */
   public function createItem($itemIdentifier)
   {
-
       $itemClassName = 'Anneck\Game\Item\\'.$itemIdentifier;
       $item = new $itemClassName();
 

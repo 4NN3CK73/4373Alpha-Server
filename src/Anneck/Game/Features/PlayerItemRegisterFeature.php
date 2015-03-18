@@ -5,30 +5,32 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 16.03.15, 11:49 by 4nn3ck
+ * Created at 18.03.15, 09:52 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game;
+namespace Anneck\Game\Features;
 
 use Anneck\Game\Player\Player;
+use Doctrine\Common\Collections\Collection;
 
 /**
- * The GameScoreManager keeps track of scores by player.
+ * The PlayerItemRegisterFeature is a player aware item register.
+ *
+ * @todo    Write PHPDoc for this class!
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class GameScoreManager
+interface PlayerItemRegisterFeature extends ItemRegisterFeature
 {
     /**
-     * @param Player $player
-     * @param int    $score
+     * Returns a collection of items in the register for the specified player.
+     *
+     * @param Player $player the player to search for in the register.
+     *
+     * @return Collection a collection of items.
      */
-    public function addScore(Player $player, $score)
-    {
-        // todo: implement score safe ...
-        GameLogger::addToGameLog('ScoreManager addScore '.$score.' to player '.$player);
-    }
+    public function getPlayerItems(Player $player);
 }

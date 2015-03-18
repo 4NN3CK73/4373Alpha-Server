@@ -47,7 +47,7 @@ abstract class AbstractItem implements ItemInterface
      */
     public function __construct(GameInterface $game = null)
     {
-        if(!is_null($game))  {
+        if (!is_null($game)) {
             $this->game = $game;
         }
 

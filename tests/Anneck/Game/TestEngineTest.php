@@ -49,7 +49,8 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
         // the engine will drive the game forward
         $engine = new TestEngine();
         // build engine ...
-        $engine->build($game, $actionQ);
+        $engine->build($game);
+        $engine->fuelWith($actionQ);
         // start engine ...
         try {
             $engine->start();
@@ -73,7 +74,7 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
 
         // start engine ...
         try {
-            $engine->build($game, $actionQ);
+            $engine->build($game);
             self::fail('This should trigger an exception but didnt!');
         } catch (GameException $gameException) {
             // awesome!

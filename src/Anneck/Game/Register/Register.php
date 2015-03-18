@@ -11,11 +11,12 @@
 
 namespace Anneck\Game\Register;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Anneck\Game\RegisterInterface;
-use Anneck\Game\ItemInterface;
-use Anneck\Game\GameLogger;
 use Anneck\Game;
+use Anneck\Game\GameLogger;
+use Anneck\Game\ItemInterface;
+use Anneck\Game\Player\Player;
+use Anneck\Game\RegisterInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * The Register administrates game items.
@@ -93,6 +94,31 @@ class Register implements RegisterInterface
         );
 
         $this->registryData->set($item->getName(), $item);
+    }
+
+    /**
+     * Registers an item and associates it to a player.
+     *
+     * @param ItemInterface $item
+     * @param Player        $player
+     *
+     * @return bool true if registration was successful, else false.
+     */
+    public function registerPlayerItem(ItemInterface $item, Player $player)
+    {
+        $playerItems = $this->registryData->get($player->getName());
+        if (is_null($playerItems)) {
+            // nothing registered yet ...
+            // add the first item to a new collection ..
+            $playerItems = new ArrayCollection($item->getName(), $item);
+            // add the player items to the registry using his playerName
+            $this->registryData->set($player->getName(), $playerItems);
+        } else {
+            // we have playerItems, add the new one ..
+            $playerItems->set($item->getName(), $item);
+            // and re-set it in the registry ...
+            $this->registryData->set($player->getName(), $playerItems);
+        }
     }
 
     /**

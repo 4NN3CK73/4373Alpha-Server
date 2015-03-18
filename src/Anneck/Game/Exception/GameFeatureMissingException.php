@@ -1,28 +1,24 @@
 <?php
-/************************************************************************
+ /************************************************************************
  * This file is part of 4373Alpha-Server Project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 16.03.15, 11:53 by 4nn3ck
+ * Created at 18.03.15, 09:46 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game\Player;
+namespace Anneck\Game\Exception;
 
 /**
- * The PlayerTest unit test case.
+ * The GameFeatureMissingException is thrown when the game engine or an action is using a feature the game interface
+ * does not provide!
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class PlayerTest extends \PHPUnit_Framework_TestCase
+class GameFeatureMissingException extends GameException
 {
-    public function testPlayerSpecification()
-    {
-        $player = new Player('John, May');
-        self::assertEquals($player->getName(), 'John, May');
-    }
 }

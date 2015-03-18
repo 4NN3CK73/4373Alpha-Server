@@ -11,11 +11,13 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\Features\ItemRegisterFeature;
+use Anneck\Game\Features\PlayerItemRegisterFeature;
 use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\Features\TurnBasedFeature;
 use Anneck\Game\Player\Player;
 use Anneck\Game\Register\Register;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * The TestGame is as of now just a developer playground.
@@ -24,7 +26,7 @@ use Anneck\Game\Register\Register;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestGame implements GameInterface, TurnBasedFeature, ItemRegisterFeature, SingleScoreFeature
+class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFeature, SingleScoreFeature
 {
     /**
      * @var WorldInterface
@@ -206,7 +208,6 @@ class TestGame implements GameInterface, TurnBasedFeature, ItemRegisterFeature, 
      * Set the game player.
      *
      * @param Player $player
-     *
      */
     public function setPlayer(Player $player)
     {
@@ -223,7 +224,6 @@ class TestGame implements GameInterface, TurnBasedFeature, ItemRegisterFeature, 
         return $this->register->hasItem($gameItem);
     }
 
-
     /**
      * @param ItemInterface $gameItem
      *
@@ -232,5 +232,27 @@ class TestGame implements GameInterface, TurnBasedFeature, ItemRegisterFeature, 
     public function getItem(ItemInterface $gameItem)
     {
         return $this->register->getRegistryData()->get($gameItem->getName());
+    }
+
+    /**
+     * Returns a collection of items in the register for the specified player.
+     *
+     * @param Player $player the player to search for in the register.
+     *
+     * @return Collection a collection of items.
+     */
+    public function getPlayerItems(Player $player)
+    {
+        $returnItems = new ArrayCollection();
+
+        $playerItems = $this->register->getRegistryData()->get(
+            $player->getName()
+        );
+
+        if (!is_null($playerItems)) {
+            $returnItems = $playerItems;
+        }
+
+        return $returnItems;
     }
 }

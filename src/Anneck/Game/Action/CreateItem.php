@@ -65,6 +65,4 @@ class CreateItem extends AbstractAction
             $game->addScore(1);
         }
     }
-
-
 }
