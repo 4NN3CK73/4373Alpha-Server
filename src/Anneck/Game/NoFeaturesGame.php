@@ -63,6 +63,7 @@ class NoFeaturesGame implements GameInterface
 
     /**
      * Returns the string representation of this game.
+     *
      * @return string the string representation of this game.
      */
     public function __toString()

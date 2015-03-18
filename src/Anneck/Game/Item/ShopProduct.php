@@ -14,6 +14,15 @@ namespace Anneck\Game\Item;
 use Anneck\Game\Action\ScoreOnePoint;
 use Doctrine\Common\Collections\ArrayCollection;
 
+/**
+ * The ShopProduct.
+ *
+ * @todo    Write PHPDoc for this class!
+ *
+ * @since   0.0.1-dev
+ *
+ * @author  André Anneck <andreanneck73@gmail.com>
+ */
 class ShopProduct extends AbstractItem
 {
     /**

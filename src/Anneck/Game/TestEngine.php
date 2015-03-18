@@ -115,7 +115,7 @@ class TestEngine implements EngineInterface
     public function getAvailablePlayerActions(Player $player)
     {
         if (!$this->game instanceof PlayerItemRegisterFeature) {
-            throw new GameFeatureMissingException('PlayerItemRegister is missing from game: ' . $this->game);
+            throw new GameFeatureMissingException('PlayerItemRegister is missing from game: '.$this->game);
         }
 
         $playerItems = $this->game->getPlayerItems($player);
@@ -208,5 +208,4 @@ class TestEngine implements EngineInterface
             );
         }
     }
-
 }

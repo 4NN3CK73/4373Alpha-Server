@@ -11,7 +11,6 @@
 
 namespace Anneck\Game\Item;
 
-use Anneck\Game\Features\ItemRegisterFeature;
 use Anneck\Game\ItemInterface;
 
 /**
@@ -27,7 +26,6 @@ class ItemFactory
   /**
    * Static factory method to create items for a game.
    *
-   * @param ItemRegisterFeature $game
    * @param string        $itemIdentifier
    *
    * @return ItemInterface

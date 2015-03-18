@@ -64,6 +64,8 @@ abstract class AbstractItem implements ItemInterface
 
     /**
      * @param ActionInterface $action
+     *
+     * @return bool|void
      */
     public function applyAction(ActionInterface $action)
     {
