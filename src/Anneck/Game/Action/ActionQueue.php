@@ -47,9 +47,9 @@ class ActionQueue extends ArrayCollection
         }
         // Everything else is triggers exception and is logged.
         GameLogger::addToGameLog(
-            self::FAILED_TO_ADD_NOT_AN_ACTION,
+            static::FAILED_TO_ADD_NOT_AN_ACTION,
             Logger::WARNING);
-        throw new GameException(self::FAILED_TO_ADD_NOT_AN_ACTION);
+        throw new GameException(static::FAILED_TO_ADD_NOT_AN_ACTION);
     }
 
     /**

@@ -35,49 +35,49 @@ class TestGameServiceTest extends KernelTestCase
 
     public static function setUpBeforeClass()
     {
-        self::bootKernel();
-        self::$service = static::$kernel->getContainer()->get('alphaserver.testgame');
+        static::bootKernel();
+        static::$service = static::$kernel->getContainer()->get('alphaserver.testgame');
     }
 
     public function testFirstGameServiceExists()
     {
-        self::assertNotNull(self::$service);
+        static::assertNotNull(static::$service);
     }
 
     public function testFirstGameServiceAdAction()
     {
-        $result = self::$service->addAction(new ScoreOnePoint());
-        self::assertTrue($result);
+        $result = static::$service->addAction(new ScoreOnePoint());
+        static::assertTrue($result);
     }
 
     public function testFirstGameServiceRun()
     {
-        $result = self::$service->run();
-        self::assertTrue($result);
+        $result = static::$service->run();
+        static::assertTrue($result);
     }
     public function testFirstGameServiceRunWithAction()
     {
-        self::$service->addAction(new ScoreOnePoint());
-        self::assertTrue(self::$service->run());
+        static::$service->addAction(new ScoreOnePoint());
+        static::assertTrue(static::$service->run());
     }
     public function testFirstGameServiceCreateProductAction()
     {
         $action = new CreateItem(
             'Shop'
         );
-        self::$service->addAction(
+        static::$service->addAction(
             $action
         );
-        self::assertTrue(self::$service->run());
+        static::assertTrue(static::$service->run());
 
-        $item = self::$service->getItem(new Shop());
+        $item = static::$service->getItem(new Shop());
         $actions = $item->getAvailableActions()->toArray();
         $action = $actions[1]; // @todo: this is just the test, but still think about the API
 
-        self::$service->addAction(
+        static::$service->addAction(
             $action
         );
 
-        self::assertTrue(self::$service->run());
+        static::assertTrue(static::$service->run());
     }
 }

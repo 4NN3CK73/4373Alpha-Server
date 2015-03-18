@@ -47,6 +47,11 @@ interface EngineInterface
     public function getAvailablePlayerActions(Player $player);
 
     /**
+     * @return Collection a collection of actions available.
+     */
+    public function getAvailableActions();
+
+    /**
      * After the engine has been build it is fueled with player actions.
      *
      * @param ActionQueue $actionQueue

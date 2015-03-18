@@ -136,6 +136,30 @@ class TestEngine implements EngineInterface
     }
 
     /**
+     * @return Collection a collection of actions available.
+     * @throws GameFeatureMissingException
+     */
+    public function getAvailableActions()
+    {
+        if (!$this->game instanceof ItemRegisterFeature) {
+            throw new GameFeatureMissingException('ItemRegister is missing from game: '.$this->game);
+        }
+
+        $allItems = $this->game->getItems();
+        $allItemActions = new ArrayCollection();
+
+        /** @var ItemInterface $item */
+        foreach($allItems as $item) {
+            $itemActions = $item->getAvailableActions();
+            $allItemActions->add($itemActions);
+        }
+
+        return $allItemActions;
+
+    }
+
+
+    /**
      * After the engine has been build it is fueled with player actions.
      *
      * @param ActionQueue $actionQueue
