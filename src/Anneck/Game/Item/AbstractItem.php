@@ -97,7 +97,6 @@ abstract class AbstractItem implements ItemInterface
         }
 
         return false;
-        // return $this->getAvailableActions()->contains($action);
     }
 
     /**

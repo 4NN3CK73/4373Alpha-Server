@@ -137,6 +137,7 @@ class TestEngine implements EngineInterface
 
     /**
      * @return Collection a collection of actions available.
+     *
      * @throws GameFeatureMissingException
      */
     public function getAvailableActions()
@@ -149,15 +150,13 @@ class TestEngine implements EngineInterface
         $allItemActions = new ArrayCollection();
 
         /** @var ItemInterface $item */
-        foreach($allItems as $item) {
+        foreach ($allItems as $item) {
             $itemActions = $item->getAvailableActions();
             $allItemActions->add($itemActions);
         }
 
         return $allItemActions;
-
     }
-
 
     /**
      * After the engine has been build it is fueled with player actions.
