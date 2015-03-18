@@ -25,19 +25,6 @@ use Anneck\Game\ItemInterface;
 class ItemFactory
 {
   /**
-   * @var ItemRegisterFeature
-   */
-  private $game;
-
-  /**
-   * @param ItemRegisterFeature $game
-   */
-  public function __construct(ItemRegisterFeature $game)
-  {
-      $this->game = $game;
-  }
-
-  /**
    * Static factory method to create items for a game.
    *
    * @param ItemRegisterFeature $game
@@ -45,9 +32,9 @@ class ItemFactory
    *
    * @return ItemInterface
    */
-  public static function createGameItem(ItemRegisterFeature $game, $itemIdentifier)
+  public static function createGameItem($itemIdentifier)
   {
-      $factory = new self($game);
+      $factory = new self();
 
       return $factory->createItem($itemIdentifier);
   }
@@ -61,9 +48,9 @@ class ItemFactory
    */
   public function createItem($itemIdentifier)
   {
-      //
+
       $itemClassName = 'Anneck\Game\Item\\'.$itemIdentifier;
-      $item = new $itemClassName($this->game);
+      $item = new $itemClassName();
 
       return $item;
   }

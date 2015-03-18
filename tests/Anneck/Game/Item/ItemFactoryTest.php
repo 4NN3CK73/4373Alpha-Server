@@ -24,9 +24,9 @@ class ItemFactoryTest extends \PHPUnit_Framework_TestCase
 {
   public function testItemFactorySpecification()
   {
-      $game = new TestGame();
-      $refClass = new \ReflectionClass(new ItemFactory($game));
-      $refClass->newInstance($game);
+
+      $refClass = new \ReflectionClass(new ItemFactory());
+      $refClass->newInstance();
 
       $refClass->hasMethod('createItem');
       $refClass->hasMethod('createGameItem');
@@ -38,10 +38,11 @@ class ItemFactoryTest extends \PHPUnit_Framework_TestCase
         $itemFactory = new ItemFactory($game);
         $gameItemShop = $itemFactory->createItem('Shop');
         $gameItemShopProduct = $itemFactory->createItem('ShopProduct');
-        $gameItemStatic = ItemFactory::createGameItem($game, 'Shop');
+        $gameItemStatic = ItemFactory::createGameItem('Shop');
 
         self::assertNotNull($gameItemStatic);
         self::assertNotNull($gameItemShop);
         self::assertNotNull($gameItemShopProduct);
     }
+
 }
