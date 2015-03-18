@@ -12,6 +12,8 @@
 namespace Anneck\Game\Action;
 
 use Anneck\Game\ActionInterface;
+use Anneck\Game\Exception\GameException;
+use Anneck\Game\GameInterface;
 
 /**
  * The AbstractItemAction class serves all implementations as a base class.
@@ -44,5 +46,23 @@ abstract class AbstractAction implements ActionInterface
         $reClass = new \ReflectionClass($this);
 
         return $reClass->getShortName();
+    }
+
+    /**
+     * @param GameInterface $game
+     */
+    protected function throwFeatureMissingException(GameInterface $game)
+    {
+        $refClass = new \ReflectionClass($game);
+        $features = implode(', ', $refClass->getInterfaceNames());
+        $gameExc = new GameException(
+            sprintf(
+                'The CreateItem Action can only be applied onto a game with a ItemRegister game feature!'.
+                'The game %s has the following features %s',
+                $game,
+                $features
+            )
+        );
+        throw new $gameExc();
     }
 }

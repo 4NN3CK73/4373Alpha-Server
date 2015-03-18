@@ -11,7 +11,6 @@
 
 namespace Anneck\Game\Action;
 
-use Anneck\Game\Exception\GameException;
 use Anneck\Game\Features\ItemRegisterFeature;
 use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\GameInterface;
@@ -53,10 +52,10 @@ class CreateItem extends AbstractAction
     {
         // We require a game with a register to "create" our item.
         if (!$game instanceof ItemRegisterFeature) {
-            $this->createException($game);
+            $this->throwFeatureMissingException($game);
         }
         // Greate create it using the itemFactory ..
-        $newItem = ItemFactory::createGameItem($game, $this->itemUUID);
+        $newItem = ItemFactory::createGameItem($this->itemUUID);
 
         // "Creating" an item in the game is actually putting it into the register.
         $game->addItemToRegister($newItem);
@@ -67,21 +66,5 @@ class CreateItem extends AbstractAction
         }
     }
 
-    /**
-     * @param GameInterface $game
-     */
-    private function createException(GameInterface $game)
-    {
-        $refClass = new \ReflectionClass($game);
-        $features = implode(', ', $refClass->getInterfaceNames());
-        $gameExc = new GameException(
-            sprintf(
-                'The CreateItem Action can only be applied onto a game with a ItemRegister game feature!'.
-                'The game %s has the following features %s',
-                $game,
-                $features
-            )
-        );
-        throw new $gameExc();
-    }
+
 }
