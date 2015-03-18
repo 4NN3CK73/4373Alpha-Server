@@ -122,14 +122,12 @@ class TestEngine implements EngineInterface
             }
         }
 
-
-
         return true;
     }
 
     private function processActionQ()
     {
-// Process all actions ...
+        // Process all actions ...
         $actions = $this->actionQ->getIterator();
 
         /** @var ActionInterface $action */

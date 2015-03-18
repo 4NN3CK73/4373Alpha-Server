@@ -60,9 +60,6 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
 
     public function testEngineProvideWrongGameFeatures()
     {
-        // Need World and Register for Game
-        $world = new DefaultWorld();
-        $register = new Register();
         // New TestGame using world and register
         $game = new NoFeaturesGame();
         // Need game and action queue for engine
