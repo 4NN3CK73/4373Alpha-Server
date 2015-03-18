@@ -12,6 +12,7 @@
 namespace Anneck\Game;
 
 use Anneck\Game\Action\ActionQueue;
+use Anneck\Game\Item\ItemFactory;
 use Anneck\Game\Player\Player;
 
 /**
@@ -33,6 +34,7 @@ class TestGameRunCreation extends \PHPUnit_Framework_TestCase
         $gameEngine = new TestEngine();
         // ... the engine is build ... using a TestGame ...
         $testGame = new TestGame();
+        $testGame->addItemToRegister(ItemFactory::createGameItem('Shop'));
         // We need a player to test player actions ...
         $testPlayer = new Player('Flash Gordon');
         // ... tell the game about the player ...
@@ -41,7 +43,7 @@ class TestGameRunCreation extends \PHPUnit_Framework_TestCase
         // Now build the engine ...
         $gameEngine->build($testGame);
         // ... we need something to fuel it with next ...
-        $playerActions = $gameEngine->getAvailablePlayerActions($testPlayer);
+        $playerActions = $gameEngine->getAvailableActions()->toArray();
         $playerActionQ = new ActionQueue($playerActions);
         // ... the player Actions get injected into the engine ..
         $gameEngine->fuelWith($playerActionQ);

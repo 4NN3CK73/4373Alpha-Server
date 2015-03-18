@@ -151,8 +151,14 @@ class TestEngine implements EngineInterface
 
         /** @var ItemInterface $item */
         foreach ($allItems as $item) {
+            GameLogger::addToGameLog('Item:' . $item);
             $itemActions = $item->getAvailableActions();
-            $allItemActions->add($itemActions);
+            foreach($itemActions as $action) {
+                $allItemActions->add($action);
+                GameLogger::addToGameLog('ItemActions:' . $action);
+            }
+
+
         }
 
         return $allItemActions;
