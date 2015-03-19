@@ -276,10 +276,8 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
      */
     public function addCredits($credits)
     {
-
         $testDebit = ($this->credits + $credits);
-        GameLogger::addToGameLog('TestDebit: ' . $testDebit . ', credits: ' . $this->getCredits());
-
+        GameLogger::addToGameLog('TestDebit: '.$testDebit.', credits: '.$this->getCredits());
     }
 
     /**

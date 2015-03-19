@@ -12,7 +12,7 @@
 namespace Anneck\Game\Features;
 
 /**
- * The CreditsFeature
+ * The CreditsFeature.
  *
  * @todo    Write PHPDoc for this class!
  *

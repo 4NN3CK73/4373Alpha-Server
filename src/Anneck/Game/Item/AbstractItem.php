@@ -70,7 +70,7 @@ abstract class AbstractItem implements ItemInterface
      */
     public function applyAction(ActionInterface $action)
     {
-        if(is_null($this->getGame())) {
+        if (is_null($this->getGame())) {
             throw new GameException('Game can not be null!');
         }
 

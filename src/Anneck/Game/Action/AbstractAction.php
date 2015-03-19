@@ -86,7 +86,7 @@ abstract class AbstractAction implements ActionInterface
     /**
      * Helper method to throw a GameFeatureMissing exception.
      *
-     * @param GameInterface $game   The game which is missing a feature interface.
+     * @param GameInterface $game           The game which is missing a feature interface.
      * @param string        $missingFeature The missing feature interface.
      *
      * @throws GameFeatureMissingException The exception with a sane error message.

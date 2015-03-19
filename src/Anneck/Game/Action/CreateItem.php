@@ -63,19 +63,17 @@ class CreateItem extends AbstractAction
         $game->addItemToRegister($newItem);
 
         // action credits
-        if(!$game instanceof CreditsFeature) {
+        if (!$game instanceof CreditsFeature) {
             $this->throwFeatureMissingException($game, 'CreditsFeature');
         }
         // Do the credits ...
         $game->addCredits($this->getActionCredits());
 
         // action score
-        if(!$game instanceof SingleScoreFeature) {
+        if (!$game instanceof SingleScoreFeature) {
             $this->throwFeatureMissingException($game, 'SingleScoreFeature');
         }
         // Do the score ...
         $game->addScore($this->getActionScore());
-
-
     }
 }

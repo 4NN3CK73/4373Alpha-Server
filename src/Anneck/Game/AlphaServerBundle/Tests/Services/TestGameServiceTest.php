@@ -72,7 +72,7 @@ class TestGameServiceTest extends KernelTestCase
 
         $item = static::$service->getItem(new Shop());
         $actions = $item->getAvailableActions()->toArray();
-        $action = $actions[1]; // @todo: this is just the test, but still think about the API
+        $action = $actions[0]; // @todo: this is just the test, but still think about the API
 
         static::$service->addAction(
             $action
