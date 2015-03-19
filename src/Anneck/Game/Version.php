@@ -42,7 +42,7 @@ class Version
      */
     public static function compare($version)
     {
-        $currentVersion = str_replace(' ', '', strtolower(self::VERSION));
+        $currentVersion = str_replace(' ', '', strtolower(static::VERSION));
         $version = str_replace(' ', '', $version);
 
         return version_compare($version, $currentVersion);
@@ -55,6 +55,6 @@ class Version
      */
     public function __toString()
     {
-        return '4373AlphaServer[Game] version '.self::VERSION;
+        return '4373AlphaServer[Game] version '.static::VERSION;
     }
 }

@@ -5,34 +5,32 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 12:43 by 4nn3ck
+ * Created at 10.03.15, 08:02 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game\Item;
-
-use Anneck\Game\Action\ScoreOnePoint;
-use Doctrine\Common\Collections\ArrayCollection;
+namespace Anneck\Game\Features;
 
 /**
- * The ShopProduct.
+ * The interface SingleScoreGameInterace adds the feature to track a single int based score in the game.
  *
- * @todo    Write PHPDoc for this class!
+ * @todo    Write PHPDoc for this interface!
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class ShopProduct extends AbstractItem
+interface SingleScoreFeature
 {
     /**
-     * @return ArrayCollection
+     * @return int
      */
-    public function getAvailableActions()
-    {
-        $actionList = new ArrayCollection();
-        $actionList->add(new ScoreOnePoint());
+    public function getScore();
 
-        return $actionList;
-    }
+    /**
+     * @param $points
+     *
+     * @return int
+     */
+    public function addScore($points);
 }

@@ -12,9 +12,11 @@
 namespace Anneck\Game;
 
 use Anneck\Game\Action\ActionQueue;
+use Anneck\Game\Player\Player;
+use Doctrine\Common\Collections\Collection;
 
 /**
- * The interface Engine drives the game forward by executing all Actions of the ActionQueue which change the game.
+ * The interface Engine drives the game forward by executing all Player Actions of the ActionQueue which change the game.
  *
  *
  *
@@ -27,17 +29,39 @@ use Anneck\Game\Action\ActionQueue;
 interface EngineInterface
 {
     /**
-     * The engine needs to be build before it can be run.
+     * The engine needs to be build with a game before it can be used.
      *
      * @param GameInterface $game
-     * @param ActionQueue   $actionQueue
      *
      * @return boolean true|false
      */
-    public function build(GameInterface $game, ActionQueue $actionQueue);
+    public function build(GameInterface $game);
 
     /**
-     * Start the engine ...
+     * After the engine has been build the player can retrieve her available actions.
+     *
+     * @param Player $player
+     *
+     * @return Collection a collection of actions available to the player.
+     */
+    public function getAvailablePlayerActions(Player $player);
+
+    /**
+     * @return Collection a collection of actions available.
+     */
+    public function getAvailableActions();
+
+    /**
+     * After the engine has been build it is fueled with player actions.
+     *
+     * @param ActionQueue $actionQueue
+     *
+     * @return mixed
+     */
+    public function fuelWith(ActionQueue $actionQueue);
+
+    /**
+     * Start the engine and process all actions from the player action queue and apply them onto the game.
      */
     public function start();
 }

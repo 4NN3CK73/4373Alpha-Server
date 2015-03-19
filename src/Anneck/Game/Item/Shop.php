@@ -11,9 +11,9 @@
 
 namespace Anneck\Game\Item;
 
+use Anneck\Game\Action\CreateItem;
+use Anneck\Game\GameInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use Anneck\Game\Action\CreateShopProduct;
-use Anneck\Game\Action\ScoreOnePoint;
 
 /**
  * The Shop.
@@ -26,15 +26,24 @@ use Anneck\Game\Action\ScoreOnePoint;
  */
 class Shop extends AbstractItem
 {
+    private $actionList;
+    /**
+     * @param               $itemName
+     * @param GameInterface $game
+     */
+    public function __construct($itemName, GameInterface $game = null)
+    {
+        parent::__construct($itemName, $game);
+
+        $this->actionList = new ArrayCollection();
+        $this->actionList->add(new CreateItem('ShopProduct'));
+    }
+
     /**
      * @return ArrayCollection
      */
     public function getAvailableActions()
     {
-        $actionList = new ArrayCollection();
-        $actionList->add(new ScoreOnePoint());
-        $actionList->add(new CreateShopProduct('ShopProduct'));
-
-        return $actionList;
+        return $this->actionList;
     }
 }

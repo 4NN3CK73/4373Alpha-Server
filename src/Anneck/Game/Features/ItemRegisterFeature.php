@@ -13,6 +13,7 @@ namespace Anneck\Game\Features;
 
 use Anneck\Game\ItemInterface;
 use Anneck\Game\RegisterInterface;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * The interface ItemRegisterGameInterface adds a register to the game which can store, update and remove game items.
@@ -23,7 +24,7 @@ use Anneck\Game\RegisterInterface;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface ItemRegisterGameInterface
+interface ItemRegisterFeature
 {
     /**
      * @param RegisterInterface $register
@@ -41,10 +42,18 @@ interface ItemRegisterGameInterface
 
     /**
      * @param ItemInterface $gameItem
+     * @param array         $itemData
      *
      * @return mixed
      */
-    public function updateItem(ItemInterface $gameItem);
+    public function updateItem(ItemInterface $gameItem, array $itemData);
+
+    /**
+     * @param ItemInterface $gameItem
+     *
+     * @return array
+     */
+    public function getItemData(ItemInterface $gameItem);
 
     /**
      * @param ItemInterface $gameItem
@@ -52,4 +61,25 @@ interface ItemRegisterGameInterface
      * @return mixed
      */
     public function removeItem(ItemInterface $gameItem);
+
+    /**
+     * @param ItemInterface $gameItem
+     *
+     * @return bool
+     */
+    public function hasItem(ItemInterface $gameItem);
+
+    /**
+     * @param ItemInterface $gameItem
+     *
+     * @return ItemInterface
+     */
+    public function getItem(ItemInterface $gameItem);
+
+    /**
+     * Returns a collection of all items in the register.
+     *
+     * @return Collection a collection of all items.
+     */
+    public function getItems();
 }

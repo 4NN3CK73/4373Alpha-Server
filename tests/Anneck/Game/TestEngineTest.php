@@ -12,11 +12,11 @@
 namespace Anneck\Game;
 
 use Anneck\Game\Action\ActionQueue;
-use Anneck\Game\Action\CreateShopProduct;
+use Anneck\Game\Action\CreateItem;
 use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\Exception\GameException;
-use Anneck\Game\World\DefaultWorld;
 use Anneck\Game\Register\Register;
+use Anneck\Game\World\DefaultWorld;
 
 /**
  * The TestEngineTest.
@@ -41,20 +41,43 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
         // Need game and action queue for engine
         $actionQ = new ActionQueue();
         $action1 = new ScoreOnePoint();
-        $action2 = new CreateShopProduct('ShopProduct');
+        $action2 = new CreateItem('ShopProduct');
         $action3 = new ScoreOnePoint();
         $actionQ->add($action1);
         $actionQ->add($action2);
         $actionQ->add($action3);
-
+        // the engine will drive the game forward
         $engine = new TestEngine();
         // build engine ...
-        $engine->build($game, $actionQ);
+        $engine->build($game);
+        $engine->fuelWith($actionQ);
         // start engine ...
         try {
             $engine->start();
         } catch (GameException $gameException) {
             self::fail($gameException->getMessage());
+        }
+    }
+
+    public function testEngineProvideWrongGameFeatures()
+    {
+        // New TestGame using world and register
+        $game = new NoFeaturesGame();
+        // Need game and action queue for engine
+        $actionQ = new ActionQueue();
+        $action1 = new ScoreOnePoint();
+        $actionQ->add($action1);
+        // The engine will drive the game forward ...
+        $engine = new TestEngine();
+        // build engine ...
+
+
+        // start engine ...
+        try {
+            $engine->build($game);
+            self::fail('This should trigger an exception but didnt!');
+        } catch (GameException $gameException) {
+            // awesome!
         }
     }
 

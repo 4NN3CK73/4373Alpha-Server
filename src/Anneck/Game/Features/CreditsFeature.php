@@ -1,34 +1,34 @@
 <?php
- /************************************************************************
+/************************************************************************
  * This file is part of 4373Alpha-Server Project.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 10.03.15, 07:52 by 4nn3ck
+ * Created at 19.03.15, 09:11 by 4nn3ck
  * ************************************************************************
  */
 
 namespace Anneck\Game\Features;
 
 /**
- * The interface TurnBasedGameInterface adds the feature of a "turn" to the game which advances the game.
+ * The CreditsFeature.
  *
- * @todo    Write PHPDoc for this interface!
+ * @todo    Write PHPDoc for this class!
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface TurnBasedGameInterface
+interface CreditsFeature
 {
     /**
      * @return mixed
      */
-    public function nextTurn();
+    public function getCredits();
 
     /**
-     * @return mixed
+     * @param $credits
      */
-    public function getTurn();
+    public function addCredits($credits);
 }

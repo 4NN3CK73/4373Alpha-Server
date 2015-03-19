@@ -5,34 +5,30 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 12:43 by 4nn3ck
+ * Created at 10.03.15, 07:52 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game\Item;
-
-use Anneck\Game\Action\ScoreOnePoint;
-use Doctrine\Common\Collections\ArrayCollection;
+namespace Anneck\Game\Features;
 
 /**
- * The ShopProduct.
+ * The interface TurnBasedGameInterface adds the feature of a "turn" to the game which advances the game.
  *
- * @todo    Write PHPDoc for this class!
+ * @todo    Write PHPDoc for this interface!
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class ShopProduct extends AbstractItem
+interface TurnBasedFeature
 {
     /**
-     * @return ArrayCollection
+     * @return mixed
      */
-    public function getAvailableActions()
-    {
-        $actionList = new ArrayCollection();
-        $actionList->add(new ScoreOnePoint());
+    public function nextTurn();
 
-        return $actionList;
-    }
+    /**
+     * @return mixed
+     */
+    public function getTurn();
 }

@@ -5,34 +5,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 04.03.15, 12:43 by 4nn3ck
+ * Created at 18.03.15, 09:46 by 4nn3ck
  * ************************************************************************
  */
 
-namespace Anneck\Game\Item;
-
-use Anneck\Game\Action\ScoreOnePoint;
-use Doctrine\Common\Collections\ArrayCollection;
+namespace Anneck\Game\Exception;
 
 /**
- * The ShopProduct.
- *
- * @todo    Write PHPDoc for this class!
+ * The GameFeatureMissingException is thrown when the game engine or an action is using a feature the game interface
+ * does not provide!
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class ShopProduct extends AbstractItem
+class GameFeatureMissingException extends GameException
 {
-    /**
-     * @return ArrayCollection
-     */
-    public function getAvailableActions()
-    {
-        $actionList = new ArrayCollection();
-        $actionList->add(new ScoreOnePoint());
-
-        return $actionList;
-    }
 }

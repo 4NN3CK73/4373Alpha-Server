@@ -14,10 +14,11 @@ namespace Anneck\Game\AlphaServerBundle\Services;
 use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\ActionInterface;
 use Anneck\Game\Configuration\WorldConfiguration;
-use Anneck\Game\Features\SingleScoreGameInterace;
-use Anneck\Game\Features\TurnBasedGameInterface;
+use Anneck\Game\Features\SingleScoreFeature;
+use Anneck\Game\Features\TurnBasedFeature;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
+use Anneck\Game\ItemInterface;
 use Anneck\Game\TestEngine;
 use Anneck\Game\TestGame;
 use Anneck\Game\World\DefaultWorld;
@@ -26,6 +27,8 @@ use Symfony\Bridge\Monolog\Logger;
 
 /**
  * The GameService is a manager for the unified use of a game and a game engine.
+ *
+ * The GameService holds the state of its ActionQueue, the TestGame and a DefaultWorld.
  *
  * @todo    Write PHPDoc for this class!
  *
@@ -41,6 +44,7 @@ class TestGameService
     private $actionQ;
     /**
      * Used to remember the game internally ...
+     *
      * @var GameInterface
      */
     private $game;
@@ -59,6 +63,18 @@ class TestGameService
     }
 
     /**
+     * Searches the game (register) for the specified game item and returns it.
+     *
+     * @param ItemInterface $item the item to look up.
+     *
+     * @return ItemInterface the item found or NULL.
+     */
+    public function getItem(ItemInterface $item)
+    {
+        return $item;
+    }
+
+    /**
      * @param ActionInterface $action
      *
      * @return bool
@@ -66,8 +82,8 @@ class TestGameService
     public function addAction(ActionInterface $action)
     {
         GameLogger::addToGameLog(
-            sprintf('Add action %s to running game %s', $action, $this->game)
-            , Logger::ALERT);
+            sprintf('Add action %s to running game %s', $action, $this->game), Logger::ALERT);
+
         return $this->actionQ->addAction($action);
     }
 
@@ -80,7 +96,8 @@ class TestGameService
     {
         // Build the game engine ...
         $gameEngine = new TestEngine();
-        $gameEngine->build($this->game, $this->actionQ);
+        $gameEngine->build($this->game);
+        $gameEngine->fuelWith($this->actionQ);
 
         // start it ...
         return $gameEngine->start();
@@ -91,20 +108,19 @@ class TestGameService
      *
      * @return string the game result in JSON
      */
-    public function getGameResult() {
-
+    public function getGameResult()
+    {
         $gameResult = new ArrayCollection();
 
-        $gameResult->set('Game-World:', (string)$this->game->getWorld());
+        $gameResult->set('Game-World:', (string) $this->game->getWorld());
 
-        if($this->game instanceof SingleScoreGameInterace) {
+        if ($this->game instanceof SingleScoreFeature) {
             $gameResult->set('Game-Score:', $this->game->getScore());
         }
-        if($this->game instanceof TurnBasedGameInterface) {
+        if ($this->game instanceof TurnBasedFeature) {
             $gameResult->set('Game-Turn:', $this->game->getTurn());
         }
+
         return json_encode($gameResult->toArray());
     }
-
-
 }

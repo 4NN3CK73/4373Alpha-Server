@@ -11,6 +11,7 @@
 
 namespace Anneck\Game\Action;
 
+use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\GameInterface;
 
 /**
@@ -31,7 +32,9 @@ class ScoreOnePoint extends AbstractAction
      */
     public function applyOn(GameInterface $game)
     {
-        $game->addScore(1);
+        if ($game instanceof SingleScoreFeature) {
+            $game->addScore(1);
+        }
 
         return true;
     }

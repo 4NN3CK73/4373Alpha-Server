@@ -35,19 +35,27 @@ interface RegisterInterface
      *
      * @param ItemInterface $item to register.
      *
-     * @return boolean true if registration was successful, else false.
+     * @return bool true if registration was successful, else false.
      */
     public function registerItem(ItemInterface $item);
+
     /**
      * Update an item.
      *
-     * @todo: Is that a real use case?
      *
-     * @param ItemInterface $item to update.
+     * @param ItemInterface $item     to update.
+     * @param array         $itemData
      *
-     * @return boolean true if update was successful, else false.
+     * @return bool true if update was successful, else false.
      */
-    public function updateItem(ItemInterface $item);
+    public function updateItem(ItemInterface $item, array $itemData);
+
+    /**
+     * @param ItemInterface $item
+     *
+     * @return mixed
+     */
+    public function getItemData(ItemInterface $item);
     /**
      * Remove an item from the register.
      *

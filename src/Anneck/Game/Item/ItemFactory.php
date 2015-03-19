@@ -25,45 +25,37 @@ use Anneck\Game\ItemInterface;
 class ItemFactory
 {
   /**
-   * @var GameInterface
-   */
-  private $game;
-
-  /**
-   * @param GameInterface $game
-   */
-  public function __construct(GameInterface $game)
-  {
-      $this->game = $game;
-  }
-
-  /**
    * Static factory method to create items for a game.
    *
-   * @param GameInterface $game
    * @param string        $itemIdentifier
    *
    * @return ItemInterface
    */
-  public static function createGameItem(GameInterface $game, $itemIdentifier)
+  public static function createGameItem($itemIdentifier, $itemName = '', GameInterface $game = null)
   {
-      $factory = new self($game);
+      $factory = new self();
 
-      return $factory->createItem($itemIdentifier);
+      return $factory->createItem($itemIdentifier, $itemName, $game);
   }
 
   /**
    * Creates a new item for the game and returns it.
    *
-   * @param $itemIdentifier string short class name of the item
+   * @param               $itemIdentifier string short class name of the item
+   * @param string        $itemName
+   * @param GameInterface $game
    *
    * @return ItemInterface the created item.
    */
-  public function createItem($itemIdentifier)
+  public function createItem($itemIdentifier, $itemName = '', GameInterface $game = null)
   {
-      //
       $itemClassName = 'Anneck\Game\Item\\'.$itemIdentifier;
-      $item = new $itemClassName($this->game);
+
+      if (!is_null($game)) {
+          $item = new $itemClassName($itemName, $game);
+      } else {
+          $item = new $itemClassName($itemName);
+      }
 
       return $item;
   }

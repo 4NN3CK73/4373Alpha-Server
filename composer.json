@@ -64,7 +64,7 @@
         ],
         "quality-build": [
           "php bin/phpmetrics --report-html=build/phpmetrics src/",
-          "php bin/phpunit",
+          "php bin/phpunit --coverage-clover=build/clover.xml --log-junit=build/junit.xml",
           "php bin/security-checker security:check",
           "php bin/php-cs-fixer fix src/"
         ]

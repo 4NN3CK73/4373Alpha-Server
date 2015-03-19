@@ -36,7 +36,7 @@ class ShopProductTest extends \PHPUnit_Framework_TestCase
     public function testShopProductApplyAction()
     {
         $game = new TestGame();
-        $shopItem = new ShopProduct($game);
+        $shopItem = new ShopProduct('Seife', $game);
         $shopItem->applyAction(new ScoreOnePoint());
     }
 }

@@ -12,6 +12,7 @@
 namespace Anneck\Game\Item;
 
 use Anneck\Game\ActionInterface;
+use Anneck\Game\Exception\GameException;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 use Anneck\Game\ItemInterface;
@@ -45,8 +46,9 @@ abstract class AbstractItem implements ItemInterface
     /**
      * @param GameInterface $game
      */
-    public function __construct(GameInterface $game)
+    public function __construct($itemName, GameInterface $game = null)
     {
+        $this->name = $itemName;
         $this->game = $game;
         $this->logger = new GameLogger();
     }
@@ -61,9 +63,17 @@ abstract class AbstractItem implements ItemInterface
 
     /**
      * @param ActionInterface $action
+     *
+     * @return bool|void
+     *
+     * @throws GameException
      */
     public function applyAction(ActionInterface $action)
     {
+        if (is_null($this->getGame())) {
+            throw new GameException('Game can not be null!');
+        }
+
         if ($this->isActionAvailable($action)) {
             $this->logger->addInfo('ApplyAction '.$action.' on '.$this);
             $action->applyOn($this->getGame());
@@ -75,6 +85,14 @@ abstract class AbstractItem implements ItemInterface
                 )
             );
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getGame()
+    {
+        return $this->game;
     }
 
     /**
@@ -92,15 +110,6 @@ abstract class AbstractItem implements ItemInterface
         }
 
         return false;
-        // return $this->getAvailableActions()->contains($action);
-    }
-
-    /**
-     * @return mixed
-     */
-    protected function getGame()
-    {
-        return $this->game;
     }
 
     /**
