@@ -12,9 +12,9 @@
 namespace Anneck\Game\Register;
 
 use Anneck\Game;
+use Anneck\Game\Exception\GameException;
 use Anneck\Game\GameLogger;
 use Anneck\Game\ItemInterface;
-use Anneck\Game\Player\Player;
 use Anneck\Game\RegisterInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -59,14 +59,50 @@ class Register implements RegisterInterface
     }
 
     /**
+     * Updates the item's meta data. If meta data key's are the same, the new values
+     * overwrite existing, hence update. If no meta data key exists it is created.
+     *
      * @param ItemInterface $item
+     * @param array         $itemData
      *
      * @return bool|void
+     *
+     * @throws GameException
      */
-    public function updateItem(ItemInterface $item)
+    public function updateItem(ItemInterface $item, array $itemData)
     {
-        $this->removeItem($item);
-        $this->registerItem($item);
+        if (!$this->hasItem($item)) {
+            throw new GameException('Item not registered!');
+        }
+        $currentData = $this->registryData->get($item->getName().'_DATA');
+        $mergedData = array_merge($currentData, $itemData);
+        $this->registryData->set($item->getName().'_DATA', $mergedData);
+
+        return true;
+    }
+
+    /**
+     * @param ItemInterface $item
+     *
+     * @return bool
+     */
+    public function hasItem(ItemInterface $item)
+    {
+        return $this->registryData->containsKey($item->getName());
+    }
+
+    /**
+     * @param ItemInterface $item
+     *
+     * @return mixed
+     */
+    public function getItemData(ItemInterface $item)
+    {
+        if (!$this->hasItem($item)) {
+            return [];
+        }
+
+        return $this->registryData->get($item->getName().'_DATA');
     }
 
     /**
@@ -96,17 +132,13 @@ class Register implements RegisterInterface
 
         $this->registryData->set($item->getName(), $item);
 
-        $this->registryData->set($item->getName().'_DATA', $item);
-    }
+        $itemData = [
+            'Name' => $item->getName(),
+            'Actions' => implode(', ', $item->getAvailableActions()->toArray()),
+            'Uses' => 0,
+        ];
 
-    /**
-     * @param ItemInterface $item
-     *
-     * @return bool
-     */
-    public function hasItem(ItemInterface $item)
-    {
-        return $this->registryData->containsKey($item->getName());
+        $this->registryData->set($item->getName().'_DATA', $itemData);
     }
 
     /**

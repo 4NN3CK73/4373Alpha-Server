@@ -12,9 +12,9 @@
 namespace Anneck\Game;
 
 use Anneck\Game\Configuration\WorldConfiguration;
-use Anneck\Game\Item\Shop;
-use Anneck\Game\World\DefaultWorld;
+use Anneck\Game\Item\ItemFactory;
 use Anneck\Game\Register\Register;
+use Anneck\Game\World\DefaultWorld;
 
 /**
  * The TestGameTest the first, just to see where we are going ..
@@ -43,7 +43,7 @@ class TestGameTest extends \PHPUnit_Framework_TestCase
         $game->addScore(1);
         self::assertEquals($game->getScore(), 1);
 
-        $gameItem = new Shop($game);
+        $gameItem = ItemFactory::createGameItem('Shop', 'Flash Shop', $game);
 
         $game->addItemToRegister($gameItem);
 
@@ -61,5 +61,30 @@ class TestGameTest extends \PHPUnit_Framework_TestCase
 //        self::assertTrue($register->hasItem($shopProductCreatedByTurn));
 
         $game->safe();
+    }
+
+    public function testItemMetaDataSimple()
+    {
+        $game = new TestGame();
+        $worldConfiguration = new WorldConfiguration();
+        $world = new DefaultWorld();
+        $world->configure($worldConfiguration);
+
+        $register = new Register();
+
+        $game->setWorld($world);
+        $game->setRegister($register);
+
+        $gameItem = ItemFactory::createGameItem('Shop', 'John\'s Shop', $game);
+        $game->addItemToRegister($gameItem);
+
+        $gameItemData = $game->getItemData($gameItem);
+        $testDataArray = [
+            'Name' => 'John\'s Shop',
+            'Actions' => 'CreateItem',
+            'Uses' => 0
+        ];
+        static::assertEquals($testDataArray, $gameItemData);
+
     }
 }

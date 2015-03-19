@@ -14,7 +14,7 @@ namespace Anneck\Services;
 use Anneck\Game\Action\CreateItem;
 use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\AlphaServerBundle\Services\TestGameService;
-use Anneck\Game\Item\Shop;
+use Anneck\Game\Item\ItemFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -70,7 +70,7 @@ class TestGameServiceTest extends KernelTestCase
         );
         static::assertTrue(static::$service->run());
 
-        $item = static::$service->getItem(new Shop());
+        $item = static::$service->getItem(ItemFactory::createGameItem('Shop'));
         $actions = $item->getAvailableActions()->toArray();
         $action = $actions[0]; // @todo: this is just the test, but still think about the API
 

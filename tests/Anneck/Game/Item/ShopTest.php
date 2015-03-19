@@ -39,7 +39,7 @@ class ShopTest extends \PHPUnit_Framework_TestCase
     {
         $game = new TestGame();
         static::assertNotNull($game);
-        $shopItem = new Shop($game);
+        $shopItem = new Shop('Gittis lädchen', $game);
         static::assertNotNull($shopItem);
         $action = new ScoreOnePoint();
         static::assertNotNull($action);
@@ -49,7 +49,7 @@ class ShopTest extends \PHPUnit_Framework_TestCase
     public function testShopApplyWrongAction()
     {
         $game = new TestGame();
-        $shopItem = new ShopProduct($game);
+        $shopItem = new ShopProduct('Bananas', $game);
         $shopItem->applyAction(new CreateItem('ShopProduct'));
     }
 }

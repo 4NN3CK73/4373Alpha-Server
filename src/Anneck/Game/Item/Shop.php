@@ -26,12 +26,17 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Shop extends AbstractItem
 {
+    private $actionList;
     /**
+     * @param               $itemName
      * @param GameInterface $game
      */
-    public function __construct(GameInterface $game = null)
+    public function __construct($itemName, GameInterface $game = null)
     {
-        parent::__construct($game);
+        parent::__construct($itemName, $game);
+
+        $this->actionList = new ArrayCollection();
+        $this->actionList->add(new CreateItem('ShopProduct'));
     }
 
     /**
@@ -39,9 +44,6 @@ class Shop extends AbstractItem
      */
     public function getAvailableActions()
     {
-        $actionList = new ArrayCollection();
-        $actionList->add(new CreateItem('ShopProduct'));
-
-        return $actionList;
+        return $this->actionList;
     }
 }

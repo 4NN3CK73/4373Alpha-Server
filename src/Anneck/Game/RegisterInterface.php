@@ -11,7 +11,6 @@
 
 namespace Anneck\Game;
 
-use Anneck\Game\Player\Player;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -43,13 +42,20 @@ interface RegisterInterface
     /**
      * Update an item.
      *
-     * @todo: Is that a real use case?
      *
-     * @param ItemInterface $item to update.
+     * @param ItemInterface $item     to update.
+     * @param array         $itemData
      *
-     * @return boolean true if update was successful, else false.
+     * @return bool true if update was successful, else false.
      */
-    public function updateItem(ItemInterface $item);
+    public function updateItem(ItemInterface $item, array $itemData);
+
+    /**
+     * @param ItemInterface $item
+     *
+     * @return mixed
+     */
+    public function getItemData(ItemInterface $item);
     /**
      * Remove an item from the register.
      *

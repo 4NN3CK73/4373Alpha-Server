@@ -42,10 +42,18 @@ interface ItemRegisterFeature
 
     /**
      * @param ItemInterface $gameItem
+     * @param array         $itemData
      *
      * @return mixed
      */
-    public function updateItem(ItemInterface $gameItem);
+    public function updateItem(ItemInterface $gameItem, array $itemData);
+
+    /**
+     * @param ItemInterface $gameItem
+     *
+     * @return array
+     */
+    public function getItemData(ItemInterface $gameItem);
 
     /**
      * @param ItemInterface $gameItem

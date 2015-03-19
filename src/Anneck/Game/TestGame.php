@@ -143,10 +143,20 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
      *
      * @return mixed|void
      */
-    public function updateItem(ItemInterface $gameItem)
+    public function updateItem(ItemInterface $gameItem, array $itemData)
     {
         $this->logger->addInfo('updateItem: '.$gameItem);
-        $this->register->updateItem($gameItem);
+        $this->register->updateItem($gameItem, $itemData);
+    }
+
+    /**
+     * @param ItemInterface $gameItem
+     *
+     * @return array
+     */
+    public function getItemData(ItemInterface $gameItem)
+    {
+        return $this->register->getItemData($gameItem);
     }
 
     /**
@@ -268,7 +278,15 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
      */
     public function getItems()
     {
-        return $this->register->getRegistryData();
+        // We need to filter since we have item data in the register too.
+        $returnCol = new ArrayCollection();
+        foreach ($this->register->getRegistryData() as $data) {
+            if ($data instanceof ItemInterface) {
+                $returnCol->add($data);
+            }
+        }
+
+        return $returnCol;
     }
 
     /**
