@@ -11,6 +11,7 @@
 
 namespace Anneck\Game;
 
+use Anneck\Game\Features\CreditsFeature;
 use Anneck\Game\Features\PlayerItemRegisterFeature;
 use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\Features\TurnBasedFeature;
@@ -26,7 +27,7 @@ use Doctrine\Common\Collections\Collection;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFeature, SingleScoreFeature
+class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFeature, SingleScoreFeature, CreditsFeature
 {
     /**
      * @var WorldInterface
@@ -44,6 +45,10 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
      * @var int
      */
     private $score  = 0;
+    /**
+     * @var float
+     */
+    private $credits = 500.00;
     /**
      * @var int
      */
@@ -264,5 +269,24 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
     public function getItems()
     {
         return $this->register->getRegistryData();
+    }
+
+    /**
+     * @param $credits
+     */
+    public function addCredits($credits)
+    {
+
+        $testDebit = ($this->credits + $credits);
+        GameLogger::addToGameLog('TestDebit: ' . $testDebit . ', credits: ' . $this->getCredits());
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCredits()
+    {
+        return $this->credits;
     }
 }

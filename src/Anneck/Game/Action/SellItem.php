@@ -40,7 +40,7 @@ class SellItem extends AbstractAction
     public function applyOn(GameInterface $game)
     {
         if (!$game instanceof ItemRegisterFeature) {
-            $this->throwFeatureMissingException($game);
+            $this->throwFeatureMissingException($game, 'ItemRegisterFeature');
         }
     }
 }

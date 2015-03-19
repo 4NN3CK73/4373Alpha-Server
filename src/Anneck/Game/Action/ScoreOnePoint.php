@@ -25,6 +25,7 @@ use Anneck\Game\GameInterface;
  */
 class ScoreOnePoint extends AbstractAction
 {
+
     /**
      * @param GameInterface $game
      *

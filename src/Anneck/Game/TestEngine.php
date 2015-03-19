@@ -151,14 +151,12 @@ class TestEngine implements EngineInterface
 
         /** @var ItemInterface $item */
         foreach ($allItems as $item) {
-            GameLogger::addToGameLog('Item:' . $item);
+            GameLogger::addToGameLog('Item:'.$item);
             $itemActions = $item->getAvailableActions();
-            foreach($itemActions as $action) {
+            foreach ($itemActions as $action) {
                 $allItemActions->add($action);
-                GameLogger::addToGameLog('ItemActions:' . $action);
+                GameLogger::addToGameLog('ItemActions:'.$action);
             }
-
-
         }
 
         return $allItemActions;
@@ -187,7 +185,7 @@ class TestEngine implements EngineInterface
             throw new GameException('The Engine has not been build, can not start!');
         }
         if (!$this->isFueld) {
-            throw new GameException('The Engine has not been fueld with player actions, can not start!');
+            throw new GameException('The Engine has not been fueld with actions, can not start!');
         }
         // Process the action queue ...
         $this->processActionQ();
@@ -217,7 +215,7 @@ class TestEngine implements EngineInterface
     }
 
     /**
-     * @todo: write phpdoc!
+     * Helper method to process the current actionQ and apply each action onto the game.
      */
     private function processActionQ()
     {
@@ -225,14 +223,22 @@ class TestEngine implements EngineInterface
             throw new GameException('Process ActionQ failed, ActionQ is NULL!!');
         }
 
-        // Process all actions ...
+        // Get all actions ...
         $actions = $this->actionQ->getIterator();
 
+        // Process all actions ...
         /** @var ActionInterface $action */
         foreach ($actions as $action) {
-            $action->applyOn($this->game);
             GameLogger::addToGameLog(
-                sprintf('Apply action %s on game %s', $action, $this->game),
+                sprintf('>>> [Apply] action %s on game %s', $action, $this->game),
+                GameLogger::INFO
+            );
+
+            // let the action change the game ...
+            $action->applyOn($this->game);
+
+            GameLogger::addToGameLog(
+                '<<< [Apply]',
                 GameLogger::INFO
             );
         }

@@ -22,11 +22,10 @@ use Anneck\Game\Player\Player;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestGameRunCreation extends \PHPUnit_Framework_TestCase
+class TestGameRunCreationTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * It all starts with a player in a game world ...
-     * The player chooses one of his available actions ...
+     * This test simply takes all actions available in the game and executes them.
      */
     public function testPlayerActions()
     {
@@ -35,7 +34,7 @@ class TestGameRunCreation extends \PHPUnit_Framework_TestCase
         // ... the engine is build ... using a TestGame ...
         $testGame = new TestGame();
         $testGame->addItemToRegister(ItemFactory::createGameItem('Shop'));
-        // We need a player to test player actions ...
+        // We put a Player in
         $testPlayer = new Player('Flash Gordon');
         // ... tell the game about the player ...
         $testGame->setPlayer($testPlayer);

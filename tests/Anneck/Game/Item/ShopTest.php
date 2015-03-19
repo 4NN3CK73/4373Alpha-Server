@@ -38,8 +38,12 @@ class ShopTest extends \PHPUnit_Framework_TestCase
     public function testShopApplyAction()
     {
         $game = new TestGame();
+        static::assertNotNull($game);
         $shopItem = new Shop($game);
-        $shopItem->applyAction(new ScoreOnePoint());
+        static::assertNotNull($shopItem);
+        $action = new ScoreOnePoint();
+        static::assertNotNull($action);
+        $shopItem->applyAction($action);
     }
 
     public function testShopApplyWrongAction()
