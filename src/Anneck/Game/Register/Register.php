@@ -80,6 +80,7 @@ class Register implements RegisterInterface
             sprintf('Remove %s from %s', $item, $this)
         );
         $this->registryData->remove($item->getName());
+        $this->registryData->remove($item->getName().'_DATA');
     }
 
     /**
@@ -94,31 +95,8 @@ class Register implements RegisterInterface
         );
 
         $this->registryData->set($item->getName(), $item);
-    }
 
-    /**
-     * Registers an item and associates it to a player.
-     *
-     * @param ItemInterface $item
-     * @param Player        $player
-     *
-     * @return bool true if registration was successful, else false.
-     */
-    public function registerPlayerItem(ItemInterface $item, Player $player)
-    {
-        $playerItems = $this->registryData->get($player->getName());
-        if (is_null($playerItems)) {
-            // nothing registered yet ...
-            // add the first item to a new collection ..
-            $playerItems = new ArrayCollection($item->getName(), $item);
-            // add the player items to the registry using his playerName
-            $this->registryData->set($player->getName(), $playerItems);
-        } else {
-            // we have playerItems, add the new one ..
-            $playerItems->set($item->getName(), $item);
-            // and re-set it in the registry ...
-            $this->registryData->set($player->getName(), $playerItems);
-        }
+        $this->registryData->set($item->getName().'_DATA', $item);
     }
 
     /**

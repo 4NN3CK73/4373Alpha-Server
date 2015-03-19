@@ -41,15 +41,6 @@ interface RegisterInterface
     public function registerItem(ItemInterface $item);
 
     /**
-     * Registers an item and associates it to a player.
-     *
-     * @param ItemInterface $item
-     * @param Player        $player
-     *
-     * @return bool true if registration was successful, else false.
-     */
-    public function registerPlayerItem(ItemInterface $item, Player $player);
-    /**
      * Update an item.
      *
      * @todo: Is that a real use case?
