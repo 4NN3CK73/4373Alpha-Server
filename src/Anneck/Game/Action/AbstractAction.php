@@ -106,10 +106,8 @@ abstract class AbstractAction implements ActionInterface
         // Log the error ...
         GameLogger::addToGameLog($errorString, GameLogger::ERROR);
         // Create the exception ...
-        $gameExc = new GameFeatureMissingException(
+        throw new GameFeatureMissingException(
           $errorString
         );
-        // throw it ...
-        throw $gameExc;
     }
 }
