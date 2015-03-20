@@ -25,21 +25,20 @@ use Anneck\Game\ItemInterface;
  */
 class ItemFactory
 {
-    /**
-     * Static factory method to create items for a game.
-     *
-     * @param string        $itemIdentifier
-     *
-     * @param string        $itemName
-     *
-     * @param GameInterface $game
-     *
-     * @return ItemInterface
-     * @throws GameException
-     */
+  /**
+   * Static factory method to create items for a game.
+   *
+   * @param string        $itemIdentifier
+   * @param string        $itemName
+   * @param GameInterface $game
+   *
+   * @return ItemInterface
+   *
+   * @throws GameException
+   */
   public static function createGameItem($itemIdentifier, $itemName = '', GameInterface $game)
   {
-      if(is_null($game)) {
+      if (is_null($game)) {
           throw new GameException('Failed to create item without game!');
       }
       $factory = new self();
@@ -47,16 +46,17 @@ class ItemFactory
       return $factory->createItem($itemIdentifier, $itemName, $game);
   }
 
-    /**
-     * Creates a new item for the game and returns it.
-     *
-     * @param               $itemIdentifier string short class name of the item
-     * @param string        $itemName
-     * @param GameInterface $game
-     *
-     * @return ItemInterface the created item.
-     * @throws GameException
-     */
+  /**
+   * Creates a new item for the game and returns it.
+   *
+   * @param               $itemIdentifier string short class name of the item
+   * @param string        $itemName
+   * @param GameInterface $game
+   *
+   * @return ItemInterface the created item.
+   *
+   * @throws GameException
+   */
   public function createItem($itemIdentifier, $itemName = '', GameInterface $game = null)
   {
       if (is_null($game)) {

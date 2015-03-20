@@ -14,7 +14,6 @@ namespace Anneck\Services;
 use Anneck\Game\Action\CreateItem;
 use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\AlphaServerBundle\Services\TestGameService;
-use Anneck\Game\Item\ItemFactory;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**

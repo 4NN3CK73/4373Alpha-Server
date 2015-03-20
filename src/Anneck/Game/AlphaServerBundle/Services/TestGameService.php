@@ -71,13 +71,14 @@ class TestGameService
      * @param $itemName
      *
      * @return ItemInterface|bool
+     *
      * @throws GameException
      */
     public function getItem($itemClass, $itemName)
     {
         $searchItem = ItemFactory::createGameItem($itemClass, $itemName, $this->game);
 
-        if($this->game->hasItem($searchItem)) {
+        if ($this->game->hasItem($searchItem)) {
             return $this->game->getItem($searchItem);
         };
 
