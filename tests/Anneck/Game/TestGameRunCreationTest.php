@@ -33,7 +33,7 @@ class TestGameRunCreationTest extends \PHPUnit_Framework_TestCase
         $gameEngine = new TestEngine();
         // ... the engine is build ... using a TestGame ...
         $testGame = new TestGame();
-        $testGame->addItemToRegister(ItemFactory::createGameItem('Shop'));
+        $testGame->addItemToRegister(ItemFactory::createGameItem('Shop', 'My Shop', $testGame));
         // We put a Player in
         $testPlayer = new Player('Flash Gordon');
         // ... tell the game about the player ...

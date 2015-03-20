@@ -34,12 +34,15 @@ class CreateItem extends AbstractAction
      */
     private $itemUUID;
 
+    private $itemName;
+
     /**
      * @param string $UUID the unique ID of the Item to be created.
      */
-    public function __construct($UUID)
+    public function __construct($UUID, $name = '-default-')
     {
         $this->itemUUID      = $UUID;
+        $this->itemName      = $name;
         $this->actionCredits = -250.99;
         $this->actionScore   = 5;
     }
@@ -58,7 +61,7 @@ class CreateItem extends AbstractAction
             $this->throwFeatureMissingException($game, 'ItemRegisterFeature');
         }
         // Create the item using the itemFactory ..
-        $newItem = ItemFactory::createGameItem($this->itemUUID);
+        $newItem = ItemFactory::createGameItem($this->itemUUID, $this->itemName, $game);
         // "Creating" an item in the game is actually putting it into the register.
         $game->addItemToRegister($newItem);
 

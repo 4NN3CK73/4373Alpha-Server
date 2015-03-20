@@ -11,6 +11,7 @@
 
 namespace Anneck\Game\Item;
 
+use Anneck\Game\Exception\GameException;
 use Anneck\Game\GameInterface;
 use Anneck\Game\ItemInterface;
 
@@ -24,38 +25,45 @@ use Anneck\Game\ItemInterface;
  */
 class ItemFactory
 {
-  /**
-   * Static factory method to create items for a game.
-   *
-   * @param string        $itemIdentifier
-   *
-   * @return ItemInterface
-   */
-  public static function createGameItem($itemIdentifier, $itemName = '', GameInterface $game = null)
+    /**
+     * Static factory method to create items for a game.
+     *
+     * @param string        $itemIdentifier
+     *
+     * @param string        $itemName
+     *
+     * @param GameInterface $game
+     *
+     * @return ItemInterface
+     * @throws GameException
+     */
+  public static function createGameItem($itemIdentifier, $itemName = '', GameInterface $game)
   {
+      if(is_null($game)) {
+          throw new GameException('Failed to create item without game!');
+      }
       $factory = new self();
 
       return $factory->createItem($itemIdentifier, $itemName, $game);
   }
 
-  /**
-   * Creates a new item for the game and returns it.
-   *
-   * @param               $itemIdentifier string short class name of the item
-   * @param string        $itemName
-   * @param GameInterface $game
-   *
-   * @return ItemInterface the created item.
-   */
+    /**
+     * Creates a new item for the game and returns it.
+     *
+     * @param               $itemIdentifier string short class name of the item
+     * @param string        $itemName
+     * @param GameInterface $game
+     *
+     * @return ItemInterface the created item.
+     * @throws GameException
+     */
   public function createItem($itemIdentifier, $itemName = '', GameInterface $game = null)
   {
-      $itemClassName = 'Anneck\Game\Item\\'.$itemIdentifier;
-
-      if (!is_null($game)) {
-          $item = new $itemClassName($itemName, $game);
-      } else {
-          $item = new $itemClassName($itemName);
+      if (is_null($game)) {
+          throw new GameException('Failed to create item without game!');
       }
+      $itemClassName = 'Anneck\Game\Item\\'.$itemIdentifier;
+      $item = new $itemClassName($itemName, $game);
 
       return $item;
   }

@@ -63,14 +63,14 @@ class TestGameServiceTest extends KernelTestCase
     public function testFirstGameServiceCreateProductAction()
     {
         $action = new CreateItem(
-            'Shop'
+            'Shop', 'My Shop'
         );
         static::$service->addAction(
             $action
         );
         static::assertTrue(static::$service->run());
 
-        $item = static::$service->getItem(ItemFactory::createGameItem('Shop'));
+        $item = static::$service->getItem('Shop', 'My Shop');
         $actions = $item->getAvailableActions()->toArray();
         $action = $actions[0]; // @todo: this is just the test, but still think about the API
 

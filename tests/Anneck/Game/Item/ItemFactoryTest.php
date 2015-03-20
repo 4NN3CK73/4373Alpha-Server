@@ -35,9 +35,9 @@ class ItemFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $game = new TestGame();
         $itemFactory = new ItemFactory($game);
-        $gameItemShop = $itemFactory->createItem('Shop');
-        $gameItemShopProduct = $itemFactory->createItem('ShopProduct');
-        $gameItemStatic = ItemFactory::createGameItem('Shop');
+        $gameItemShop = $itemFactory->createItem('Shop', 'My Shop', $game);
+        $gameItemShopProduct = $itemFactory->createItem('ShopProduct', 'Ferrari', $game);
+        $gameItemStatic = ItemFactory::createGameItem('Shop', 'My Shop', $game);
 
         self::assertNotNull($gameItemStatic);
         self::assertNotNull($gameItemShop);

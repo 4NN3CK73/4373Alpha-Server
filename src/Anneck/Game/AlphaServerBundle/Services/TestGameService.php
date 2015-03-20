@@ -14,10 +14,12 @@ namespace Anneck\Game\AlphaServerBundle\Services;
 use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\ActionInterface;
 use Anneck\Game\Configuration\WorldConfiguration;
+use Anneck\Game\Exception\GameException;
 use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\Features\TurnBasedFeature;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
+use Anneck\Game\Item\ItemFactory;
 use Anneck\Game\ItemInterface;
 use Anneck\Game\TestEngine;
 use Anneck\Game\TestGame;
@@ -65,13 +67,21 @@ class TestGameService
     /**
      * Searches the game (register) for the specified game item and returns it.
      *
-     * @param ItemInterface $item the item to look up.
+     * @param $itemClass
+     * @param $itemName
      *
-     * @return ItemInterface the item found or NULL.
+     * @return ItemInterface|bool
+     * @throws GameException
      */
-    public function getItem(ItemInterface $item)
+    public function getItem($itemClass, $itemName)
     {
-        return $item;
+        $searchItem = ItemFactory::createGameItem($itemClass, $itemName, $this->game);
+
+        if($this->game->hasItem($searchItem)) {
+            return $this->game->getItem($searchItem);
+        };
+
+        return false;
     }
 
     /**
@@ -90,7 +100,7 @@ class TestGameService
     /**
      * @return bool
      *
-     * @throws \Anneck\Game\Exception\GameException
+     * @throws GameException
      */
     public function run()
     {
