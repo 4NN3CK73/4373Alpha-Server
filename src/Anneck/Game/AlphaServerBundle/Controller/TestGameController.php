@@ -16,12 +16,14 @@ use FOS\RestBundle\Controller\FOSRestController;
  */
 class TestGameController extends FOSRestController
 {
+    const ALPHASERVER_TESTGAME = 'alphaserver.testgame';
+
     /**
      * @View()
      */
     public function indexAction()
     {
-        $runResult = $this->get('alphaserver.testgame')->run();
+        $runResult = $this->get(self::ALPHASERVER_TESTGAME)->run();
 
         return $runResult;
     }
@@ -30,10 +32,10 @@ class TestGameController extends FOSRestController
      */
     public function runAction()
     {
-        $runResult = $this->get('alphaserver.testgame')->run();
+        $runResult = $this->get(self::ALPHASERVER_TESTGAME)->run();
 
         if ($runResult) {
-            return $this->get('alphaserver.testgame')->getGameResult();
+            return $this->get(self::ALPHASERVER_TESTGAME)->getGameResult();
         }
 
         return $runResult;
