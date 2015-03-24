@@ -152,7 +152,7 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
     /**
      * @param ItemInterface $gameItem
      *
-     * @return array
+     * @return Collection
      */
     public function getItemData(ItemInterface $gameItem)
     {

@@ -12,6 +12,7 @@
 namespace Anneck\Game\Item;
 
 use Anneck\Game\Action\CreateItem;
+use Anneck\Game\Exception\GameException;
 use Anneck\Game\GameInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -26,17 +27,20 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Shop extends AbstractItem
 {
-    private $actionList;
+    private $actionManager;
+
     /**
-     * @param               $itemName
+     * @param string        $itemName
      * @param GameInterface $game
+     *
+     * @throws GameException
      */
-    public function __construct($itemName, GameInterface $game = null)
+    public function __construct($itemName, GameInterface $game)
     {
         parent::__construct($itemName, $game);
 
-        $this->actionList = new ArrayCollection();
-        $this->actionList->add(new CreateItem('ShopProduct'));
+        $this->actionManager = new ActionManager($game);
+        $this->actionManager->add(new CreateItem('ShopProduct'));
     }
 
     /**
@@ -44,6 +48,6 @@ class Shop extends AbstractItem
      */
     public function getAvailableActions()
     {
-        return $this->actionList;
+        return $this->actionManager->getActionList();
     }
 }

@@ -27,7 +27,7 @@ class ShopTest extends \PHPUnit_Framework_TestCase
     public function testSpecification()
     {
         $game = new TestGame();
-        $shopItem = new Shop($game);
+        $shopItem = new Shop('My Shop', $game);
         $actionCollection = $shopItem->getAvailableActions();
         if ($actionCollection->count() < 1) {
             self::fail('Shop has no actions!');

@@ -17,6 +17,7 @@ use Anneck\Game\GameLogger;
 use Anneck\Game\ItemInterface;
 use Anneck\Game\RegisterInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * The Register administrates game items.
@@ -94,15 +95,16 @@ class Register implements RegisterInterface
     /**
      * @param ItemInterface $item
      *
-     * @return mixed
+     * @return Collection
      */
     public function getItemData(ItemInterface $item)
     {
         if (!$this->hasItem($item)) {
-            return [];
+            return new ArrayCollection([]);
         }
-
-        return $this->registryData->get($item->getName().'_DATA');
+        $dataArray = $this->registryData->get($item->getName().'_DATA');
+        $itemDataCol = new ArrayCollection($dataArray);
+        return $itemDataCol;
     }
 
     /**

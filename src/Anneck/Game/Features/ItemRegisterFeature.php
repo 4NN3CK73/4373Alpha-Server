@@ -51,7 +51,7 @@ interface ItemRegisterFeature
     /**
      * @param ItemInterface $gameItem
      *
-     * @return array
+     * @return Collection
      */
     public function getItemData(ItemInterface $gameItem);
 

@@ -104,9 +104,7 @@ abstract class AbstractItem implements ItemInterface
             throw new GameFeatureMissingException('ItemRegisterFeature');
         }
 
-        $retCollection = new ArrayCollection($this->game->getItemData($this));
-
-        return $retCollection;
+        return $this->game->getItemData($this);
     }
 
     /**

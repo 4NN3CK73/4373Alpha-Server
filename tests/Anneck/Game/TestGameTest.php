@@ -78,7 +78,7 @@ class TestGameTest extends \PHPUnit_Framework_TestCase
         $gameItem = ItemFactory::createGameItem('Shop', 'John\'s Shop', $game);
         $game->addItemToRegister($gameItem);
 
-        $gameItemData = $game->getItemData($gameItem);
+        $gameItemData = $game->getItemData($gameItem)->toArray();
         $testDataArray = [
             'Name' => 'John\'s Shop',
             'Actions' => 'CreateItem',
