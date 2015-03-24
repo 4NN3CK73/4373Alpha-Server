@@ -11,6 +11,7 @@
 
 namespace Anneck\Game\Item;
 
+use Anneck\Game\Register\Register;
 use Anneck\Game\TestGame;
 
 /**
@@ -42,5 +43,20 @@ class ItemFactoryTest extends \PHPUnit_Framework_TestCase
         self::assertNotNull($gameItemStatic);
         self::assertNotNull($gameItemShop);
         self::assertNotNull($gameItemShopProduct);
+    }
+
+    public function testItemMetaData()
+    {
+        $game = new TestGame();
+        $metaData = array ('Foo' => 'Bar');
+        $itemFactory = new ItemFactory($game);
+        $item = $itemFactory->createItem('Shop', 'MyShop', $game);
+        $game->addItemToRegister($item);
+        $game->updateItem($item, $metaData);
+        $regItem = $game->getItem($item);
+        $metaDataFromItem = $regItem->getMetaData();
+        static::assertTrue($metaDataFromItem->containsKey('Foo'));
+        static::assertTrue($metaDataFromItem->get('Foo') == 'Bar');
+
     }
 }

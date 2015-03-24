@@ -246,6 +246,7 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
      */
     public function getItem(ItemInterface $gameItem)
     {
+
         return $this->register->getRegistryData()->get($gameItem->getName());
     }
 

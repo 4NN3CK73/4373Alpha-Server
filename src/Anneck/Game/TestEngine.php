@@ -199,7 +199,7 @@ class TestEngine implements EngineInterface
             $score = $this->game->getScore();
             $player = $this->game->getPlayer();
 
-            if ($player != null) { // this should only happen during development
+            if ($player !== null) { // this should only happen during development
 
                 $scoreManager = new GameScoreManager();
                 $scoreManager->addScore($player, $score);
