@@ -21,12 +21,12 @@ class DefaultController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction($game)
+    public function indexAction($game = null)
     {
         $this->get('alphaserver.testgame')->addAction(new ScoreOnePoint());
 
         $result = $this->get('alphaserver.testgame')->run();
 
-        return $this->render('AnneckGameAlphaServerBundle:Default:index.html.twig', ['Result:' => $result]);
+        return $this->render('AnneckGameAlphaServerBundle:Default:index.html.twig', ['Result' => $result]);
     }
 }
