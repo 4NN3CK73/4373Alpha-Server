@@ -66,6 +66,7 @@ class ItemFactory
         $itemClassName = 'Anneck\Game\Item\\'.$itemIdentifier;
         $item = new $itemClassName($itemName, $game);
         GameLogger::addToGameLog('ItemFactory->createItem('.$itemName.')');
+
         return $item;
     }
 }
