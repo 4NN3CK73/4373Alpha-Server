@@ -18,7 +18,6 @@ use Anneck\Game\Features\ItemRegisterFeature;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 use Anneck\Game\ItemInterface;
-use Anneck\Game\RegisterInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -96,11 +95,12 @@ abstract class AbstractItem implements ItemInterface
      * Returns the meta data of the item.
      *
      * @return Collection
+     *
      * @throws GameFeatureMissingException
      */
     public function getMetaData()
     {
-        if(!$this->game instanceof ItemRegisterFeature) {
+        if (!$this->game instanceof ItemRegisterFeature) {
             throw new GameFeatureMissingException('ItemRegisterFeature');
         }
 
