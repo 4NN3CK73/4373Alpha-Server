@@ -47,10 +47,10 @@ interface ItemInterface
 
     /**
      * Returns the meta data of the item.
+     *
      * @return Collection the meta data.
      */
     public function getMetaData();
-
 
     /**
      * Returns the string representation of this class.
