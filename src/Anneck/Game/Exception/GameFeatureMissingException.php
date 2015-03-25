@@ -24,7 +24,6 @@ use Anneck\Game\GameLogger;
  */
 class GameFeatureMissingException extends GameException
 {
-
     /**
      * @param string        $missingFeature
      * @param GameInterface $game
@@ -35,7 +34,7 @@ class GameFeatureMissingException extends GameException
         $refClass = new \ReflectionClass($game);
         $features = implode(', ', $refClass->getInterfaceNames());
         $errorString = sprintf(
-            '%s. It can only be applied onto a game with %s game feature!' .
+            '%s. It can only be applied onto a game with %s game feature!'.
             'The game %s has the following features %s',
             $msg,
             $missingFeature,

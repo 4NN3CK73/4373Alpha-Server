@@ -50,6 +50,4 @@ class Shop extends AbstractItem
     {
         return $this->actionManager->getActionCollection();
     }
-
-
 }

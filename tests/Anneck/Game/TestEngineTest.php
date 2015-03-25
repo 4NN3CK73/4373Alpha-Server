@@ -62,7 +62,6 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
         } catch (GameException $gameException) {
             self::fail($gameException->getMessage());
         }
-
     }
     public function testEnginePlayerActions()
     {
@@ -134,7 +133,6 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
         } catch (GameException $gameException) {
             // awesome!
         }
-
     }
 
     public function testEngineSpecificationsStartBeforeBuild()

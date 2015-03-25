@@ -264,13 +264,13 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
         $allIter = $this->register->getRegistryData()->getIterator();
 
         /** @var ItemInterface $item */
-        foreach($allIter as $item) {
-            if($item instanceof ItemInterface) {
+        foreach ($allIter as $item) {
+            if ($item instanceof ItemInterface) {
                 // get Item data ...
                 $iData = $this->register->getItemData($item);
                 // Only add if player name matches ...
-                if($iData->containsKey('Player')) {
-                    if($iData->get('Player') === $player->getName()) {
+                if ($iData->containsKey('Player')) {
+                    if ($iData->get('Player') === $player->getName()) {
                         $returnItems->add($item);
                     }
                 }

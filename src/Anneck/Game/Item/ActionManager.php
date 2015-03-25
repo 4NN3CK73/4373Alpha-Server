@@ -48,7 +48,7 @@ class ActionManager extends ArrayCollection
      */
     public function __construct(GameInterface $gameToUse)
     {
-        if(!$gameToUse instanceof ItemRegisterFeature) {
+        if (!$gameToUse instanceof ItemRegisterFeature) {
             throw new GameFeatureMissingException('The ActionManager could not be created!', 'ItemRegisterFeature', $gameToUse);
         }
 
@@ -61,11 +61,12 @@ class ActionManager extends ArrayCollection
      * @param mixed $value
      *
      * @return bool
+     *
      * @throws GameException
      */
     public function add($value)
     {
-        if(!$value instanceof ActionInterface) {
+        if (!$value instanceof ActionInterface) {
             throw new GameException('ActionManager add() requires ActionInterface!');
         }
         // This will insert the default maximumUses for the specified action!
@@ -75,19 +76,19 @@ class ActionManager extends ArrayCollection
     /**
      * Adds the action into the manager's internal data storage.
      *
-     * @param ActionInterface $action the action to add.
+     * @param ActionInterface $action      the action to add.
      * @param string          $maximumUses the number of uses for the item
      *
      * @return bool
-     * @internal param mixed $value
      *
+     * @internal param mixed $value
      */
     public function addGameAction(ActionInterface $action, $maximumUses = '*', $cooldown = '5s')
     {
         $actionUseData = [
             self::ACTION_KEY => $action,
             self::MAXIMUM_USES_KEY => $maximumUses,
-            self::COOLDOWN_TIME_KEY => $cooldown
+            self::COOLDOWN_TIME_KEY => $cooldown,
         ];
 
         return parent::add($actionUseData);
@@ -116,12 +117,12 @@ class ActionManager extends ArrayCollection
     public function getActionCollection()
     {
         $actionList = new ArrayCollection();
-        foreach($this->getIterator() as $actionUseData) {
+        foreach ($this->getIterator() as $actionUseData) {
             $action = $actionUseData[self::ACTION_KEY];
 
             $actionList->add($action);
         }
+
         return $actionList;
     }
-
 }

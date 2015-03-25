@@ -107,6 +107,7 @@ class Register implements RegisterInterface
         }
         $dataArray = $this->registryData->get($item->getName().'_DATA');
         $itemDataCol = new ArrayCollection($dataArray);
+
         return $itemDataCol;
     }
 

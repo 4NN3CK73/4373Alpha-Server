@@ -18,7 +18,6 @@ use Anneck\Game\Features\ItemRegisterFeature;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 use Anneck\Game\ItemInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
