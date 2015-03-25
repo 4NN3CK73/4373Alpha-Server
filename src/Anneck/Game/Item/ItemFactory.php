@@ -37,7 +37,7 @@ class ItemFactory
      *
      * @throws GameException
      */
-    public static function createGameItem($itemIdentifier, $itemName = '', GameInterface $game)
+    public static function createGameItem($itemIdentifier, $itemName = '', GameInterface $game = null)
     {
         if (is_null($game)) {
             throw new GameException('Failed to create item without game!');
