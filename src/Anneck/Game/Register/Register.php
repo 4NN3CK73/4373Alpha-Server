@@ -75,6 +75,9 @@ class Register implements RegisterInterface
         if (!$this->hasItem($item)) {
             throw new GameException('Item not registered!');
         }
+        GameLogger::addToGameLog(
+          sprintf('Update item %s with data %s', $item, json_encode($itemData))
+        );
         $currentData = $this->registryData->get($item->getName().'_DATA');
         $mergedData = array_merge($currentData, $itemData);
         $this->registryData->set($item->getName().'_DATA', $mergedData);
@@ -122,9 +125,11 @@ class Register implements RegisterInterface
     }
 
     /**
+     * Register the item.
+     *
      * @param ItemInterface $item
      *
-     * @return bool|void
+     * @return ItemInterface the item registered.
      */
     public function registerItem(ItemInterface $item)
     {
@@ -140,7 +145,11 @@ class Register implements RegisterInterface
             'Uses' => 0,
         ];
 
-        $this->registryData->set($item->getName().'_DATA', $itemData);
+        $itemDataKey = $item->getName().'_DATA';
+
+        $this->registryData->set($itemDataKey, $itemData);
+
+        return $this->registryData->get($item->getName());
     }
 
     /**

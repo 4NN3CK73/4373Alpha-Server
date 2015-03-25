@@ -32,6 +32,8 @@ class ActionManager extends ArrayCollection
 {
     const ACTION_KEY = 'Action';
     const MAXIMUM_USES_KEY = 'MaximumUses';
+    const COOLDOWN_TIME_KEY = 'CooldownTime';
+
     /**
      * @var GameInterface
      */
@@ -54,23 +56,6 @@ class ActionManager extends ArrayCollection
     }
 
     /**
-     * Adds the action into the manager's internal data storage.
-     *
-     * @param ActionInterface $action the action to add.
-     * @param string          $maximumUses the number of uses for the item
-     *
-     * @return bool
-     * @internal param mixed $value
-     *
-     */
-    public function addGameAction(ActionInterface $action, $maximumUses = '*')
-    {
-        $actionUseData = [self::ACTION_KEY => $action, self::MAXIMUM_USES_KEY => $maximumUses];
-
-        return parent::add($actionUseData);
-    }
-
-    /**
      * Dont use this method, use addAction instead!
      *
      * @param mixed $value
@@ -88,19 +73,40 @@ class ActionManager extends ArrayCollection
     }
 
     /**
+     * Adds the action into the manager's internal data storage.
+     *
+     * @param ActionInterface $action the action to add.
+     * @param string          $maximumUses the number of uses for the item
+     *
+     * @return bool
+     * @internal param mixed $value
+     *
+     */
+    public function addGameAction(ActionInterface $action, $maximumUses = '*', $cooldown = '5s')
+    {
+        $actionUseData = [
+            self::ACTION_KEY => $action,
+            self::MAXIMUM_USES_KEY => $maximumUses,
+            self::COOLDOWN_TIME_KEY => $cooldown
+        ];
+
+        return parent::add($actionUseData);
+    }
+
+    /**
      * @return ArrayCollection
      */
     public function getUsableActionList()
     {
         $useableActions = new ArrayCollection();
-
+/*
         if($this->game->hasItem($this)) {
             // we are in the register ...
             $itemData = $this->game->getItemData($this);
             $uses = $itemData->get('Uses');
 
         }
-
+*/
         return $useableActions;
     }
 
