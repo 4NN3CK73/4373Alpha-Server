@@ -65,7 +65,15 @@ abstract class AbstractAction implements ActionInterface
      */
     public function equals(ActionInterface $action)
     {
-        return $this->__toString() == $action->__toString();
+        return $this->hashcode() == $action->hashcode();
+    }
+
+    /**
+     * @return string hashcode
+     */
+    public function hashcode()
+    {
+        return spl_object_hash($this);
     }
 
     /**
@@ -78,13 +86,5 @@ abstract class AbstractAction implements ActionInterface
         $reClass = new \ReflectionClass($this);
 
         return $reClass->getShortName();
-    }
-
-    /**
-     * @return string hashcode
-     */
-    public function __hashcode()
-    {
-        return spl_object_hash($this);
     }
 }

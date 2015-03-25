@@ -42,7 +42,7 @@ interface ActionInterface
     /**
      * @return string hashcode
      */
-    public function __hashcode();
+    public function hashcode();
 
     /**
      * Compares for equality with another action.
