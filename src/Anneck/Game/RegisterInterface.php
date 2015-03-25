@@ -40,22 +40,23 @@ interface RegisterInterface
     public function registerItem(ItemInterface $item);
 
     /**
-     * Update an item.
+     * Update an item and return it.
      *
      *
      * @param ItemInterface $item     to update.
      * @param array         $itemData
      *
-     * @return bool true if update was successful, else false.
+     * @return ItemInterface the updated item.
      */
     public function updateItem(ItemInterface $item, array $itemData);
 
     /**
      * @param ItemInterface $item
      *
-     * @return mixed
+     * @return Collection
      */
     public function getItemData(ItemInterface $item);
+
     /**
      * Remove an item from the register.
      *
@@ -64,6 +65,7 @@ interface RegisterInterface
      * @return boolean true if removal was successful, else false.
      */
     public function removeItem(ItemInterface $item);
+
     /**
      * Searches the register for an item.
      *

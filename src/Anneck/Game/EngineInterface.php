@@ -47,7 +47,7 @@ interface EngineInterface
     public function getAvailablePlayerActions(Player $player);
 
     /**
-     * @return Collection a collection of actions available.
+     * @return Collection of actions available.
      */
     public function getAvailableActions();
 

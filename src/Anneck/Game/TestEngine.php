@@ -86,16 +86,16 @@ class TestEngine implements EngineInterface
         // The TestEngine requires a Game with Turns, Scores and Items with a Register
 
         if (!$testTurns = $this->game instanceof TurnBasedFeature) {
-            throw new GameException('Gamefeature missing: TurnBased!');
+            throw new GameFeatureMissingException('ValidateGameFeatures failed', 'TurnBased!', $this->game);
         }
         if (!$testScores = $this->game instanceof SingleScoreFeature) {
-            throw new GameException('Gamefeature missing: SingleScore!');
+            throw new GameFeatureMissingException('ValidateGameFeatures failed', 'SingleScore', $this->game);
         }
         if (!$testRegister = $this->game instanceof ItemRegisterFeature) {
-            throw new GameException('Gamefeature missing: ItemRegister!');
+            throw new GameFeatureMissingException('ValidateGameFeatures failed', 'ItemRegister!', $this->game);
         }
         if (!$testPlayerRegister = $this->game instanceof PlayerItemRegisterFeature) {
-            throw new GameFeatureMissingException('Gamefeature missing: PlayerItemRegister!');
+            throw new GameFeatureMissingException('ValidateGameFeatures failed', 'PlayerItemRegister!', $this->game);
         }
 
         return true;
@@ -115,7 +115,7 @@ class TestEngine implements EngineInterface
     public function getAvailablePlayerActions(Player $player)
     {
         if (!$this->game instanceof PlayerItemRegisterFeature) {
-            throw new GameFeatureMissingException('PlayerItemRegister is missing from game: '.$this->game);
+            throw new GameFeatureMissingException('Get available player actions.', 'PlayerItemRegister', $this->game);
         }
 
         $playerItems = $this->game->getPlayerItems($player);
@@ -143,7 +143,7 @@ class TestEngine implements EngineInterface
     public function getAvailableActions()
     {
         if (!$this->game instanceof ItemRegisterFeature) {
-            throw new GameFeatureMissingException('ItemRegister is missing from game: '.$this->game);
+            throw new GameFeatureMissingException('TestEngine could not use Register during getAvailableActions()', 'ItemRegisterFeature', $this->game);
         }
 
         $allItems = $this->game->getItems();
