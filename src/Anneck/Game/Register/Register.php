@@ -12,10 +12,12 @@
 namespace Anneck\Game\Register;
 
 use Anneck\Game;
+use Anneck\Game\ActionInterface;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\GameLogger;
 use Anneck\Game\ItemInterface;
 use Anneck\Game\RegisterInterface;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -151,6 +153,16 @@ class Register implements RegisterInterface
         $this->registryData->set($itemDataKey, $itemData);
 
         return $this->registryData->get($item->getName());
+    }
+
+    /**
+     * @param ActionInterface $action
+     * @param DateTime        $dateTime
+     *
+     * @return bool
+     */
+    public function registerActionUsage(ActionInterface $action, DateTime $dateTime)
+    {
     }
 
     /**

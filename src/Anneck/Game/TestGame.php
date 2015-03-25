@@ -17,6 +17,7 @@ use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\Features\TurnBasedFeature;
 use Anneck\Game\Player\Player;
 use Anneck\Game\Register\Register;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -136,6 +137,19 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
     {
         $this->logger->addInfo('addItemToRegister: '.$gameItem);
         $this->register->registerItem($gameItem);
+    }
+
+    /**
+     * @param ActionInterface $action
+     * @param DateTime        $dateTime
+     *
+     * @return bool
+     */
+    public function registerActionUsage(ActionInterface $action, DateTime $dateTime)
+    {
+        $this->logger->addInfo('registerActionUsage: '.$action);
+
+        return $this->register->registerActionUsage($action, $dateTime);
     }
 
     /**

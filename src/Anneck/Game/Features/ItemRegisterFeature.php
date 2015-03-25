@@ -11,8 +11,10 @@
 
 namespace Anneck\Game\Features;
 
+use Anneck\Game\ActionInterface;
 use Anneck\Game\ItemInterface;
 use Anneck\Game\RegisterInterface;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -39,6 +41,14 @@ interface ItemRegisterFeature
      * @return mixed
      */
     public function addItemToRegister(ItemInterface $gameItem);
+
+    /**
+     * @param ActionInterface $action
+     * @param DateTime        $param
+     *
+     * @return mixed
+     */
+    public function registerActionUsage(ActionInterface $action, DateTime $param);
 
     /**
      * @param ItemInterface $gameItem

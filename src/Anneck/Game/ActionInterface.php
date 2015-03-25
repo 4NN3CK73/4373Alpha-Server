@@ -40,6 +40,11 @@ interface ActionInterface
     public function __toString();
 
     /**
+     * @return string hashcode
+     */
+    public function __hashcode();
+
+    /**
      * Compares for equality with another action.
      *
      * @param ActionInterface $otherAction the other action to compare for equality with this one.

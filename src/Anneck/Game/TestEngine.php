@@ -19,6 +19,7 @@ use Anneck\Game\Features\PlayerItemRegisterFeature;
 use Anneck\Game\Features\SingleScoreFeature;
 use Anneck\Game\Features\TurnBasedFeature;
 use Anneck\Game\Player\Player;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -187,6 +188,7 @@ class TestEngine implements EngineInterface
         if (!$this->isFueld) {
             throw new GameException('The Engine has not been fueld with actions, can not start!');
         }
+
         // Process the action queue ...
         $this->processActionQ();
 
@@ -236,6 +238,11 @@ class TestEngine implements EngineInterface
 
             // let the action change the game ...
             $action->applyOn($this->game);
+
+            // register action use
+            if ($this->game instanceof ItemRegisterFeature) {
+                $this->game->registerActionUsage($action, new DateTime());
+            }
 
             GameLogger::addToGameLog(
                 '<<< [Apply]',

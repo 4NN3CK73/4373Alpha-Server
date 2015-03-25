@@ -12,9 +12,6 @@
 namespace Anneck\Game\Action;
 
 use Anneck\Game\ActionInterface;
-use Anneck\Game\Exception\GameFeatureMissingException;
-use Anneck\Game\GameInterface;
-use Anneck\Game\GameLogger;
 
 /**
  * The AbstractAction class serves all implementations as a base class.
@@ -84,30 +81,10 @@ abstract class AbstractAction implements ActionInterface
     }
 
     /**
-     * Helper method to throw a GameFeatureMissing exception.
-     *
-     * @param GameInterface $game           The game which is missing a feature interface.
-     * @param string        $missingFeature The missing feature interface.
-     *
-     * @throws GameFeatureMissingException The exception with a sane error message.
+     * @return string hashcode
      */
-    protected function throwFeatureMissingException(GameInterface $game, $missingFeature = '-default-')
+    public function __hashcode()
     {
-        // initialization ...
-        $refClass = new \ReflectionClass($game);
-        $features = implode(', ', $refClass->getInterfaceNames());
-        $errorString = sprintf(
-            'The CreateItem Action can only be applied onto a game with %s game feature!',
-            'The game %s has the following features %s',
-            $missingFeature,
-            $game,
-            $features
-        );
-        // Log the error ...
-        GameLogger::addToGameLog($errorString, GameLogger::ERROR);
-        // Create the exception ...
-        throw new GameFeatureMissingException(
-          $errorString
-        );
+        return spl_object_hash($this);
     }
 }

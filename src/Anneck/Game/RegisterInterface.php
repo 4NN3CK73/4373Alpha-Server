@@ -11,6 +11,7 @@
 
 namespace Anneck\Game;
 
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -38,6 +39,14 @@ interface RegisterInterface
      * @return bool true if registration was successful, else false.
      */
     public function registerItem(ItemInterface $item);
+
+    /**
+     * @param ActionInterface $action
+     * @param DateTime        $dateTime
+     *
+     * @return bool
+     */
+    public function registerActionUsage(ActionInterface $action, DateTime $dateTime);
 
     /**
      * Update an item and return it.
