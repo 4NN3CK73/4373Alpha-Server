@@ -40,7 +40,7 @@ class Shop extends AbstractItem
         parent::__construct($itemName, $game);
 
         $this->actionManager = new ActionManager($game);
-        $this->actionManager->add(new CreateItem('ShopProduct'));
+        $this->actionManager->addGameAction(new CreateItem('ShopProduct'), 1);
     }
 
     /**
@@ -48,6 +48,8 @@ class Shop extends AbstractItem
      */
     public function getAvailableActions()
     {
-        return $this->actionManager->getActionList();
+        return $this->actionManager->getActionCollection();
     }
+
+
 }

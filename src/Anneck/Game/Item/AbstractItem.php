@@ -66,6 +66,14 @@ abstract class AbstractItem implements ItemInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getUses()
+    {
+        return $this->game->getItemData($this)->get('Uses');
+    }
+
+    /**
      * @param ActionInterface $action
      *
      * @return bool|void
