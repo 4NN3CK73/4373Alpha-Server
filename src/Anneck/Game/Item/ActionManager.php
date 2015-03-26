@@ -77,9 +77,7 @@ class ActionManager extends ArrayCollection
      * Adds the action into the manager's internal data storage.
      *
      * @param ActionInterface $action      the action to add.
-     *
      * @param string          $maximumUses the number of uses for the item
-     *
      * @param string          $coolDown    the cron-tab like string to indicate cool down times, default "5s".
      *
      * @return bool true if added successfully.

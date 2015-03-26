@@ -94,7 +94,8 @@ class Register implements RegisterInterface
      *
      * @return bool true if the action is registered.
      */
-    public function hasAction(ActionInterface $action) {
+    public function hasAction(ActionInterface $action)
+    {
         return $this->registryData->containsKey($action->hashcode());
     }
 
@@ -180,13 +181,13 @@ class Register implements RegisterInterface
         $actionData = [
             'Action' => $action,
             'UseCounter' => 0,
-            'LastUseTime' => $dateTime
+            'LastUseTime' => $dateTime,
         ];
 
         // used is used to log the info correctly ..
         $used = 0;
         // (1) find the action and register the use if not there ...
-        if(!$this->hasAction($action)) {
+        if (!$this->hasAction($action)) {
             // (1.1) no action and therefor no use registered yet, so we do it ...
             $this->registryData->set($action->hashcode(), $actionData);
         }
@@ -198,14 +199,9 @@ class Register implements RegisterInterface
         // (1.3) update registry data
         $this->registryData->set($action->hashcode(), $actionDataToUpdate);
 
-
-
         GameLogger::addToGameLog(
             sprintf('RegisterActionUsage: %s on %s, used %s times now.', $action, $dateTime->format(DateTime::ATOM), $used)
         );
-        var_dump($this->registryData->toArray());
-        var_dump(json_encode($this->registryData->toArray()));
-
     }
 
     /**

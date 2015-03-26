@@ -72,7 +72,7 @@ class CreateItem extends AbstractAction
 
         // action credits
         if (!$game instanceof CreditsFeature) {
-            /** @noinspection PhpParamsInspection */
+            /* @noinspection PhpParamsInspection */
             throw new GameFeatureMissingException('addCredits failed', 'CreditsFeature', $game);
         }
         // Do the credits ...
@@ -80,7 +80,7 @@ class CreateItem extends AbstractAction
 
         // action score
         if (!$game instanceof SingleScoreFeature) {
-            /** @noinspection PhpParamsInspection */
+            /* @noinspection PhpParamsInspection */
             throw new GameFeatureMissingException('addScore failed', 'ScoreFeature', $game);
         }
         // Do the score ...
@@ -92,11 +92,10 @@ class CreateItem extends AbstractAction
         $shortName = parent::__toString();
         $itemUUID = $this->itemUUID;
         $targetItem = $this->itemName;
+
         return sprintf(
             '[%s]:%s(%s)',
             $shortName, $itemUUID, $targetItem
         );
     }
-
-
 }
