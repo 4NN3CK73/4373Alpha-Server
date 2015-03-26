@@ -77,18 +77,19 @@ class ActionManager extends ArrayCollection
      * Adds the action into the manager's internal data storage.
      *
      * @param ActionInterface $action      the action to add.
+     *
      * @param string          $maximumUses the number of uses for the item
      *
-     * @return bool
+     * @param string          $coolDown    the cron-tab like string to indicate cool down times, default "5s".
      *
-     * @internal param mixed $value
+     * @return bool true if added successfully.
      */
-    public function addGameAction(ActionInterface $action, $maximumUses = '*', $cooldown = '5s')
+    public function addGameAction(ActionInterface $action, $maximumUses = '*', $coolDown = '5s')
     {
         $actionUseData = [
             self::ACTION_KEY => $action,
             self::MAXIMUM_USES_KEY => $maximumUses,
-            self::COOLDOWN_TIME_KEY => $cooldown,
+            self::COOLDOWN_TIME_KEY => $coolDown,
         ];
 
         return parent::add($actionUseData);

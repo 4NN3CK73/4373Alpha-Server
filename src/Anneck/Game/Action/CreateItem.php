@@ -86,4 +86,17 @@ class CreateItem extends AbstractAction
         // Do the score ...
         $game->addScore($this->getActionScore());
     }
+
+    public function __toString()
+    {
+        $shortName = parent::__toString();
+        $itemUUID = $this->itemUUID;
+        $targetItem = $this->itemName;
+        return sprintf(
+            '[%s]:%s(%s)',
+            $shortName, $itemUUID, $targetItem
+        );
+    }
+
+
 }

@@ -88,9 +88,22 @@ class Register implements RegisterInterface
     }
 
     /**
-     * @param ItemInterface $item
+     * Returns true if the action is registered.
      *
-     * @return bool
+     * @param ActionInterface $action search for this.
+     *
+     * @return bool true if the action is registered.
+     */
+    public function hasAction(ActionInterface $action) {
+        return $this->registryData->containsKey($action->hashcode());
+    }
+
+    /**
+     * Returns true if the item is registered.
+     *
+     * @param ItemInterface $item search for this.
+     *
+     * @return bool true if the item is registered.
      */
     public function hasItem(ItemInterface $item)
     {
@@ -163,8 +176,36 @@ class Register implements RegisterInterface
      */
     public function registerActionUsage(ActionInterface $action, DateTime $dateTime)
     {
+        // The action data structure to use if no action use is registered yet.
+        $actionData = [
+            'Action' => $action,
+            'UseCounter' => 0,
+            'LastUseTime' => $dateTime
+        ];
 
-        // @todo: YEAH!!!
+        // used is used to log the info correctly ..
+        $used = 0;
+        // (1) find the action and register the use if not there ...
+        if(!$this->hasAction($action)) {
+            // (1.1) no action and therefor no use registered yet, so we do it ...
+            $this->registryData->set($action->hashcode(), $actionData);
+        }
+        // (1.2) get actionData
+        $actionDataToUpdate = $this->registryData->get($action->hashcode());
+        // (1.3) Update it, plus one use and the current time
+        $used = ++$actionDataToUpdate['UseCounter'];
+        $actionDataToUpdate['LastUseTime'] = $dateTime;
+        // (1.3) update registry data
+        $this->registryData->set($action->hashcode(), $actionDataToUpdate);
+
+
+
+        GameLogger::addToGameLog(
+            sprintf('RegisterActionUsage: %s on %s, used %s times now.', $action, $dateTime->format(DateTime::ATOM), $used)
+        );
+        var_dump($this->registryData->toArray());
+        var_dump(json_encode($this->registryData->toArray()));
+
     }
 
     /**

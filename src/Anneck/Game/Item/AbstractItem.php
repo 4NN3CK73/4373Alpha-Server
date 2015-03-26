@@ -150,4 +150,5 @@ abstract class AbstractItem implements ItemInterface
 
         return $reClass->getShortName();
     }
+
 }
