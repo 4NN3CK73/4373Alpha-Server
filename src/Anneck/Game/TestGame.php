@@ -194,8 +194,8 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
         $this->logger->addInfo(
             'safe('.$this->safeGame.')'
         );
-
-        return true; // TODO: Implement safe() method.
+        // TODO: Implement safe() method.
+        return true;
     }
 
     /**
@@ -283,10 +283,8 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
                 // get Item data ...
                 $iData = $this->register->getItemData($item);
                 // Only add if player name matches ...
-                if ($iData->containsKey('Player')) {
-                    if ($iData->get('Player') === $player->getName()) {
-                        $returnItems->add($item);
-                    }
+                if ($iData->get('Player') === $player->getName()) {
+                    $returnItems->add($item);
                 }
             }
         }
@@ -313,12 +311,12 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
     }
 
     /**
-     * @param $credits
+     * @param $creditsToAdd
      */
-    public function addCredits($credits)
+    public function addCredits($creditsToAdd)
     {
-        $testDebit = ($this->credits + $credits);
-        GameLogger::addToGameLog('TestDebit: '.$testDebit.', credits: '.$this->getCredits());
+        $testDebit = ($this->credits + $creditsToAdd);
+        GameLogger::addToGameLog('TestDebit: '.$testDebit.', creditsToAdd: '.$this->getCredits());
     }
 
     /**
