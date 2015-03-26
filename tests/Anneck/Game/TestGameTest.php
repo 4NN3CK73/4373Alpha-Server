@@ -81,7 +81,7 @@ class TestGameTest extends \PHPUnit_Framework_TestCase
         $gameItemData = $game->getItemData($gameItem)->toArray();
         $testDataArray = [
             'Name' => 'John\'s Shop',
-            'Actions' => 'CreateItem',
+            'Actions' => '[CreateItem]:ShopProduct(-default-)',
             'Uses' => 0,
         ];
         static::assertEquals($testDataArray, $gameItemData);
