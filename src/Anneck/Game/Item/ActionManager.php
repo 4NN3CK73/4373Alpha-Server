@@ -85,9 +85,9 @@ class ActionManager extends ArrayCollection
     public function addGameAction(ActionInterface $action, $maximumUses = '*', $coolDown = '5s')
     {
         $actionUseData = [
-            self::ACTION_KEY => $action,
-            self::MAXIMUM_USES_KEY => $maximumUses,
-            self::COOLDOWN_TIME_KEY => $coolDown,
+            static::ACTION_KEY => $action,
+            static::MAXIMUM_USES_KEY => $maximumUses,
+            static::COOLDOWN_TIME_KEY => $coolDown,
         ];
 
         return parent::add($actionUseData);
@@ -117,7 +117,7 @@ class ActionManager extends ArrayCollection
     {
         $actionList = new ArrayCollection();
         foreach ($this->getIterator() as $actionUseData) {
-            $action = $actionUseData[self::ACTION_KEY];
+            $action = $actionUseData[static::ACTION_KEY];
 
             $actionList->add($action);
         }

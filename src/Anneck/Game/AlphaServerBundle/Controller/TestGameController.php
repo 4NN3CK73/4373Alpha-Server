@@ -23,7 +23,7 @@ class TestGameController extends Controller
      */
     public function indexAction()
     {
-        $runResult = $this->get(self::ALPHASERVER_TESTGAME)->run();
+        $runResult = $this->get(static::ALPHASERVER_TESTGAME)->run();
 
         return ['Result' => $runResult];
     }
@@ -32,10 +32,10 @@ class TestGameController extends Controller
      */
     public function runAction()
     {
-        $runResult = $this->get(self::ALPHASERVER_TESTGAME)->run();
+        $runResult = $this->get(static::ALPHASERVER_TESTGAME)->run();
 
         if ($runResult) {
-            $gameResult = $this->get(self::ALPHASERVER_TESTGAME)->getGameResult();
+            $gameResult = $this->get(static::ALPHASERVER_TESTGAME)->getGameResult();
         }
 
         return ['Result' => $gameResult];
