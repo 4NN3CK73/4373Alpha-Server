@@ -69,6 +69,11 @@ abstract class AbstractItem implements ItemInterface
      */
     public function getUses()
     {
+        if(!$this->game instanceof ItemRegisterFeature) {
+            throw new GameFeatureMissingException(
+                'Get uses of Item', 'ItemRegisterFeature', $this->game
+            );
+        }
         return $this->game->getItemData($this)->get('Uses');
     }
 
@@ -108,7 +113,9 @@ abstract class AbstractItem implements ItemInterface
     public function getMetaData()
     {
         if (!$this->game instanceof ItemRegisterFeature) {
-            throw new GameFeatureMissingException('ItemRegisterFeature');
+            throw new GameFeatureMissingException(
+                'GetMetaData from Item', 'ItemRegisterFeature', $this->game
+            );
         }
 
         return $this->game->getItemData($this);
