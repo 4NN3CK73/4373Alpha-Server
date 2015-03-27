@@ -14,7 +14,7 @@ namespace Anneck\Game\Item;
 use Anneck\Game\ActionInterface;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\Exception\GameFeatureMissingException;
-use Anneck\Game\Features\ItemRegisterFeature;
+use Anneck\Game\Features\ItemRegisterFeatureInterface;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 use Anneck\Game\ItemInterface;
@@ -69,7 +69,7 @@ abstract class AbstractItem implements ItemInterface
      */
     public function getUses()
     {
-        if (!$this->game instanceof ItemRegisterFeature) {
+        if (!$this->game instanceof ItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException(
                 'Get uses of Item', 'ItemRegisterFeature', $this->game
             );
@@ -113,7 +113,7 @@ abstract class AbstractItem implements ItemInterface
      */
     public function getMetaData()
     {
-        if (!$this->game instanceof ItemRegisterFeature) {
+        if (!$this->game instanceof ItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException(
                 'GetMetaData from Item', 'ItemRegisterFeature', $this->game
             );

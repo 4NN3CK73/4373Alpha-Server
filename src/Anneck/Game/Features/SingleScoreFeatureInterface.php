@@ -5,14 +5,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 10.03.15, 07:52 by 4nn3ck
+ * Created at 10.03.15, 08:02 by 4nn3ck
  * ************************************************************************
  */
 
 namespace Anneck\Game\Features;
 
 /**
- * The interface TurnBasedGameInterface adds the feature of a "turn" to the game which advances the game.
+ * The interface SingleScoreGameInterace adds the feature to track a single int based score in the game.
  *
  * @todo    Write PHPDoc for this interface!
  *
@@ -20,15 +20,17 @@ namespace Anneck\Game\Features;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface TurnBasedFeature
+interface SingleScoreFeatureInterface
 {
     /**
-     * @return mixed
+     * @return int
      */
-    public function nextTurn();
+    public function getScore();
 
     /**
-     * @return mixed
+     * @param $points
+     *
+     * @return int
      */
-    public function getTurn();
+    public function addScore($points);
 }

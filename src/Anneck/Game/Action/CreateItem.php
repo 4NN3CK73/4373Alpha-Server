@@ -13,9 +13,9 @@ namespace Anneck\Game\Action;
 
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\Exception\GameFeatureMissingException;
-use Anneck\Game\Features\CreditsFeature;
-use Anneck\Game\Features\ItemRegisterFeature;
-use Anneck\Game\Features\SingleScoreFeature;
+use Anneck\Game\Features\CreditsFeatureInterface;
+use Anneck\Game\Features\ItemRegisterFeatureInterface;
+use Anneck\Game\Features\SingleScoreFeatureInterface;
 use Anneck\Game\GameInterface;
 use Anneck\Game\Item\ItemFactory;
 use Anneck\Game\ItemInterface;
@@ -62,7 +62,7 @@ class CreateItem extends AbstractAction
     public function applyOn(GameInterface $game)
     {
         // We require a game with a register to "create" our item.
-        if (!$game instanceof ItemRegisterFeature) {
+        if (!$game instanceof ItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException('ApplyOn failed', 'ItemRegisterFeature', $game);
         }
         // Create the item using the itemFactory ..
@@ -71,7 +71,7 @@ class CreateItem extends AbstractAction
         $game->addItemToRegister($newItem);
 
         // action credits
-        if (!$game instanceof CreditsFeature) {
+        if (!$game instanceof CreditsFeatureInterface) {
             /* @noinspection PhpParamsInspection */
             throw new GameFeatureMissingException('addCredits failed', 'CreditsFeature', $game);
         }
@@ -79,7 +79,7 @@ class CreateItem extends AbstractAction
         $game->addCredits($this->getActionCredits());
 
         // action score
-        if (!$game instanceof SingleScoreFeature) {
+        if (!$game instanceof SingleScoreFeatureInterface) {
             /* @noinspection PhpParamsInspection */
             throw new GameFeatureMissingException('addScore failed', 'ScoreFeature', $game);
         }

@@ -21,7 +21,7 @@ use DateTime;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface ActionRegisterFeature
+interface ActionRegisterFeatureInterface
 {
     /**
      * Adds a game action to the game.

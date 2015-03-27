@@ -14,7 +14,7 @@ namespace Anneck\Game\Item;
 use Anneck\Game\ActionInterface;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\Exception\GameFeatureMissingException;
-use Anneck\Game\Features\ItemRegisterFeature;
+use Anneck\Game\Features\ItemRegisterFeatureInterface;
 use Anneck\Game\GameInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -48,7 +48,7 @@ class ActionManager extends ArrayCollection
      */
     public function __construct(GameInterface $gameToUse)
     {
-        if (!$gameToUse instanceof ItemRegisterFeature) {
+        if (!$gameToUse instanceof ItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException('The ActionManager could not be created!', 'ItemRegisterFeature', $gameToUse);
         }
 

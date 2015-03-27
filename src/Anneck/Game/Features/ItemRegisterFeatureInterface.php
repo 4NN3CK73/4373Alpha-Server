@@ -26,7 +26,7 @@ use Doctrine\Common\Collections\Collection;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface ItemRegisterFeature extends ActionRegisterFeature
+interface ItemRegisterFeatureInterface extends ActionRegisterFeatureInterface
 {
     /**
      * @param RegisterInterface $register

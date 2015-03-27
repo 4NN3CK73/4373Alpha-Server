@@ -14,10 +14,10 @@ namespace Anneck\Game;
 use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\Exception\GameFeatureMissingException;
-use Anneck\Game\Features\ItemRegisterFeature;
+use Anneck\Game\Features\ItemRegisterFeatureInterface;
 use Anneck\Game\Features\PlayerItemRegisterFeature;
-use Anneck\Game\Features\SingleScoreFeature;
-use Anneck\Game\Features\TurnBasedFeature;
+use Anneck\Game\Features\SingleScoreFeatureInterface;
+use Anneck\Game\Features\TurnBasedFeatureInterface;
 use Anneck\Game\Player\Player;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -86,13 +86,13 @@ class TestEngine implements EngineInterface
     {
         // The TestEngine requires a Game with Turns, Scores and Items with a Register
 
-        if (!$testTurns = $this->game instanceof TurnBasedFeature) {
+        if (!$testTurns = $this->game instanceof TurnBasedFeatureInterface) {
             throw new GameFeatureMissingException('ValidateGameFeatures failed', 'TurnBased!', $this->game);
         }
-        if (!$testScores = $this->game instanceof SingleScoreFeature) {
+        if (!$testScores = $this->game instanceof SingleScoreFeatureInterface) {
             throw new GameFeatureMissingException('ValidateGameFeatures failed', 'SingleScore', $this->game);
         }
-        if (!$testRegister = $this->game instanceof ItemRegisterFeature) {
+        if (!$testRegister = $this->game instanceof ItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException('ValidateGameFeatures failed', 'ItemRegister!', $this->game);
         }
         if (!$testPlayerRegister = $this->game instanceof PlayerItemRegisterFeature) {
@@ -143,7 +143,7 @@ class TestEngine implements EngineInterface
      */
     public function getAvailableActions()
     {
-        if (!$this->game instanceof ItemRegisterFeature) {
+        if (!$this->game instanceof ItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException('TestEngine could not use Register during getAvailableActions()', 'ItemRegisterFeature', $this->game);
         }
 
@@ -193,11 +193,11 @@ class TestEngine implements EngineInterface
         $this->processActionQ();
 
         // Mark end of turn calling next turn ...
-        if ($this->game instanceof TurnBasedFeature) {
+        if ($this->game instanceof TurnBasedFeatureInterface) {
             $this->game->nextTurn();
         }
         // Check score ...
-        if ($this->game instanceof SingleScoreFeature) {
+        if ($this->game instanceof SingleScoreFeatureInterface) {
             $score = $this->game->getScore();
             $player = $this->game->getPlayer();
 
@@ -225,7 +225,7 @@ class TestEngine implements EngineInterface
             throw new GameException('Process ActionQ failed, ActionQ is NULL!!');
         }
 
-        if (!$this->game instanceof ItemRegisterFeature) {
+        if (!$this->game instanceof ItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException('processActionQ', 'ItemRegisterFeature', $this->game);
         }
 
@@ -246,7 +246,7 @@ class TestEngine implements EngineInterface
                 $action->applyOn($this->game);
 
                 // register action use ...
-                if ($this->game instanceof ItemRegisterFeature) {
+                if ($this->game instanceof ItemRegisterFeatureInterface) {
                     $this->game->registerActionUsage($action, new DateTime());
                 }
 
@@ -272,7 +272,7 @@ class TestEngine implements EngineInterface
      */
     private function isActionUsable(ActionInterface $action)
     {
-        if (!$this->game instanceof ItemRegisterFeature) {
+        if (!$this->game instanceof ItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException('processActionQ', 'ItemRegisterFeature', $this->game);
         }
 

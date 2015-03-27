@@ -5,32 +5,48 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  * ************************************************************************
- * Created at 18.03.15, 09:52 by 4nn3ck
+ * Created at 27.03.15, 13:16 by 4nn3ck
  * ************************************************************************
  */
 
 namespace Anneck\Game\Features;
 
-use Anneck\Game\Player\Player;
-use Doctrine\Common\Collections\Collection;
-
 /**
- * The PlayerItemRegisterFeature is a player aware item register.
- *
- * @todo    Write PHPDoc for this class!
+ * The SingleScoreFeatureTrait
  *
  * @since   0.0.1-dev
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface PlayerItemRegisterFeature extends ItemRegisterFeatureInterface
+trait SingleScoreFeatureTrait
 {
     /**
-     * Returns a collection of items in the register for the specified player.
-     *
-     * @param Player $player the player to search for in the register.
-     *
-     * @return Collection a collection of items.
+     * @var int
      */
-    public function getPlayerItems(Player $player);
+    private $score = 0;
+
+    /**
+     * @return int
+     */
+    public function getScore()
+    {
+        $this->logger->addInfo('getScore: '.$this->score);
+
+        return $this->score;
+    }
+
+    /**
+     * @param $points
+     *
+     * @return int
+     */
+    public function addScore($points)
+    {
+        $this->logger->addInfo('addScore: '.$this->score);
+        $this->score += $points;
+
+        return $this->score;
+    }
+
+
 }
