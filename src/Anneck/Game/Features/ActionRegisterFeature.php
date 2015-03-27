@@ -15,7 +15,7 @@ use Anneck\Game\ActionInterface;
 use DateTime;
 
 /**
- * The ActionRegisterFeature
+ * The ActionRegisterFeature.
  *
  * @since   0.0.1-dev
  *
@@ -23,7 +23,6 @@ use DateTime;
  */
 interface ActionRegisterFeature
 {
-
     /**
      * Adds a game action to the game.
      *
@@ -68,5 +67,4 @@ interface ActionRegisterFeature
      * @return mixed
      */
     public function getActions();
-
 }

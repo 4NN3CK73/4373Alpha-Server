@@ -225,7 +225,7 @@ class TestEngine implements EngineInterface
             throw new GameException('Process ActionQ failed, ActionQ is NULL!!');
         }
 
-        if(!$this->game instanceof ItemRegisterFeature) {
+        if (!$this->game instanceof ItemRegisterFeature) {
             throw new GameFeatureMissingException('processActionQ', 'ItemRegisterFeature', $this->game);
         }
 
@@ -235,25 +235,31 @@ class TestEngine implements EngineInterface
         // Process all actions ...
         /** @var ActionInterface $action */
         foreach ($actions as $action) {
-            GameLogger::addToGameLog(
-                sprintf('>>> [Apply] action %s on game %s', $action, $this->game),
-                GameLogger::INFO
-            );
 
             // check if usable ...
-            if($this->isActionUsable($action)) {
+            if ($this->isActionUsable($action)) {
+                GameLogger::addToGameLog(
+                    sprintf('>>> [Apply] action %s on game %s', $action, $this->game),
+                    GameLogger::INFO
+                );
+
                 $action->applyOn($this->game);
-            }
 
-            // register action use ...
-            if ($this->game instanceof ItemRegisterFeature) {
-                $this->game->registerActionUsage($action, new DateTime());
-            }
+                // register action use ...
+                if ($this->game instanceof ItemRegisterFeature) {
+                    $this->game->registerActionUsage($action, new DateTime());
+                }
 
-            GameLogger::addToGameLog(
-                '<<< [Apply]',
-                GameLogger::INFO
-            );
+                GameLogger::addToGameLog(
+                    '<<< [Apply]',
+                    GameLogger::INFO
+                );
+            } else {
+                GameLogger::addToGameLog(
+                    sprintf('--- [Skipped] action %s on game %s', $action, $this->game),
+                    GameLogger::INFO
+                );
+            }
         }
     }
 
@@ -261,27 +267,38 @@ class TestEngine implements EngineInterface
      * @param ActionInterface $action
      *
      * @return bool
+     *
      * @throws GameFeatureMissingException
      */
     private function isActionUsable(ActionInterface $action)
     {
-        if(!$this->game instanceof ItemRegisterFeature) {
+        if (!$this->game instanceof ItemRegisterFeature) {
             throw new GameFeatureMissingException('processActionQ', 'ItemRegisterFeature', $this->game);
         }
 
         // If the action use is not in the game yet, its usable.
-        if(!$this->game->hasAction($action)) {
+        if (!$this->game->hasAction($action)) {
             return true;
         }
 
         // If we have an action ...
+
+        /** @var ActionInterface $action */
         $action = $this->game->getAction($action);
 
         // ... we need to check use/max use
-        if($action['UseCounter'] < $action['MaxUse']) {
+        if ($action['UseCounter'] < $action['MaxUse']) {
             return true;
         }
 
+        GameLogger::addToGameLog(
+            sprintf('Action %s is at maximum usage! (%s/%s)',
+                $action['Action']->__toString(),
+                $action['UseCounter'],
+                $action['MaxUse']
+            ),
+            GameLogger::DEBUG
+        );
         // Cool down is ignored for now
         return false;
     }

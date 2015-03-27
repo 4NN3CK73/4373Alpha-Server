@@ -69,11 +69,12 @@ abstract class AbstractItem implements ItemInterface
      */
     public function getUses()
     {
-        if(!$this->game instanceof ItemRegisterFeature) {
+        if (!$this->game instanceof ItemRegisterFeature) {
             throw new GameFeatureMissingException(
                 'Get uses of Item', 'ItemRegisterFeature', $this->game
             );
         }
+
         return $this->game->getItemData($this)->get('Uses');
     }
 

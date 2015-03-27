@@ -155,7 +155,7 @@ class Register implements RegisterInterface
         );
 
         // If we already have this item, we return it instead of overwriting it!
-        if($this->hasItem($item)) {
+        if ($this->hasItem($item)) {
             return $this->getRegistryData()->get($item->getName());
         }
 
@@ -247,5 +247,4 @@ class Register implements RegisterInterface
 
         return $refClass->getShortName();
     }
-
 }

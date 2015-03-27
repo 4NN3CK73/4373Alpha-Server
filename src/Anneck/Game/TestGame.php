@@ -280,7 +280,6 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
         return $this->register->hasAction($gameAction);
     }
 
-
     /**
      * @param ItemInterface $gameItem
      *
@@ -357,7 +356,6 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
     {
         return $this->register->getRegistryData()->get($gameAction->hashcode());
     }
-
 
     /**
      * @param $creditsToAdd
