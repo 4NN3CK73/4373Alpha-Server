@@ -87,6 +87,11 @@ class CreateItem extends AbstractAction
         $game->addScore($this->getActionScore());
     }
 
+    /**
+     * One default toString implementation ...
+     *
+     * @return string the shortName of the class.
+     */
     public function __toString()
     {
         $shortName = parent::__toString();

@@ -42,6 +42,13 @@ interface RegisterInterface
 
     /**
      * @param ActionInterface $action
+     *
+     * @return bool true if registration was successful, else false.
+     */
+    public function registerAction(ActionInterface $action, $maxUses, $coolDown);
+
+    /**
+     * @param ActionInterface $action
      * @param DateTime        $dateTime
      *
      * @return bool
@@ -83,6 +90,13 @@ interface RegisterInterface
      * @return boolean true if the item was found within the register, else false.
      */
     public function hasItem(ItemInterface $item);
+
+    /**
+     * @param ActionInterface $action
+     *
+     * @return mixed
+     */
+    public function hasAction(ActionInterface $action);
 
     /**
      * The string representation of the register.

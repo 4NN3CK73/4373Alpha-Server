@@ -154,6 +154,11 @@ class Register implements RegisterInterface
             sprintf('registerItem: %s ...', $item)
         );
 
+        // If we already have this item, we return it instead of overwriting it!
+        if($this->hasItem($item)) {
+            return $this->getRegistryData()->get($item->getName());
+        }
+
         $this->registryData->set($item->getName(), $item);
 
         $itemData = [
@@ -170,6 +175,30 @@ class Register implements RegisterInterface
     }
 
     /**
+     * @param ActionInterface $gameAction
+     * @param                 $maxUses
+     * @param                 $coolDown
+     *
+     * @return bool|void
+     */
+    public function registerAction(ActionInterface $gameAction, $maxUses = '*', $coolDown = '3s')
+    {
+        // The action data structure to use for the action
+        $actionData = [
+            'Action' => $gameAction,
+            'UseCounter' => 0,
+            'MaxUse' => $maxUses,
+            'CoolDown' => $coolDown,
+        ];
+        $this->registryData->set($gameAction->hashcode(), $actionData);
+        GameLogger::addToGameLog(
+            sprintf('RegisterAction: %s uses: %s cooldown: %s',
+                $gameAction->hashcode(),
+                $maxUses,
+                $coolDown)
+        );
+    }
+    /**
      * @param ActionInterface $action
      * @param DateTime        $dateTime
      *
@@ -182,10 +211,10 @@ class Register implements RegisterInterface
             'Action' => $action,
             'UseCounter' => 0,
             'LastUseTime' => $dateTime,
+            'MaxUse' => '*',
+            'CoolDown' => '3s',
         ];
 
-        // used is used to log the info correctly ..
-        $used = 0;
         // (1) find the action and register the use if not there ...
         if (!$this->hasAction($action)) {
             // (1.1) no action and therefor no use registered yet, so we do it ...
@@ -193,14 +222,19 @@ class Register implements RegisterInterface
         }
         // (1.2) get actionData
         $actionDataToUpdate = $this->registryData->get($action->hashcode());
-        // (1.3) Update it, plus one use and the current time
+        // (1.3) Update it: plus one use and the current time
         $used = ++$actionDataToUpdate['UseCounter'];
+        // I know this is redundant, but makes this code more readable IMHO.
         $actionDataToUpdate['LastUseTime'] = $dateTime;
         // (1.3) update registry data
         $this->registryData->set($action->hashcode(), $actionDataToUpdate);
 
         GameLogger::addToGameLog(
-            sprintf('RegisterActionUsage: %s on %s, used %s times now.', $action, $dateTime->format(DateTime::ATOM), $used)
+            sprintf('RegisterActionUsage: %s on %s, used (%s/%s) times now.',
+                $action,
+                $dateTime->format(DateTime::ATOM),
+                $used,
+                $actionDataToUpdate['MaxUse'])
         );
     }
 
@@ -213,4 +247,5 @@ class Register implements RegisterInterface
 
         return $refClass->getShortName();
     }
+
 }

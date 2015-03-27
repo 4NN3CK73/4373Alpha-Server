@@ -225,6 +225,10 @@ class TestEngine implements EngineInterface
             throw new GameException('Process ActionQ failed, ActionQ is NULL!!');
         }
 
+        if(!$this->game instanceof ItemRegisterFeature) {
+            throw new GameFeatureMissingException('processActionQ', 'ItemRegisterFeature', $this->game);
+        }
+
         // Get all actions ...
         $actions = $this->actionQ->getIterator();
 
@@ -236,10 +240,12 @@ class TestEngine implements EngineInterface
                 GameLogger::INFO
             );
 
-            // let the action change the game ...
-            $action->applyOn($this->game);
+            // check if usable ...
+            if($this->isActionUsable($action)) {
+                $action->applyOn($this->game);
+            }
 
-            // register action use
+            // register action use ...
             if ($this->game instanceof ItemRegisterFeature) {
                 $this->game->registerActionUsage($action, new DateTime());
             }
@@ -249,5 +255,34 @@ class TestEngine implements EngineInterface
                 GameLogger::INFO
             );
         }
+    }
+
+    /**
+     * @param ActionInterface $action
+     *
+     * @return bool
+     * @throws GameFeatureMissingException
+     */
+    private function isActionUsable(ActionInterface $action)
+    {
+        if(!$this->game instanceof ItemRegisterFeature) {
+            throw new GameFeatureMissingException('processActionQ', 'ItemRegisterFeature', $this->game);
+        }
+
+        // If the action use is not in the game yet, its usable.
+        if(!$this->game->hasAction($action)) {
+            return true;
+        }
+
+        // If we have an action ...
+        $action = $this->game->getAction($action);
+
+        // ... we need to check use/max use
+        if($action['UseCounter'] < $action['MaxUse']) {
+            return true;
+        }
+
+        // Cool down is ignored for now
+        return false;
     }
 }

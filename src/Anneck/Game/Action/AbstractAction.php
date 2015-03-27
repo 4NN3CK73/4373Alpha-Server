@@ -12,6 +12,9 @@
 namespace Anneck\Game\Action;
 
 use Anneck\Game\ActionInterface;
+use Anneck\Game\Exception\GameFeatureMissingException;
+use Anneck\Game\Features\ItemRegisterFeature;
+use Anneck\Game\GameInterface;
 
 /**
  * The AbstractAction class serves all implementations as a base class.
@@ -35,6 +38,26 @@ abstract class AbstractAction implements ActionInterface
      * @var int the score gained.
      */
     protected $actionScore = 0;
+
+    /**
+     * The maximum uses of this action.
+     * @var string
+     */
+    protected $maxUses = '*';
+    /**
+     * The cooldown cron-tab like time.
+     * @var string
+     */
+    protected $coolDown = '5s';
+
+    /**
+     * @return bool
+     */
+    public function isUseable()
+    {
+
+    }
+
 
     /**
      * Returns the current value of the action credits.

@@ -95,6 +95,8 @@ class TestGameService
         GameLogger::addToGameLog(
             sprintf('Add action %s to running game %s', $action, $this->game), Logger::ALERT);
 
+        $this->game->addActionToRegister($action, 1, 3);
+
         return $this->actionQ->addAction($action);
     }
 

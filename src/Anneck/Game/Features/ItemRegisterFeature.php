@@ -26,7 +26,7 @@ use Doctrine\Common\Collections\Collection;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface ItemRegisterFeature
+interface ItemRegisterFeature extends ActionRegisterFeature
 {
     /**
      * @param RegisterInterface $register
@@ -41,6 +41,17 @@ interface ItemRegisterFeature
      * @return mixed
      */
     public function addItemToRegister(ItemInterface $gameItem);
+
+    /**
+     * Adds a game action to the game.
+     *
+     * @param ActionInterface $gameAction
+     * @param                 $maxUses
+     * @param                 $coolDown
+     *
+     * @return mixed
+     */
+    public function addActionToRegister(ActionInterface $gameAction, $maxUses, $coolDown);
 
     /**
      * @param ActionInterface $action
@@ -78,6 +89,13 @@ interface ItemRegisterFeature
      * @return bool
      */
     public function hasItem(ItemInterface $gameItem);
+
+    /**
+     * @param ActionInterface $gameAction
+     *
+     * @return mixed
+     */
+    public function hasAction(ActionInterface $gameAction);
 
     /**
      * @param ItemInterface $gameItem

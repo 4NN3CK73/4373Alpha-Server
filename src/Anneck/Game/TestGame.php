@@ -140,6 +140,23 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
     }
 
     /**
+     * Adds a game action to the game.
+     *
+     * @param ActionInterface $gameAction
+     * @param                 $maxUses
+     * @param                 $coolDown
+     *
+     * @return mixed
+     */
+    public function addActionToRegister(ActionInterface $gameAction, $maxUses, $coolDown)
+    {
+        $this->logger->addInfo(
+            sprintf('Add [%s] uses: %s cooldown: %s to register.', $gameAction, $maxUses, $coolDown)
+        );
+        $this->register->registerAction($gameAction, $maxUses, $coolDown);
+    }
+
+    /**
      * @param ActionInterface $action
      * @param DateTime        $dateTime
      *
@@ -147,7 +164,7 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
      */
     public function registerActionUsage(ActionInterface $action, DateTime $dateTime)
     {
-        $this->logger->addInfo('registerActionUsage: '.$action);
+        $this->logger->addInfo('registerActionUsage: '.$action->hashcode());
 
         return $this->register->registerActionUsage($action, $dateTime);
     }
@@ -254,6 +271,17 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
     }
 
     /**
+     * @param ActionInterface $gameAction
+     *
+     * @return mixed
+     */
+    public function hasAction(ActionInterface $gameAction)
+    {
+        return $this->register->hasAction($gameAction);
+    }
+
+
+    /**
      * @param ItemInterface $gameItem
      *
      * @return ItemInterface
@@ -299,16 +327,37 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
      */
     public function getItems()
     {
-        // We need to filter since we have item data in the register too.
-        $returnCol = new ArrayCollection();
-        foreach ($this->register->getRegistryData() as $data) {
-            if ($data instanceof ItemInterface) {
-                $returnCol->add($data);
-            }
-        }
-
-        return $returnCol;
+        return $this->filterBy('ItemInterface');
     }
+
+    /**
+     * @return mixed
+     */
+    public function getActions()
+    {
+        return $this->filterBy('ActionInterface');
+    }
+
+    /**
+     * @param ActionInterface $gameAction
+     *
+     * @return mixed
+     */
+    public function getAction(ActionInterface $gameAction)
+    {
+        return $this->register->getRegistryData()->get($gameAction->hashcode());
+    }
+
+    /**
+     * @param ActionInterface $gameAction
+     *
+     * @return mixed
+     */
+    public function getActionData(ActionInterface $gameAction)
+    {
+        return $this->register->getRegistryData()->get($gameAction->hashcode());
+    }
+
 
     /**
      * @param $creditsToAdd
@@ -325,5 +374,21 @@ class TestGame implements GameInterface, TurnBasedFeature, PlayerItemRegisterFea
     public function getCredits()
     {
         return $this->credits;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    private function filterBy($instanceString)
+    {
+        // We need to filter since we have item data in the register too.
+        $returnCol = new ArrayCollection();
+        foreach ($this->register->getRegistryData() as $data) {
+            if ($data instanceof $instanceString) {
+                $returnCol->add($data);
+            }
+        }
+
+        return $returnCol;
     }
 }

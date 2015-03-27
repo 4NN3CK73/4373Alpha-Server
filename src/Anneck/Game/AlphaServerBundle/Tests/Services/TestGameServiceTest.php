@@ -71,8 +71,10 @@ class TestGameServiceTest extends KernelTestCase
 
         $item = static::$service->getItem('Shop', 'My Shop');
         static::assertNotNull($item);
+        static::assertNotFalse($item, 'Failed to getItem!');
 
         $actions = $item->getAvailableActions()->toArray();
+
         $action = $actions[0]; // @todo: this is just the test, but still think about the API
 
         static::$service->addAction(
