@@ -11,9 +11,11 @@
 
 namespace Anneck\Game\Action;
 
-use Anneck\Game\Features\CreditsFeature;
-use Anneck\Game\Features\ItemRegisterFeature;
-use Anneck\Game\Features\SingleScoreFeature;
+use Anneck\Game\Exception\GameException;
+use Anneck\Game\Exception\GameFeatureMissingException;
+use Anneck\Game\Features\CreditsFeatureInterface;
+use Anneck\Game\Features\ItemRegisterFeatureInterface;
+use Anneck\Game\Features\SingleScoreFeatureInterface;
 use Anneck\Game\GameInterface;
 use Anneck\Game\Item\ItemFactory;
 use Anneck\Game\ItemInterface;
@@ -53,12 +55,15 @@ class CreateItem extends AbstractAction
      * @param GameInterface $game the game to change.
      *
      * @return mixed
+     *
+     * @throws GameException
+     * @throws GameFeatureMissingException
      */
     public function applyOn(GameInterface $game)
     {
         // We require a game with a register to "create" our item.
-        if (!$game instanceof ItemRegisterFeature) {
-            $this->throwFeatureMissingException($game, 'ItemRegisterFeature');
+        if (!$game instanceof ItemRegisterFeatureInterface) {
+            throw new GameFeatureMissingException('ApplyOn failed', 'ItemRegisterFeature', $game);
         }
         // Create the item using the itemFactory ..
         $newItem = ItemFactory::createGameItem($this->itemUUID, $this->itemName, $game);
@@ -66,17 +71,36 @@ class CreateItem extends AbstractAction
         $game->addItemToRegister($newItem);
 
         // action credits
-        if (!$game instanceof CreditsFeature) {
-            $this->throwFeatureMissingException($game, 'CreditsFeature');
+        if (!$game instanceof CreditsFeatureInterface) {
+            /* @noinspection PhpParamsInspection */
+            throw new GameFeatureMissingException('addCredits failed', 'CreditsFeature', $game);
         }
         // Do the credits ...
         $game->addCredits($this->getActionCredits());
 
         // action score
-        if (!$game instanceof SingleScoreFeature) {
-            $this->throwFeatureMissingException($game, 'SingleScoreFeature');
+        if (!$game instanceof SingleScoreFeatureInterface) {
+            /* @noinspection PhpParamsInspection */
+            throw new GameFeatureMissingException('addScore failed', 'ScoreFeature', $game);
         }
         // Do the score ...
         $game->addScore($this->getActionScore());
+    }
+
+    /**
+     * One default toString implementation ...
+     *
+     * @return string the shortName of the class.
+     */
+    public function __toString()
+    {
+        $shortName = parent::__toString();
+        $itemUUID = $this->itemUUID;
+        $targetItem = $this->itemName;
+
+        return sprintf(
+            '[%s]:%s(%s)',
+            $shortName, $itemUUID, $targetItem
+        );
     }
 }

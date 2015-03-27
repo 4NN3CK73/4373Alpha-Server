@@ -33,11 +33,21 @@ interface ActionInterface
     public function applyOn(GameInterface $game);
 
     /**
+     * @return bool
+     */
+    public function isUseable();
+
+    /**
      * Return the string representation of the Action.
      *
      * @return mixed the string representation of the Action.
      */
     public function __toString();
+
+    /**
+     * @return string hashcode
+     */
+    public function hashcode();
 
     /**
      * Compares for equality with another action.

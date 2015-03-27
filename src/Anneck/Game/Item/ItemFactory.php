@@ -37,7 +37,7 @@ class ItemFactory
      *
      * @throws GameException
      */
-    public static function createGameItem($itemIdentifier, $itemName = '', GameInterface $game)
+    public static function createGameItem($itemIdentifier, $itemName = '', GameInterface $game = null)
     {
         if (is_null($game)) {
             throw new GameException('Failed to create item without game!');
@@ -50,15 +50,15 @@ class ItemFactory
     /**
      * Creates a new item for the game and returns it.
      *
-     * @param               $itemIdentifier string short class name of the item
-     * @param string        $itemName
-     * @param GameInterface $game
+     * @param string        $itemIdentifier the short class name of the item.
+     * @param string        $itemName       the name to set for this item.
+     * @param GameInterface $game           the game to use.
      *
      * @return ItemInterface the created item.
      *
-     * @throws GameException
+     * @throws GameException if the GameInterface is null
      */
-    public function createItem($itemIdentifier, $itemName = '', GameInterface $game = null)
+    public function createItem($itemIdentifier, $itemName, GameInterface $game = null)
     {
         if (is_null($game)) {
             throw new GameException('Failed to create item without game!');
@@ -66,6 +66,7 @@ class ItemFactory
         $itemClassName = 'Anneck\Game\Item\\'.$itemIdentifier;
         $item = new $itemClassName($itemName, $game);
         GameLogger::addToGameLog('ItemFactory->createItem('.$itemName.')');
+
         return $item;
     }
 }

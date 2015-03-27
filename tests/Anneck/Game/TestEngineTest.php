@@ -15,8 +15,11 @@ use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\Action\CreateItem;
 use Anneck\Game\Action\ScoreOnePoint;
 use Anneck\Game\Exception\GameException;
+use Anneck\Game\Item\Shop;
+use Anneck\Game\Player\Player;
 use Anneck\Game\Register\Register;
 use Anneck\Game\World\DefaultWorld;
+use Exception;
 
 /**
  * The TestEngineTest.
@@ -34,6 +37,7 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
         // Need World and Register for Game
         $world = new DefaultWorld();
         $register = new Register();
+
         // New TestGame using world and register
         $game = new TestGame();
         $game->setWorld($world);
@@ -43,6 +47,7 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
         $action1 = new ScoreOnePoint();
         $action2 = new CreateItem('ShopProduct');
         $action3 = new ScoreOnePoint();
+
         $actionQ->add($action1);
         $actionQ->add($action2);
         $actionQ->add($action3);
@@ -57,6 +62,48 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
         } catch (GameException $gameException) {
             self::fail($gameException->getMessage());
         }
+    }
+    public function testEnginePlayerActions()
+    {
+        // Need World and Register for Game
+        $world = new DefaultWorld();
+        $register = new Register();
+
+        // New TestGame using world and register
+        $game = new TestGame();
+        $game->setWorld($world);
+        $game->setRegister($register);
+
+        // the engine will drive the game forward
+        $engine = new TestEngine();
+
+        // build engine ...
+        $engine->build($game);
+
+        $newItem = $register->registerItem(new Shop('Johnny\'s Shop', $game));
+
+        $unregItem = new Shop('Wrong', $game);
+        try {
+            $register->updateItem($unregItem, ['Player' => 'Johnny Cash']);
+            static::fail('This should trigger exception!');
+        } catch (Exception $exception) {
+            // all good ...
+        }
+
+        $register->updateItem($newItem, ['Player' => 'Johnny Cash']);
+
+        $actionCol = $engine->getAvailablePlayerActions(new Player('Johnny Cash'));
+
+        static::assertTrue($actionCol->count() === 1);
+
+        try {
+            $register->removeItem($unregItem);
+            static::fail('This should trigger exception!');
+        } catch (Exception $exception) {
+            // all good ...
+        }
+
+        $register->removeItem($newItem);
     }
 
     public function testEngineProvideWrongGameFeatures()
@@ -75,6 +122,13 @@ class TestEngineTest extends \PHPUnit_Framework_TestCase
         // start engine ...
         try {
             $engine->build($game);
+            self::fail('This should trigger an exception but didnt!');
+        } catch (GameException $gameException) {
+            // awesome!
+        }
+        // get actions ...
+        try {
+            $engine->getAvailableActions();
             self::fail('This should trigger an exception but didnt!');
         } catch (GameException $gameException) {
             // awesome!

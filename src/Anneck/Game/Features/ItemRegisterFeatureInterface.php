@@ -11,8 +11,10 @@
 
 namespace Anneck\Game\Features;
 
+use Anneck\Game\ActionInterface;
 use Anneck\Game\ItemInterface;
 use Anneck\Game\RegisterInterface;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -24,7 +26,7 @@ use Doctrine\Common\Collections\Collection;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface ItemRegisterFeature
+interface ItemRegisterFeatureInterface extends ActionRegisterFeatureInterface
 {
     /**
      * @param RegisterInterface $register
@@ -41,6 +43,25 @@ interface ItemRegisterFeature
     public function addItemToRegister(ItemInterface $gameItem);
 
     /**
+     * Adds a game action to the game.
+     *
+     * @param ActionInterface $gameAction
+     * @param                 $maxUses
+     * @param                 $coolDown
+     *
+     * @return mixed
+     */
+    public function addActionToRegister(ActionInterface $gameAction, $maxUses, $coolDown);
+
+    /**
+     * @param ActionInterface $action
+     * @param DateTime        $param
+     *
+     * @return mixed
+     */
+    public function registerActionUsage(ActionInterface $action, DateTime $param);
+
+    /**
      * @param ItemInterface $gameItem
      * @param array         $itemData
      *
@@ -51,7 +72,7 @@ interface ItemRegisterFeature
     /**
      * @param ItemInterface $gameItem
      *
-     * @return array
+     * @return Collection
      */
     public function getItemData(ItemInterface $gameItem);
 
@@ -68,6 +89,13 @@ interface ItemRegisterFeature
      * @return bool
      */
     public function hasItem(ItemInterface $gameItem);
+
+    /**
+     * @param ActionInterface $gameAction
+     *
+     * @return mixed
+     */
+    public function hasAction(ActionInterface $gameAction);
 
     /**
      * @param ItemInterface $gameItem

@@ -15,12 +15,13 @@ use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\ActionInterface;
 use Anneck\Game\Configuration\WorldConfiguration;
 use Anneck\Game\Exception\GameException;
-use Anneck\Game\Features\SingleScoreFeature;
-use Anneck\Game\Features\TurnBasedFeature;
+use Anneck\Game\Features\SingleScoreFeatureInterface;
+use Anneck\Game\Features\TurnBasedFeatureInterface;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 use Anneck\Game\Item\ItemFactory;
 use Anneck\Game\ItemInterface;
+use Anneck\Game\Player\Player;
 use Anneck\Game\TestEngine;
 use Anneck\Game\TestGame;
 use Anneck\Game\World\DefaultWorld;
@@ -58,6 +59,7 @@ class TestGameService
     {
         $this->actionQ = new ActionQueue();
         $this->game = new TestGame();
+        $this->game->setPlayer(new Player('TestPlayer'));
         $world = new DefaultWorld();
         $worldConfig = new WorldConfiguration();
         $world->configure($worldConfig);
@@ -95,6 +97,8 @@ class TestGameService
         GameLogger::addToGameLog(
             sprintf('Add action %s to running game %s', $action, $this->game), Logger::ALERT);
 
+        $this->game->addActionToRegister($action, 1, 3);
+
         return $this->actionQ->addAction($action);
     }
 
@@ -125,10 +129,10 @@ class TestGameService
 
         $gameResult->set('Game-World:', (string) $this->game->getWorld());
 
-        if ($this->game instanceof SingleScoreFeature) {
+        if ($this->game instanceof SingleScoreFeatureInterface) {
             $gameResult->set('Game-Score:', $this->game->getScore());
         }
-        if ($this->game instanceof TurnBasedFeature) {
+        if ($this->game instanceof TurnBasedFeatureInterface) {
             $gameResult->set('Game-Turn:', $this->game->getTurn());
         }
 

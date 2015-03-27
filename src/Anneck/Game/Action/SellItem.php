@@ -11,7 +11,8 @@
 
 namespace Anneck\Game\Action;
 
-use Anneck\Game\Features\ItemRegisterFeature;
+use Anneck\Game\Exception\GameFeatureMissingException;
+use Anneck\Game\Features\ItemRegisterFeatureInterface;
 use Anneck\Game\GameInterface;
 
 /**
@@ -30,17 +31,19 @@ class SellItem extends AbstractAction
     public function __construct($itemUUID, $credits)
     {
     }
+
     /**
      * Applies itself to a running game.
      *
      * @param GameInterface $game the game to change.
      *
      * @return mixed
+     * @throws GameFeatureMissingException
      */
     public function applyOn(GameInterface $game)
     {
-        if (!$game instanceof ItemRegisterFeature) {
-            $this->throwFeatureMissingException($game, 'ItemRegisterFeature');
+        if (!$game instanceof ItemRegisterFeatureInterface) {
+            throw new GameFeatureMissingException('ApplyON requires ', 'ItemRegisterFeature', $game);
         }
     }
 }

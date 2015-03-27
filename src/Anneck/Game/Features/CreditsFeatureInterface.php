@@ -20,7 +20,7 @@ namespace Anneck\Game\Features;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface CreditsFeature
+interface CreditsFeatureInterface
 {
     /**
      * @return mixed

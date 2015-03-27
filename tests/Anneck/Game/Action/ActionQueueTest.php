@@ -13,7 +13,6 @@ namespace Anneck\Game\Action;
 
 use Anneck\Game\Exception\GameException;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
  * The ActionQueueTest.

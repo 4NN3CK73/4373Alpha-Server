@@ -14,12 +14,10 @@ namespace Anneck\Game\Item;
 use Anneck\Game\ActionInterface;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\Exception\GameFeatureMissingException;
-use Anneck\Game\Features\ItemRegisterFeature;
+use Anneck\Game\Features\ItemRegisterFeatureInterface;
 use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 use Anneck\Game\ItemInterface;
-use Anneck\Game\RegisterInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -67,6 +65,20 @@ abstract class AbstractItem implements ItemInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getUses()
+    {
+        if (!$this->game instanceof ItemRegisterFeatureInterface) {
+            throw new GameFeatureMissingException(
+                'Get uses of Item', 'ItemRegisterFeature', $this->game
+            );
+        }
+
+        return $this->game->getItemData($this)->get('Uses');
+    }
+
+    /**
      * @param ActionInterface $action
      *
      * @return bool|void
@@ -96,17 +108,18 @@ abstract class AbstractItem implements ItemInterface
      * Returns the meta data of the item.
      *
      * @return Collection
+     *
      * @throws GameFeatureMissingException
      */
     public function getMetaData()
     {
-        if(!$this->game instanceof ItemRegisterFeature) {
-            throw new GameFeatureMissingException('ItemRegisterFeature');
+        if (!$this->game instanceof ItemRegisterFeatureInterface) {
+            throw new GameFeatureMissingException(
+                'GetMetaData from Item', 'ItemRegisterFeature', $this->game
+            );
         }
 
-        $retCollection = new ArrayCollection($this->game->getItemData($this));
-
-        return $retCollection;
+        return $this->game->getItemData($this);
     }
 
     /**

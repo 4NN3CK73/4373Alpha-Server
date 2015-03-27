@@ -12,9 +12,6 @@
 namespace Anneck\Game\Action;
 
 use Anneck\Game\ActionInterface;
-use Anneck\Game\Exception\GameFeatureMissingException;
-use Anneck\Game\GameInterface;
-use Anneck\Game\GameLogger;
 
 /**
  * The AbstractAction class serves all implementations as a base class.
@@ -38,6 +35,26 @@ abstract class AbstractAction implements ActionInterface
      * @var int the score gained.
      */
     protected $actionScore = 0;
+
+    /**
+     * The maximum uses of this action.
+     *
+     * @var string
+     */
+    protected $maxUses = '*';
+    /**
+     * The cooldown cron-tab like time.
+     *
+     * @var string
+     */
+    protected $coolDown = '5s';
+
+    /**
+     * @return bool
+     */
+    public function isUseable()
+    {
+    }
 
     /**
      * Returns the current value of the action credits.
@@ -68,7 +85,15 @@ abstract class AbstractAction implements ActionInterface
      */
     public function equals(ActionInterface $action)
     {
-        return $this->__toString() == $action->__toString();
+        return $this->hashcode() == $action->hashcode();
+    }
+
+    /**
+     * @return string hashcode
+     */
+    public function hashcode()
+    {
+        return spl_object_hash($this);
     }
 
     /**
@@ -81,33 +106,5 @@ abstract class AbstractAction implements ActionInterface
         $reClass = new \ReflectionClass($this);
 
         return $reClass->getShortName();
-    }
-
-    /**
-     * Helper method to throw a GameFeatureMissing exception.
-     *
-     * @param GameInterface $game           The game which is missing a feature interface.
-     * @param string        $missingFeature The missing feature interface.
-     *
-     * @throws GameFeatureMissingException The exception with a sane error message.
-     */
-    protected function throwFeatureMissingException(GameInterface $game, $missingFeature = '-default-')
-    {
-        // initialization ...
-        $refClass = new \ReflectionClass($game);
-        $features = implode(', ', $refClass->getInterfaceNames());
-        $errorString = sprintf(
-            'The CreateItem Action can only be applied onto a game with %s game feature!',
-            'The game %s has the following features %s',
-            $missingFeature,
-            $game,
-            $features
-        );
-        // Log the error ...
-        GameLogger::addToGameLog($errorString, GameLogger::ERROR);
-        // Create the exception ...
-        throw new GameFeatureMissingException(
-          $errorString
-        );
     }
 }

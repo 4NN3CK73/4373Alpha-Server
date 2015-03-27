@@ -3,7 +3,7 @@
 namespace Anneck\Game\AlphaServerBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations\View;
-use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * The TestGameController.
@@ -14,7 +14,7 @@ use FOS\RestBundle\Controller\FOSRestController;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestGameController extends FOSRestController
+class TestGameController extends Controller
 {
     const ALPHASERVER_TESTGAME = 'alphaserver.testgame';
 
@@ -23,21 +23,21 @@ class TestGameController extends FOSRestController
      */
     public function indexAction()
     {
-        $runResult = $this->get(self::ALPHASERVER_TESTGAME)->run();
+        $runResult = $this->get(static::ALPHASERVER_TESTGAME)->run();
 
-        return $runResult;
+        return ['Result' => $runResult];
     }
     /**
      * @View()
      */
     public function runAction()
     {
-        $runResult = $this->get(self::ALPHASERVER_TESTGAME)->run();
+        $runResult = $this->get(static::ALPHASERVER_TESTGAME)->run();
 
         if ($runResult) {
-            return $this->get(self::ALPHASERVER_TESTGAME)->getGameResult();
+            $gameResult = $this->get(static::ALPHASERVER_TESTGAME)->getGameResult();
         }
 
-        return $runResult;
+        return ['Result' => $gameResult];
     }
 }

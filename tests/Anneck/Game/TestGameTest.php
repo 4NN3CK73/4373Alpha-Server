@@ -28,7 +28,7 @@ class TestGameTest extends \PHPUnit_Framework_TestCase
     public function testGameSpecification()
     {
         $game = new TestGame();
-        self::assertEquals($game->__toString(), 'Anneck\Game\TestGame');
+        self::assertEquals('Anneck\Game\TestGame', $game->__toString());
 
         $worldConfiguration = new WorldConfiguration();
         $world = new DefaultWorld();
@@ -78,13 +78,12 @@ class TestGameTest extends \PHPUnit_Framework_TestCase
         $gameItem = ItemFactory::createGameItem('Shop', 'John\'s Shop', $game);
         $game->addItemToRegister($gameItem);
 
-        $gameItemData = $game->getItemData($gameItem);
+        $gameItemData = $game->getItemData($gameItem)->toArray();
         $testDataArray = [
             'Name' => 'John\'s Shop',
-            'Actions' => 'CreateItem',
-            'Uses' => 0
+            'Actions' => '[CreateItem]:ShopProduct(-default-)',
+            'Uses' => 0,
         ];
         static::assertEquals($testDataArray, $gameItemData);
-
     }
 }

@@ -36,6 +36,7 @@ class TestGameServiceTest extends KernelTestCase
     {
         static::bootKernel();
         static::$service = static::$kernel->getContainer()->get('alphaserver.testgame');
+
     }
 
     public function testFirstGameServiceExists()
@@ -70,7 +71,11 @@ class TestGameServiceTest extends KernelTestCase
         static::assertTrue(static::$service->run());
 
         $item = static::$service->getItem('Shop', 'My Shop');
+        static::assertNotNull($item);
+        static::assertNotFalse($item, 'Failed to getItem!');
+
         $actions = $item->getAvailableActions()->toArray();
+
         $action = $actions[0]; // @todo: this is just the test, but still think about the API
 
         static::$service->addAction(

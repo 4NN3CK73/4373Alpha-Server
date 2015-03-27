@@ -14,11 +14,12 @@ namespace Anneck\Game;
 use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\Exception\GameFeatureMissingException;
-use Anneck\Game\Features\ItemRegisterFeature;
+use Anneck\Game\Features\ItemRegisterFeatureInterface;
 use Anneck\Game\Features\PlayerItemRegisterFeature;
-use Anneck\Game\Features\SingleScoreFeature;
-use Anneck\Game\Features\TurnBasedFeature;
+use Anneck\Game\Features\SingleScoreFeatureInterface;
+use Anneck\Game\Features\TurnBasedFeatureInterface;
 use Anneck\Game\Player\Player;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -85,17 +86,17 @@ class TestEngine implements EngineInterface
     {
         // The TestEngine requires a Game with Turns, Scores and Items with a Register
 
-        if (!$testTurns = $this->game instanceof TurnBasedFeature) {
-            throw new GameException('Gamefeature missing: TurnBased!');
+        if (!$testTurns = $this->game instanceof TurnBasedFeatureInterface) {
+            throw new GameFeatureMissingException('ValidateGameFeatures failed', 'TurnBased!', $this->game);
         }
-        if (!$testScores = $this->game instanceof SingleScoreFeature) {
-            throw new GameException('Gamefeature missing: SingleScore!');
+        if (!$testScores = $this->game instanceof SingleScoreFeatureInterface) {
+            throw new GameFeatureMissingException('ValidateGameFeatures failed', 'SingleScore', $this->game);
         }
-        if (!$testRegister = $this->game instanceof ItemRegisterFeature) {
-            throw new GameException('Gamefeature missing: ItemRegister!');
+        if (!$testRegister = $this->game instanceof ItemRegisterFeatureInterface) {
+            throw new GameFeatureMissingException('ValidateGameFeatures failed', 'ItemRegister!', $this->game);
         }
         if (!$testPlayerRegister = $this->game instanceof PlayerItemRegisterFeature) {
-            throw new GameFeatureMissingException('Gamefeature missing: PlayerItemRegister!');
+            throw new GameFeatureMissingException('ValidateGameFeatures failed', 'PlayerItemRegister!', $this->game);
         }
 
         return true;
@@ -115,7 +116,7 @@ class TestEngine implements EngineInterface
     public function getAvailablePlayerActions(Player $player)
     {
         if (!$this->game instanceof PlayerItemRegisterFeature) {
-            throw new GameFeatureMissingException('PlayerItemRegister is missing from game: '.$this->game);
+            throw new GameFeatureMissingException('Get available player actions.', 'PlayerItemRegister', $this->game);
         }
 
         $playerItems = $this->game->getPlayerItems($player);
@@ -142,8 +143,8 @@ class TestEngine implements EngineInterface
      */
     public function getAvailableActions()
     {
-        if (!$this->game instanceof ItemRegisterFeature) {
-            throw new GameFeatureMissingException('ItemRegister is missing from game: '.$this->game);
+        if (!$this->game instanceof ItemRegisterFeatureInterface) {
+            throw new GameFeatureMissingException('TestEngine could not use Register during getAvailableActions()', 'ItemRegisterFeature', $this->game);
         }
 
         $allItems = $this->game->getItems();
@@ -187,15 +188,16 @@ class TestEngine implements EngineInterface
         if (!$this->isFueld) {
             throw new GameException('The Engine has not been fueld with actions, can not start!');
         }
+
         // Process the action queue ...
         $this->processActionQ();
 
         // Mark end of turn calling next turn ...
-        if ($this->game instanceof TurnBasedFeature) {
+        if ($this->game instanceof TurnBasedFeatureInterface) {
             $this->game->nextTurn();
         }
         // Check score ...
-        if ($this->game instanceof SingleScoreFeature) {
+        if ($this->game instanceof SingleScoreFeatureInterface) {
             $score = $this->game->getScore();
             $player = $this->game->getPlayer();
 
@@ -223,24 +225,89 @@ class TestEngine implements EngineInterface
             throw new GameException('Process ActionQ failed, ActionQ is NULL!!');
         }
 
+        if (!$this->game instanceof ItemRegisterFeatureInterface) {
+            throw new GameFeatureMissingException('processActionQ', 'ItemRegisterFeature', $this->game);
+        }
+
         // Get all actions ...
         $actions = $this->actionQ->getIterator();
 
         // Process all actions ...
         /** @var ActionInterface $action */
         foreach ($actions as $action) {
-            GameLogger::addToGameLog(
-                sprintf('>>> [Apply] action %s on game %s', $action, $this->game),
-                GameLogger::INFO
-            );
 
-            // let the action change the game ...
-            $action->applyOn($this->game);
+            // check if usable ...
+            if ($this->isActionUsable($action)) {
+                GameLogger::addToGameLog(
+                    sprintf('>>> [Apply] action %s on game %s', $action, $this->game),
+                    GameLogger::INFO
+                );
 
-            GameLogger::addToGameLog(
-                '<<< [Apply]',
-                GameLogger::INFO
-            );
+                $action->applyOn($this->game);
+
+                // register action use ...
+                if ($this->game instanceof ItemRegisterFeatureInterface) {
+                    $this->game->registerActionUsage($action, new DateTime());
+                }
+
+                GameLogger::addToGameLog(
+                    '<<< [Apply]',
+                    GameLogger::INFO
+                );
+            } else {
+                GameLogger::addToGameLog(
+                    sprintf('--- [Skipped] action %s on game %s', $action, $this->game),
+                    GameLogger::INFO
+                );
+            }
         }
+    }
+
+    /**
+     * @param ActionInterface $action
+     *
+     * @return bool
+     *
+     * @throws GameFeatureMissingException
+     */
+    private function isActionUsable(ActionInterface $action)
+    {
+        if (!$this->game instanceof ItemRegisterFeatureInterface) {
+            throw new GameFeatureMissingException('processActionQ', 'ItemRegisterFeature', $this->game);
+        }
+
+        // If the action use is not in the game yet, its usable.
+        if (!$this->game->hasAction($action)) {
+            return true;
+        }
+
+        // If we have an action ...
+
+        /** @var ActionInterface $action */
+        $action = $this->game->getAction($action);
+
+        // FYI: Cool down is ignored for now
+
+        // ... we need to check use/max use and first unlimited ...
+        if ($action['MaxUse'] === '*') {
+            return true;
+        }
+
+        if ($action['UseCounter'] < $action['MaxUse']) {
+            return true;
+        }
+
+        GameLogger::addToGameLog(
+            sprintf('Action %s is at maximum usage! (%s/%s)',
+                $action['Action']->__toString(),
+                $action['UseCounter'],
+                $action['MaxUse']
+            ),
+            GameLogger::DEBUG
+        );
+
+
+        // OK no true condition, action is not usable!
+        return false;
     }
 }
