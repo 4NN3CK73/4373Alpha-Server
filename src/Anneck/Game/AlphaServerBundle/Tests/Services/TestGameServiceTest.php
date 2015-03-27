@@ -36,6 +36,7 @@ class TestGameServiceTest extends KernelTestCase
     {
         static::bootKernel();
         static::$service = static::$kernel->getContainer()->get('alphaserver.testgame');
+
     }
 
     public function testFirstGameServiceExists()

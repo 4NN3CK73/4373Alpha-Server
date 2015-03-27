@@ -21,6 +21,7 @@ use Anneck\Game\GameInterface;
 use Anneck\Game\GameLogger;
 use Anneck\Game\Item\ItemFactory;
 use Anneck\Game\ItemInterface;
+use Anneck\Game\Player\Player;
 use Anneck\Game\TestEngine;
 use Anneck\Game\TestGame;
 use Anneck\Game\World\DefaultWorld;
@@ -58,6 +59,7 @@ class TestGameService
     {
         $this->actionQ = new ActionQueue();
         $this->game = new TestGame();
+        $this->game->setPlayer(new Player('TestPlayer'));
         $world = new DefaultWorld();
         $worldConfig = new WorldConfiguration();
         $world->configure($worldConfig);

@@ -286,7 +286,13 @@ class TestEngine implements EngineInterface
         /** @var ActionInterface $action */
         $action = $this->game->getAction($action);
 
-        // ... we need to check use/max use
+        // FYI: Cool down is ignored for now
+
+        // ... we need to check use/max use and first unlimited ...
+        if ($action['MaxUse'] === '*') {
+            return true;
+        }
+
         if ($action['UseCounter'] < $action['MaxUse']) {
             return true;
         }
@@ -299,7 +305,9 @@ class TestEngine implements EngineInterface
             ),
             GameLogger::DEBUG
         );
-        // Cool down is ignored for now
+
+
+        // OK no true condition, action is not usable!
         return false;
     }
 }
