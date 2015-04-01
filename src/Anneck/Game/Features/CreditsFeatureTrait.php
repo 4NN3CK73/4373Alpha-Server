@@ -14,7 +14,7 @@ namespace Anneck\Game\Features;
 use Anneck\Game\GameLogger;
 
 /**
- * The CreditsFeatureTrait
+ * The CreditsFeatureTrait.
  *
  * @since   0.0.1-dev
  *
@@ -43,5 +43,4 @@ trait CreditsFeatureTrait
     {
         return $this->credits;
     }
-
 }

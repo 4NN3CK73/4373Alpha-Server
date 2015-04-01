@@ -15,7 +15,7 @@ use Anneck\Game\ItemInterface;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * The ItemRegisterFeatureTrait
+ * The ItemRegisterFeatureTrait.
  *
  * @since   0.0.1-dev
  *
@@ -23,7 +23,6 @@ use Doctrine\Common\Collections\Collection;
  */
 trait ItemRegisterFeatureTrait
 {
-
     /**
      * @param ItemInterface $gameItem
      *

@@ -12,7 +12,7 @@
 namespace Anneck\Game\Features;
 
 /**
- * The SingleScoreFeatureTrait
+ * The SingleScoreFeatureTrait.
  *
  * @since   0.0.1-dev
  *
@@ -47,6 +47,4 @@ trait SingleScoreFeatureTrait
 
         return $this->score;
     }
-
-
 }

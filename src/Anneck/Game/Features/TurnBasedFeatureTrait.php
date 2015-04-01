@@ -12,7 +12,7 @@
 namespace Anneck\Game\Features;
 
 /**
- * The TurnBasedFeatureTrait
+ * The TurnBasedFeatureTrait.
  *
  * @since   0.0.1-dev
  *
@@ -20,7 +20,6 @@ namespace Anneck\Game\Features;
  */
 trait TurnBasedFeatureTrait
 {
-
     /**
      * @var int
      */
@@ -42,6 +41,4 @@ trait TurnBasedFeatureTrait
     {
         return $this->turn;
     }
-
-
 }

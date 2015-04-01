@@ -38,6 +38,7 @@ class SellItem extends AbstractAction
      * @param GameInterface $game the game to change.
      *
      * @return mixed
+     *
      * @throws GameFeatureMissingException
      */
     public function applyOn(GameInterface $game)

@@ -11,7 +11,6 @@
 
 namespace Anneck\Game;
 
-
 use Anneck\Game\Player\Player;
 use Anneck\Game\Register\Register;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -85,6 +84,7 @@ abstract class AbstractGame
     public function __toString()
     {
         $refClass = new \ReflectionClass($this);
+
         return $refClass->getName();
     }
 

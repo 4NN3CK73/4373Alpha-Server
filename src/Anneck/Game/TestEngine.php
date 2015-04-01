@@ -306,7 +306,6 @@ class TestEngine implements EngineInterface
             GameLogger::DEBUG
         );
 
-
         // OK no true condition, action is not usable!
         return false;
     }

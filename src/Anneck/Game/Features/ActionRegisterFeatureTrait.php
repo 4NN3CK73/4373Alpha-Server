@@ -11,13 +11,11 @@
 
 namespace Anneck\Game\Features;
 
-
 use Anneck\Game\ActionInterface;
 use DateTime;
 
 trait ActionRegisterFeatureTrait
 {
-
     /**
      * Adds a game action to the game.
      *
@@ -34,7 +32,6 @@ trait ActionRegisterFeatureTrait
         );
         $this->register->registerAction($gameAction, $maxUses, $coolDown);
     }
-
 
     /**
      * @param ActionInterface $action
@@ -67,7 +64,6 @@ trait ActionRegisterFeatureTrait
         return $this->filterBy('ActionInterface');
     }
 
-
     /**
      * @param ActionInterface $gameAction
      *
@@ -87,5 +83,4 @@ trait ActionRegisterFeatureTrait
     {
         return $this->register->getRegistryData()->get($gameAction->hashcode());
     }
-
 }

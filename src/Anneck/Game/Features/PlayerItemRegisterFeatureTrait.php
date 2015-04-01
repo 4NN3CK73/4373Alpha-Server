@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * The PlayerItemRegisterFeatureTrait
+ * The PlayerItemRegisterFeatureTrait.
  *
  * @since   0.0.1-dev
  *
@@ -53,5 +53,4 @@ trait PlayerItemRegisterFeatureTrait
 
         return $returnItems;
     }
-
 }

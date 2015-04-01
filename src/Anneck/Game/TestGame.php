@@ -21,12 +21,7 @@ use Anneck\Game\Features\SingleScoreFeatureInterface;
 use Anneck\Game\Features\SingleScoreFeatureTrait;
 use Anneck\Game\Features\TurnBasedFeatureInterface;
 use Anneck\Game\Features\TurnBasedFeatureTrait;
-use Anneck\Game\Player\Player;
 use Anneck\Game\Register\Register;
-use Anneck\Game\AbstractGame;
-use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * The TestGame is as of now just a developer playground.
@@ -39,17 +34,17 @@ use Doctrine\Common\Collections\Collection;
  */
 class TestGame extends AbstractGame implements GameInterface, TurnBasedFeatureInterface, PlayerItemRegisterFeature, SingleScoreFeatureInterface, CreditsFeatureInterface
 {
-    /**
+    /*
      * Implementing ActionRegisterFeatureInterface
      */
     use ActionRegisterFeatureTrait;
 
-    /**
+    /*
      * Implementing CreditsFeatureInterface
      */
     use CreditsFeatureTrait;
 
-    /**
+    /*
      * Implementing ItemRegisterFeatureInterface
      */
     use ItemRegisterFeatureTrait;
@@ -85,10 +80,4 @@ class TestGame extends AbstractGame implements GameInterface, TurnBasedFeatureIn
         // TODO: Implement safe() method.
         return true;
     }
-
-
-
-
-
-
 }
