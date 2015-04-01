@@ -23,7 +23,7 @@ use Doctrine\Common\Collections\Collection;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-interface PlayerItemRegisterFeature extends ItemRegisterFeatureInterface
+interface PlayerItemRegisterFeatureInterface extends ItemRegisterFeatureInterface
 {
     /**
      * Returns a collection of items in the register for the specified player.

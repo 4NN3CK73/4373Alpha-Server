@@ -15,7 +15,7 @@ use Anneck\Game\Features\ActionRegisterFeatureTrait;
 use Anneck\Game\Features\CreditsFeatureInterface;
 use Anneck\Game\Features\CreditsFeatureTrait;
 use Anneck\Game\Features\ItemRegisterFeatureTrait;
-use Anneck\Game\Features\PlayerItemRegisterFeature;
+use Anneck\Game\Features\PlayerItemRegisterFeatureInterface;
 use Anneck\Game\Features\PlayerItemRegisterFeatureTrait;
 use Anneck\Game\Features\SingleScoreFeatureInterface;
 use Anneck\Game\Features\SingleScoreFeatureTrait;
@@ -32,7 +32,7 @@ use Anneck\Game\Register\Register;
  *
  * @author  André Anneck <andreanneck73@gmail.com>
  */
-class TestGame extends AbstractGame implements GameInterface, TurnBasedFeatureInterface, PlayerItemRegisterFeature, SingleScoreFeatureInterface, CreditsFeatureInterface
+class TestGame extends AbstractGame implements GameInterface, TurnBasedFeatureInterface, PlayerItemRegisterFeatureInterface, SingleScoreFeatureInterface, CreditsFeatureInterface
 {
     /*
      * Implementing ActionRegisterFeatureInterface
@@ -49,10 +49,19 @@ class TestGame extends AbstractGame implements GameInterface, TurnBasedFeatureIn
      */
     use ItemRegisterFeatureTrait;
 
+    /*
+     * Implementing SingleScoreFeatureInterface
+     */
     use SingleScoreFeatureTrait;
 
+    /*
+     * Implementing TurnBasedFeatureInterface
+     */
     use TurnBasedFeatureTrait;
 
+    /*
+     * Implementing PlayerItemRegisterFeatureInterface
+     */
     use PlayerItemRegisterFeatureTrait;
 
     /**

@@ -25,6 +25,26 @@ use Anneck\Game\World\DefaultWorld;
  */
 class TestGameTest extends \PHPUnit_Framework_TestCase
 {
+
+    public function testCreateProductsUsingShop()
+    {
+        $game = new TestGame();
+        $worldConfiguration = new WorldConfiguration();
+        $world = new DefaultWorld();
+        $world->configure($worldConfiguration);
+        $register = new Register();
+        $game->setWorld($world);
+        $game->setRegister($register);
+
+        // The game starts with a Shop ...
+        $shop = ItemFactory::createGameItem('Shop', 'FirstTestShop', $game);
+        $register->registerItem($shop);
+        var_dump($shop->getAvailableActions());
+        // All available actions should now come from the shop
+        $allActions = $game->getActions();
+        var_dump($allActions);
+    }
+
     public function testGameSpecification()
     {
         $game = new TestGame();
@@ -56,9 +76,6 @@ class TestGameTest extends \PHPUnit_Framework_TestCase
         $game->nextTurn();
 
         self::assertEquals(1, $game->getTurn());
-        // @todo: enable actions to manipulate ... but not here! :) in the game engine where the action queue is used.
-//        $shopProductCreatedByTurn = new ShopProduct($game);
-//        self::assertTrue($register->hasItem($shopProductCreatedByTurn));
 
         $game->safe();
     }

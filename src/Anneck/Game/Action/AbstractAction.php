@@ -14,7 +14,7 @@ namespace Anneck\Game\Action;
 use Anneck\Game\ActionInterface;
 
 /**
- * The AbstractAction class serves all implementations as a base class.
+ * The AbstractAction class serves all implementations as a base class and provides common features for all actions.
  *
  * @since   0.0.1-dev
  *
@@ -77,7 +77,7 @@ abstract class AbstractAction implements ActionInterface
     }
 
     /**
-     * Returns true if another action has the same short class name.
+     * Returns true if another action has the same hashcode.
      *
      * @param ActionInterface $action
      *

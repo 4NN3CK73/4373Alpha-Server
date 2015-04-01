@@ -89,6 +89,10 @@ abstract class AbstractGame
     }
 
     /**
+     * Helper method which returns a collection of registered data matching the instanceString.
+     *
+     * @param $instanceString
+     *
      * @return ArrayCollection
      */
     protected function filterBy($instanceString)

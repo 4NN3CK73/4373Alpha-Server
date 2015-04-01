@@ -156,7 +156,18 @@ class Register implements RegisterInterface
 
         // If we already have this item, we return it instead of overwriting it!
         if ($this->hasItem($item)) {
+            $this->logger->addWarning('Item %s already registered!', $item);
+
             return $this->getRegistryData()->get($item->getName());
+        }
+
+        // New Item may have actions ...
+        if ($item->getAvailableActions()->count() > 0) {
+
+            /** @var ActionInterface $itemAction */
+            foreach ($item->getAvailableActions() as $itemAction) {
+                $this->registerAction($itemAction);
+            }
         }
 
         $this->registryData->set($item->getName(), $item);

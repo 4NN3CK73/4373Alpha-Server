@@ -15,7 +15,7 @@ use Anneck\Game\Action\ActionQueue;
 use Anneck\Game\Exception\GameException;
 use Anneck\Game\Exception\GameFeatureMissingException;
 use Anneck\Game\Features\ItemRegisterFeatureInterface;
-use Anneck\Game\Features\PlayerItemRegisterFeature;
+use Anneck\Game\Features\PlayerItemRegisterFeatureInterface;
 use Anneck\Game\Features\SingleScoreFeatureInterface;
 use Anneck\Game\Features\TurnBasedFeatureInterface;
 use Anneck\Game\Player\Player;
@@ -95,7 +95,7 @@ class TestEngine implements EngineInterface
         if (!$testRegister = $this->game instanceof ItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException('ValidateGameFeatures failed', 'ItemRegister!', $this->game);
         }
-        if (!$testPlayerRegister = $this->game instanceof PlayerItemRegisterFeature) {
+        if (!$testPlayerRegister = $this->game instanceof PlayerItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException('ValidateGameFeatures failed', 'PlayerItemRegister!', $this->game);
         }
 
@@ -115,7 +115,7 @@ class TestEngine implements EngineInterface
      */
     public function getAvailablePlayerActions(Player $player)
     {
-        if (!$this->game instanceof PlayerItemRegisterFeature) {
+        if (!$this->game instanceof PlayerItemRegisterFeatureInterface) {
             throw new GameFeatureMissingException('Get available player actions.', 'PlayerItemRegister', $this->game);
         }
 

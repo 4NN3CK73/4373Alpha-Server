@@ -13,6 +13,7 @@ namespace Anneck\Game\Features;
 
 use Anneck\Game\ActionInterface;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * The ActionRegisterFeature.
@@ -64,7 +65,9 @@ interface ActionRegisterFeatureInterface
     public function getActionData(ActionInterface $gameAction);
 
     /**
-     * @return mixed
+     * Returns a collection of all actions.
+     *
+     * @return ArrayCollection|ActionInterface
      */
     public function getActions();
 }
